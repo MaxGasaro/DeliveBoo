@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    protected $fillable = ['name', 'slug', 'description','price','visible','img'];
+    protected $table = 'foods';
+    protected $fillable = ['name', 'slug', 'description','price','visible','img','user_id','category_food_id'];
 
     public function orders(){
         return $this->belongsToMany('App\Order');
