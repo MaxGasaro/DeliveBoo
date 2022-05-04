@@ -49,7 +49,7 @@ class FoodController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required|min:10',
                 'price' => 'required|numeric|min:0.05',
-                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048',
+                'img' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048',
                 'category_food_id' =>'nullable|exists:categories_food,id'
             ]
         );
