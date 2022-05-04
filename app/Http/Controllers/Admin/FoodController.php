@@ -6,9 +6,9 @@ use App\Category;
 use App\Food;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+
 class FoodController extends Controller
 {
     /**
@@ -19,7 +19,7 @@ class FoodController extends Controller
     public function index()
     {
         //recuperiamo tutti gli oggetti con model Food insieme al nodo di categories
-        //$foods = DB::select('select * from foods left join categories_food on foods.category_food_id = categories_food.id');
+        
         $foods = Food::all();
         
         return view('admin.foods.index', compact('foods'));
@@ -45,15 +45,14 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-
-       //validazione
+        //validazione
         $request->validate(
             [
                 'name' => 'required|min:2',
                 'description' => 'required|min:10',
                 'price' => 'required|numeric|min:0.05',
                 'img' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048',
-                'category_food_id' =>'nullable|exists:categories_food,id'
+                'category_id' =>'nullable|exists:categories,id'
             ]
         );
 
@@ -94,9 +93,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Food $food)
+    public function show($id)
     {
-        return view('admin.foods.show', compact('food'));
+        //
     }
 
     /**
@@ -117,49 +116,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Food $food)
+    public function update(Request $request, $id)
     {
-        //validazione
-        $request->validate(
-            [
-                'name' => 'required|min:2',
-                'description' => 'required|min:10',
-                'price' => 'required|numeric|min:0.05',
-                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048',
-                'category_food_id' =>'nullable|exists:categories_food,id'
-            ]
-        );
-
-        //acquisizione dei dati
-        $data = $request->all();
-
-        if (isset($request['visible'])){
-            $data['visible'] = true;
-        }else{
-            $data['visible'] = false;
-        }
-
-        $data['user_id'] = Auth::id();
-
-        //controllo dello slug
-        $slug = Str::slug($data['name']);
-        if($food->slug != $slug){
-
-            $counter = 1;
-            while(Food::where('slug', $slug)->first()){
-                $slug = Str::slug($data['name']). '-' . $counter;
-                $counter++;
-            }
-        }
-
-        $data['slug'] = $slug;
-
-        $food = new Food();
-        //aggiorniamo l'oggetto
-        $food->update($data);
-        $food->save();
-
-        return redirect()->route('admin.foods.index');
+        //
     }
 
     /**

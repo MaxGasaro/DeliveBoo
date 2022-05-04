@@ -3,6 +3,7 @@
 use App\Typology;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+
 class TypologyTableSeeder extends Seeder
 {
     /**
@@ -19,7 +20,7 @@ class TypologyTableSeeder extends Seeder
                         'Pollo','Centrifughe','Venezuelano','Frappe','Francese','Marocchino','Finger Food','Senza Glutine','Senza Lattosio','Altro'];
 
         foreach($typologies as $typology){
-            $newtypology = new Typology ();
+            $newtypology = new Typology();
             $newtypology->name = $typology;
             $newtypology->slug = Str::slug($typology);
             $newtypology->save();

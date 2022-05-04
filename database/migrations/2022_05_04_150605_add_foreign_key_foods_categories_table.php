@@ -14,8 +14,8 @@ class AddForeignKeyFoodsCategoriesTable extends Migration
     public function up()
     {
         Schema::table('foods', function (Blueprint $table) {
-            $table->unsignedBigInteger('category_food_id')->nullable();
-            $table->foreign('category_food_id')->references('id')->on('categories_food')->onDelete('set null');  
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');  
         });
     }
 
@@ -27,9 +27,8 @@ class AddForeignKeyFoodsCategoriesTable extends Migration
     public function down()
     {
         Schema::table('foods', function (Blueprint $table) {
-            
-            $table->dropForeign('foods_category_food_id_foreign');
-            $table->dropColumn('category_food_id');
+            $table->dropForeign('foods_category_id_foreign');
+            $table->dropColumn('category_id');
         });
     }
 }

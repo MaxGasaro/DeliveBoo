@@ -1,9 +1,10 @@
 <?php
 
-use App\CategoryFood;
+use App\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-class CategoryFoodTableSeeder extends Seeder
+
+class CategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +16,7 @@ class CategoryFoodTableSeeder extends Seeder
         $categories = ['Antipasti','Primi','Secondi','Contorni','Dolci','Pizza','Bevande','Street Food','Fast Food'];
 
         foreach($categories as $category){
-            $newCategory = new CategoryFood();
+            $newCategory = new Category();
             $newCategory->name = $category;
             $newCategory->slug = Str::slug($category);
             $newCategory->save();

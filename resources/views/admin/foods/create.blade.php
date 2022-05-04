@@ -30,11 +30,11 @@
                         <label class="form-check-label" for="visible">Disponibile</label>
                     </div>
                     <div class="form-group">
-                        <label for="category_food_id">Scegli una categoria</label>
-                        <select class="form-control" id="category_food_id" name="category_food_id" >
+                        <label for="category_id">Scegli una categoria</label>
+                        <select class="form-control" id="category_id" name="category_id" >
                             <option value="">Nessuna categoria</option>
                             @foreach ($categories as $category )
-                                <option {{old('category_food_id') == $category->id? 'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
+                                <option {{old('category_id') == $category->id? 'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>

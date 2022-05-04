@@ -35,7 +35,7 @@
                                 <td>{{$food->visible}}</td>
                                 <td>
                                     
-                                    {{isset($food->category)? $food->category->name : '-'}}
+                                    {{isset($food->category)? $food->category->name : '-' }}
                                 </td>
                                 <td>
                                     <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
