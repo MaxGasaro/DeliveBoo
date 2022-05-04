@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\CategoryFood;
+use App\Category;
 use App\Food;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 class FoodController extends Controller
 {
@@ -18,7 +19,9 @@ class FoodController extends Controller
     public function index()
     {
         //recuperiamo tutti gli oggetti con model Food insieme al nodo di categories
-        $foods = Food::with(['categories'])->get();
+        //$foods = DB::select('select * from foods left join categories_food on foods.category_food_id = categories_food.id');
+        $foods = Food::all();
+        
         return view('admin.foods.index', compact('foods'));
     }
 
@@ -30,7 +33,7 @@ class FoodController extends Controller
     public function create()
     {
         //passiamo tutti i category food
-        $categories = CategoryFood::all();
+        $categories = Category::all();
         return view('admin.foods.create', compact('categories'));
     }
 
@@ -49,7 +52,7 @@ class FoodController extends Controller
                 'name' => 'required|min:2',
                 'description' => 'required|min:10',
                 'price' => 'required|numeric|min:0.05',
-                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048',
+                'img' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048',
                 'category_food_id' =>'nullable|exists:categories_food,id'
             ]
         );

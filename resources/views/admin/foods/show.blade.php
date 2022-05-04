@@ -16,7 +16,7 @@
                         <h2 class="card-title">{{$food->name}}</h2>
                         <p class="card-text"> <strong>Descrizione:</strong>  {{$food->description}}</p>
                         <span><strong>Prezzo:</strong> {{$food->price}} &euro;</span>
-                        <span> <strong>Categoria:</strong>  {{isset($food->categories->name)? $food->categories->name : '-'}}</span>
+                        <span> <strong>Categoria:</strong>  {{isset($food->category)? $food->category->name : '-'}}</span>
                         @if ($food->visible)
                             <p>Attualmente Disponibile</p> 
                         @else
@@ -25,7 +25,7 @@
                             
                        
                     </div>
-
+ 
                    
                 </div>
 
