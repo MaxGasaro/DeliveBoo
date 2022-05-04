@@ -22,23 +22,13 @@
 
                     <div class="form-group">
                         <label for="price">Prezzo</label>
-                        <input type="number" step="0.01" min="0.05" class="form-control" id="price" name="price" value="{{old('price')}}" required>
+                        <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{old('price')}}" required>
                     </div>
 
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="visible" name="visible" {{old('visible')? 'checked' : ''}} >
                         <label class="form-check-label" for="visible">Disponibile</label>
                     </div>
-                    <div class="form-group">
-                        <label for="category_food_id">Scegli una categoria</label>
-                        <select class="form-control" id="category_food_id" name="category_food_id" >
-                            <option value="">Nessuna categoria</option>
-                            @foreach ($categories as $category )
-                                <option {{old('category_food_id') == $category->id? 'selected':''}} value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    
 
                     <div class="form-group">
                         <label for="description">Descrizione Piatto</label>

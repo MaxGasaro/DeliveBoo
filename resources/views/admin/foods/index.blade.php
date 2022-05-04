@@ -2,7 +2,8 @@
 
 @section('pageTitle','DeliveBoo')
 
-@section('content')
+@section('content') 
+
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -32,7 +33,10 @@
                                 <td>{{$food->description}}</td>
                                 <td>{{$food->price}}</td>
                                 <td>{{$food->visible}}</td>
-                                <td>{{isset($food->categories)? $post->categories->name : '-'}}</td>
+                                <td>{{isset($food->categories)? $food->categories->name : '-'}}</td>
+                                <td>
+                                    <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

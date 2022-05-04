@@ -17,6 +17,7 @@ class FoodController extends Controller
      */
     public function index()
     {
+        //recuperiamo tutti gli oggetti con model Food insieme al nodo di categories
         $foods = Food::with(['categories'])->get();
         return view('admin.foods.index', compact('foods'));
     }
@@ -28,6 +29,7 @@ class FoodController extends Controller
      */
     public function create()
     {
+        //passiamo tutti i category food
         $categories = CategoryFood::all();
         return view('admin.foods.create', compact('categories'));
     }
@@ -41,16 +43,18 @@ class FoodController extends Controller
     public function store(Request $request)
     {
 
-       
+       //validazione
         $request->validate(
             [
                 'name' => 'required|min:2',
                 'description' => 'required|min:10',
                 'price' => 'required|numeric|min:0.05',
-                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048'
+                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048',
+                'category_food_id' =>'nullable|exists:categories_food,id'
             ]
         );
 
+        //acquisizione dei dati
         $data = $request->all();
 
         if (isset($request['visible'])){
@@ -60,6 +64,8 @@ class FoodController extends Controller
         }
 
         $data['user_id'] = Auth::id();
+
+        //creazione dello slug
         $slug = Str::slug($data['name']);
 
         $counter = 1;
@@ -70,10 +76,10 @@ class FoodController extends Controller
 
         $data['slug'] = $slug;
 
+        //istanziamo un nuovo oggetto
         $food = new Food();
 
         $food-> fill($data);
-
         $food->save();
 
         return redirect()->route('admin.foods.index');
@@ -85,9 +91,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Food $food)
     {
-        //
+        return view('admin.foods.show', compact('food'));
     }
 
     /**
@@ -108,9 +114,49 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Food $food)
     {
-        //
+        //validazione
+        $request->validate(
+            [
+                'name' => 'required|min:2',
+                'description' => 'required|min:10',
+                'price' => 'required|numeric|min:0.05',
+                'img' => 'nullable|mimes:jpeg,png,bmp,gif,svg,webp|max:2048',
+                'category_food_id' =>'nullable|exists:categories_food,id'
+            ]
+        );
+
+        //acquisizione dei dati
+        $data = $request->all();
+
+        if (isset($request['visible'])){
+            $data['visible'] = true;
+        }else{
+            $data['visible'] = false;
+        }
+
+        $data['user_id'] = Auth::id();
+
+        //controllo dello slug
+        $slug = Str::slug($data['name']);
+        if($food->slug != $slug){
+
+            $counter = 1;
+            while(Food::where('slug', $slug)->first()){
+                $slug = Str::slug($data['name']). '-' . $counter;
+                $counter++;
+            }
+        }
+
+        $data['slug'] = $slug;
+
+        $food = new Food();
+        //aggiorniamo l'oggetto
+        $food->update($data);
+        $food->save();
+
+        return redirect()->route('admin.foods.index');
     }
 
     /**
