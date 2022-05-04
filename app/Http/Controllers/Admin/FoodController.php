@@ -104,9 +104,10 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Food $food)
     {
-        //
+        $categories = Category::all();
+        return view('admin.foods.edit', compact('food','categories'));
     }
 
     /**
@@ -142,6 +143,7 @@ class FoodController extends Controller
 
         //controllo dello slug
         $slug = Str::slug($data['name']);
+        
         if($food->slug != $slug){
 
             $counter = 1;
@@ -149,16 +151,14 @@ class FoodController extends Controller
                 $slug = Str::slug($data['name']). '-' . $counter;
                 $counter++;
             }
+            $data['slug'] = $slug;
         }
 
-        $data['slug'] = $slug;
-
-        $food = new Food();
         //aggiorniamo l'oggetto
         $food->update($data);
         $food->save();
 
-        return redirect()->route('admin.foods.index');
+        return redirect()->route('admin.foods.show', ['food' => $food->id]);
     }
 
     /**
@@ -167,8 +167,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Food $food)
     {
-        //
+        $food->delete();
+        return redirect()->route('admin.foods.index');
     }
 }

@@ -14,7 +14,6 @@
                             <th scope="col text-uppercase">#</th>
                             <th scope="col text-uppercase">image</th>
                             <th scope="col text-uppercase">name</th>
-                            <th scope="col text-uppercase">slug</th>
                             <th scope="col text-uppercase">description</th>
                             <th scope="col text-uppercase">price</th>
                             <th scope="col text-uppercase">visible</th>
@@ -29,16 +28,25 @@
                                 <td scope="row">{{$food->id}}</td>
                                 <td>{{$food->img}}</td>
                                 <td>{{$food->name}}</td>
-                                <td>{{$food->slug}}</td>
                                 <td>{{substr($food->description,0,30)}}</td>
                                 <td>{{$food->price}}</td>
-                                <td>{{$food->visible}}</td>
                                 <td>
-                                    
-                                    {{isset($food->category)? $food->category->name : '-' }}
+                                    @if ($food->visible)
+                                        <p>Disponibile</p> 
+                                    @else
+                                        <p>Non Disponibile</p> 
+                                    @endif
                                 </td>
+                                <td>{{isset($food->category)? $food->category->name : '-' }}</td>
                                 <td>
                                     <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
+                                    <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning">Edit</a>
+                                    <form action="{{route('admin.foods.destroy', $food->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+    
+                                        <button type="submit" class="btn btn-danger">Remove</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
