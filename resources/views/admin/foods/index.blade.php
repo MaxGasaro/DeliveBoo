@@ -30,7 +30,7 @@
                                 <td>{{$food->img}}</td>
                                 <td>{{$food->name}}</td>
                                 <td>{{$food->slug}}</td>
-                                <td>{{$food->description}}</td>
+                                <td>{{substr($food->description,0,30)}}</td>
                                 <td>{{$food->price}}</td>
                                 <td>{{$food->visible}}</td>
                                 <td>
