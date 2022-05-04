@@ -38,15 +38,16 @@
                                     @endif
                                 </td>
                                 <td>{{isset($food->category)? $food->category->name : '-' }}</td>
-                                <td>
+                                <td class="d-flex">
                                     <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
-                                    <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning">Edit</a>
+                                    <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning mx-2">Edit</a>
                                     <form action="{{route('admin.foods.destroy', $food->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
     
                                         <button type="submit" class="btn btn-danger">Remove</button>
                                     </form>
+
                                 </td>
                             </tr>
                         @endforeach

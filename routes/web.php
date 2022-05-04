@@ -24,6 +24,7 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')->name('home');
 
         Route::resource('foods', 'FoodController');
+        Route::resource('orders', 'OrderController');
 });
 
 Route::get("{any?}", function(){
