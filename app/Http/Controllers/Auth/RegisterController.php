@@ -80,7 +80,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -89,6 +89,12 @@ class RegisterController extends Controller
             'p_iva' => $data['p_iva'],
             
         ]);
+
+        if(isset($data['typologies'])){
+            $user->typologies()->sync($data['typologies']);
+        }
+
+        return $user;
     }
 
     public function showRegistrationForm()
