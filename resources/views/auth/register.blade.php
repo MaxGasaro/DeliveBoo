@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@dd($typologies)
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -12,7 +13,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -54,10 +55,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">{{ __('p_iva') }}</label>
+                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">P.IVA</label>
 
                             <div class="col-md-6">
-                                <input id="p_iva" type="text" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva">
+                                <input id="p_iva" type="text" pattern="[0-9]+" maxlength="11" minlength="11" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva">
 
                                 @error('p_iva')
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +72,21 @@
                             <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('owner') }}</label>
 
                             <div class="col-md-6">
-                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner') }}" required autocomplete="owner">
+                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner') }}"  autocomplete="owner">
+
+                                @error('owner')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('owner') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner') }}"  autocomplete="owner">
 
                                 @error('owner')
                                     <span class="invalid-feedback" role="alert">
