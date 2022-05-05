@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@dd($typologies)
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -83,17 +82,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('owner') }}</label>
+                            <label for="typology_list" class="col-md-4 col-form-label text-md-right">Typologies</label>
 
-                            <div class="col-md-6">
-                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner') }}"  autocomplete="owner">
-
-                                @error('owner')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="col-md-6 pl-5">
+                                <div class="row row-cols-2 flex-wrap">
+                                    @foreach ($typologies as $typology)
+                                        <div class="col align-content-stretch">
+                                            <input class="form-check-input" type="checkbox" name="typologies[]" id="typolgy_{{$typology->id}}" {{in_array($typology->id, old("typologies", [])) ? 'checked' : ''}} value="{{$typology->id}}">
+                                            <label class="form-check-label" for="typolgy_{{$typology->id}}">{{$typology->name}}</label>    
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+                            
                         </div>
 
                         <div class="form-group row">
