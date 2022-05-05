@@ -37,7 +37,7 @@
                             <a class="nav-link" href="{{route('admin.foods.index')}}">Menù</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin.orders.index')}}">Ordine</a>
+                            <a class="nav-link" href="{{route('admin.orders.index')}}">Ordini</a>
                         </li>
                     </ul>
 
