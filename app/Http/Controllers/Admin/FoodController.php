@@ -20,7 +20,7 @@ class FoodController extends Controller
     {
         //recuperiamo tutti gli oggetti con model Food insieme al nodo di categories
         
-        $foods = Food::all();
+        $foods = Food::where('user_id', Auth::user()->id)->get();
         
         return view('admin.foods.index', compact('foods'));
     }
