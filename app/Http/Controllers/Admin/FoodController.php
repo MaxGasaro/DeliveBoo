@@ -104,20 +104,16 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    /*public function edit(Food $food)
-    {
-        $categories = Category::all();
-        return view('admin.foods.edit', compact('food','categories'));
-    }*/
 
     public function edit($id) //senza dependency injection
     {
+        //controllo se il food appartenga all'utente
         $food = Food::where('user_id', Auth::user()->id)->find($id);
         $categories = Category::all();
         if ($food) {
             return view('admin.foods.edit', compact('food','categories'));
         } else {
-            abort(404);
+            abort(403,"Resource not found");
         }
     }
     /**

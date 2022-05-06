@@ -11,7 +11,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col text-uppercase">#</th>
                             <th scope="col text-uppercase">image</th>
                             <th scope="col text-uppercase">name</th>
                             <th scope="col text-uppercase">description</th>
@@ -25,7 +24,6 @@
                     <tbody>
                         @foreach ($foods as $food )
                             <tr>
-                                <td scope="row">{{$food->id}}</td>
                                 <td>{{$food->img}}</td>
                                 <td>{{$food->name}}</td>
                                 <td>{{substr($food->description,0,30)}}</td>
