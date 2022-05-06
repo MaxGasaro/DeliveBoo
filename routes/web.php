@@ -23,6 +23,7 @@ Route::middleware('auth')
         //admin
         Route::get('/', 'HomeController@index')->name('home');
 
+        Route::resource('user', 'UserController');
         Route::resource('foods', 'FoodController');
         Route::resource('orders', 'OrderController');
 });

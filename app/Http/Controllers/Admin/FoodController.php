@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class FoodController extends Controller
 {
@@ -58,6 +59,12 @@ class FoodController extends Controller
 
         //acquisizione dei dati
         $data = $request->all();
+
+        if(isset($data['img'])){
+            $img_food = Storage::put('img_foods', $data['img']);
+            $data['img'] = $img_food;
+        }
+        
 
         if (isset($request['visible'])){
             $data['visible'] = true;
@@ -139,6 +146,16 @@ class FoodController extends Controller
         //acquisizione dei dati
         $data = $request->all();
 
+        if (isset($data['img'])) {
+
+            if ($food->img) {
+                Storage::delete($food->img);
+            }
+
+            $img_food = Storage::put('img_food', $data['img']);
+            $data['img'] = $img_food;
+        }
+        
         if (isset($request['visible'])){
             $data['visible'] = true;
         }else{
@@ -175,6 +192,9 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
+        if ($food->img) {
+            Storage::delete($food->img);
+        }
         $food->delete();
         return redirect()->route('admin.foods.index');
     }
