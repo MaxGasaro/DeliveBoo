@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Typology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +21,8 @@ class UserController extends Controller
     public function edit()
     {
        $user = Auth::user();
-       return view('admin.user.edit', compact('user'));
+       $typologies = Typology::all();
+       return view('admin.user.edit', compact('user','typologies'));
     }
 
     /**
@@ -29,9 +32,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['exists:user,email'],
+            'new_password' => [ 'nullable', 'string', 'min:8', 'confirmed'],
+            'owner' => ['nullable', 'string'],
+            'address' => ['required','string', 'min:8'],
+            'p_iva' => ['exists:user,p_iva'],
+            'image' => ['nullable','mimes:jpg,jpeg,png,bmp,gif,svg,webp','max:2048'],
+            'typologies' => ['nullable', 'exists:typologies,id']
+        ]);
+          
+        $data = $request->all();
+
+        if ($data['new_password']) {
+            $new_password = Hash::make($data['new_password']);
+            $data['password'] = $new_password;
+        }
+
+        $user->update($data);
+        return redirect()->route('admin.home')->with('message', 'Profile updated with success');
     }
 
     /**

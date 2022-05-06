@@ -5,17 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">Modifica Profilo</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +30,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $user->email }}" required autocomplete="email" disabled>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +44,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $user->address) }}" required autocomplete="address">
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +58,7 @@
                             <label for="p_iva" class="col-md-4 col-form-label text-md-right">P.IVA</label>
 
                             <div class="col-md-6">
-                                <input id="p_iva" type="text" pattern="[0-9]+" maxlength="11" minlength="11" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ old('p_iva') }}" required autocomplete="p_iva">
+                                <input id="p_iva" type="text" pattern="[0-9]+" maxlength="11" minlength="11" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ $user->p_iva }}" required autocomplete="p_iva" disabled>
 
                                 @error('p_iva')
                                     <span class="invalid-feedback" role="alert">
@@ -71,7 +72,7 @@
                             <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('owner') }}</label>
 
                             <div class="col-md-6">
-                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner') }}"  autocomplete="owner">
+                                <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner',$user->owner ) }}"  autocomplete="owner">
 
                                 @error('owner')
                                     <span class="invalid-feedback" role="alert">
@@ -97,37 +98,44 @@
                             
                         </div>
 
-                        
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password" required onChange="onChange()">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="form-group row my-2 ">
+                            <div class="col-md-8 offset-md-2 ">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-primary w-100" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                            Change Password
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                                
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password" required onChange="onChange()">
-                            </div>
+                            
                         </div>
                         
+                        
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body col-md-8 offset-md-2 mt-2">
+                                <h3>Cambio Password</h3>
+                                <div class="form-group">
+                                    <label for="new_password">Password (lasciare vuoto per non aggiornare)</label>
+                                    <input type="password" class="form-control" id="new_password" name="new_password">
+                                </div>
+        
+                                <div class="form-group">
+                                    <label for="new_password_confirmation">Conferma Password</label>
+                                    <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation">
+                                </div>
                             </div>
                         </div>
+
+            
                     </form>
                 </div>
             </div>

@@ -61,7 +61,7 @@ class RegisterController extends Controller
             'owner' => ['nullable', 'string'],
             'address' => ['required','string', 'min:8'],
             'p_iva' => ['required','string', 'size:11'],
-            'image' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048',
+            'image' => ['nullable','mimes:jpg,jpeg,png,bmp,gif,svg,webp','max:2048'],
             'typologies' => ['nullable', 'exists:typologies,id']
           
         ]);
@@ -76,9 +76,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+   
+        
         if(isset($data['image'])){
             $img_users = Storage::put('img_users', $data['image']);
             $data['image'] = $img_users;
+        }else{
+            $data['image'] = null;
         }
 
         $user =  User::create([
@@ -91,6 +95,8 @@ class RegisterController extends Controller
             'p_iva' => $data['p_iva'],
             
         ]);
+
+        
 
         if(isset($data['typologies'])){
             $user->typologies()->sync($data['typologies']);
