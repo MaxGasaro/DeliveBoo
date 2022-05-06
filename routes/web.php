@@ -23,7 +23,10 @@ Route::middleware('auth')
         //admin
         Route::get('/', 'HomeController@index')->name('home');
 
-        Route::resource('user', 'UserController');
+        Route::get('user', 'UserController@edit')->name('user.edit');
+        Route::put('user', 'UserController@update')->name('user.update');
+        Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy');
+
         Route::resource('foods', 'FoodController');
         Route::resource('orders', 'OrderController');
 });
