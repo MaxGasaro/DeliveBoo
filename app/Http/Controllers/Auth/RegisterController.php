@@ -62,7 +62,7 @@ class RegisterController extends Controller
             'address' => ['required','string', 'min:8'],
             'p_iva' => ['required','string', 'size:11'],
             'image' => ['nullable','mimes:jpg,jpeg,png,bmp,gif,svg,webp','max:2048'],
-            'typologies' => ['nullable', 'exists:typologies,id']
+            'typologies' => ['required', 'exists:typologies,id']
           
         ]);
         

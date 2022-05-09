@@ -17,3 +17,32 @@ window.btnDelete= btnDelete;
 function btnDelete(id,route){
   document.getElementById("myForm").action = route + "/" + id;
 }
+
+let checkBoxes = document.getElementsByClassName('control-check');
+
+let form = document.getElementById("register-form");
+
+let button = document.getElementById("register");
+
+if (button){
+  button.addEventListener("click", function(e){
+    console.log(checkBoxes);
+    
+    let isChecked = false; 
+    for (let i = 0; i < checkBoxes.length; i++){ 
+      if (checkBoxes[i].checked ) { 
+        isChecked = true; 
+      } 
+    }
+    if (!isChecked) {
+      e.preventDefault();
+
+      $("#typology-selection").modal();
+      /* console.log("Seleziona almeno una tipologia"); */
+    }
+  });
+}
+
+
+
+
