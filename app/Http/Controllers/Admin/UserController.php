@@ -7,6 +7,7 @@ use App\Typology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -48,6 +49,16 @@ class UserController extends Controller
         ]);
           
         $data = $request->all();
+
+        if (isset($data['image'])) {
+
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
+
+            $img_user = Storage::put('img_users', $data['image']);
+            $data['image'] = $img_user;
+        }
 
         if ($data['new_password']) {
             $new_password = Hash::make($data['new_password']);

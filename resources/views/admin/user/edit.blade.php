@@ -12,6 +12,21 @@
                         @csrf
                         @method('PUT')
 
+                        @if ($user->image)
+                            <div class="form-group row">
+                                <div class="offset-md-4 col-md-6">
+                                    <img src="{{asset('storage/' . $user->image)}}" alt="img" class="img-fluid">
+                                </div>
+                            </div>
+                        @endif
+                        <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Immagine</label>
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" id="image" name="image" >
+                            </div>
+                        </div>
+
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
 
