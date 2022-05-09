@@ -65,7 +65,11 @@ class UserController extends Controller
             $data['password'] = $new_password;
         }
 
+        
         $user->update($data);
+        if(isset($data['typologies'])){
+            $user->typologies()->sync($data['typologies']);
+        }
         return redirect()->route('admin.home')->with('message', 'Profile updated with success');
     }
 

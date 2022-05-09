@@ -103,10 +103,19 @@
                             <div class="col-md-6 pl-5">
                                 <div class="row row-cols-2 flex-wrap">
                                     @foreach ($typologies as $typology)
-                                        <div class="col align-content-stretch">
-                                            <input class="form-check-input" type="checkbox" name="typologies[]" id="typolgy_{{$typology->id}}" {{in_array($typology->id, old("typologies", [])) ? 'checked' : ''}} value="{{$typology->id}}">
-                                            <label class="form-check-label" for="typolgy_{{$typology->id}}">{{$typology->name}}</label>    
-                                        </div>
+
+                                        @if ($errors->any())
+                                            <div class="custom-control custom-checkbox">
+                                                <input name="typologies[]" type="checkbox" class="custom-control-input" id="typology_{{$typology->id}}" value={{$typology->id}} {{in_array($typology->id, old('typologies'))?'checked':''}}>
+                                                <label class="custom-control-label" for="typology_{{$typology->id}}">{{$typology->name}}</label>
+                                            </div>
+                                        @else
+                                            <div class="custom-control custom-checkbox">
+                                                <input name="typologies[]" type="checkbox" class="custom-control-input" id="typology_{{$typology->id}}" value={{$typology->id}} {{$user->typologies->contains($typology->id)?'checked':''}}  >
+                                                <label class="custom-control-label" for="typology_{{$typology->id}}">{{$typology->name}}</label>
+                                            </div>
+                                        @endif
+
                                     @endforeach
                                 </div>
                             </div>
