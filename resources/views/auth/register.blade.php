@@ -8,8 +8,24 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form id="register-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
+
+                        <div class="modal" tabindex="-1" id="typology-selection">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Prima di continuare...</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Seleziona almeno una tipologia</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
                         <div class="form-group row">
                             <label for="image" class="col-md-4 col-form-label text-md-right">Restaurant Image</label>
@@ -145,7 +161,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary" onclick="CheckBoxes()">
+                                <button id="register" type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>

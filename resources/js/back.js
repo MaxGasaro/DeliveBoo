@@ -11,16 +11,31 @@ function onChange() {
     }
 }
 
-function CheckBoxes(){ 
-  let checkBoxes = document.getElementsByClassName('control-check');
-  console.log(checkBoxes);
-  let isChecked = false; 
-  for (let i = 0; i < checkBoxes.length; i++){ 
-    if ( checkBoxes[i].checked ) { 
-      isChecked = true; 
-    } 
-  }
-  if (!isChecked) { 
-    alert( 'Seleziona almeno una tipologia'); 
-  } 
+let checkBoxes = document.getElementsByClassName('control-check');
+
+let form = document.getElementById("register-form");
+
+let button = document.getElementById("register");
+
+if (button){
+  button.addEventListener("click", function(e){
+    console.log(checkBoxes);
+    
+    let isChecked = false; 
+    for (let i = 0; i < checkBoxes.length; i++){ 
+      if (checkBoxes[i].checked ) { 
+        isChecked = true; 
+      } 
+    }
+    if (!isChecked) {
+      e.preventDefault();
+
+      $("#typology-selection").modal();
+      /* console.log("Seleziona almeno una tipologia"); */
+    }
+  });
 }
+
+
+
+
