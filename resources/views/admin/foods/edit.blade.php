@@ -14,6 +14,7 @@
                    @method('PUT')
                     @if ($food->img)
                         <div class="form-group">
+                            <h3>Immagine attuale</h3>
                             <img src="{{asset('storage/' . $food->img)}}" alt="img" class="w-50">
                         </div>
                     @endif

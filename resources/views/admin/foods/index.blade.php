@@ -24,11 +24,11 @@
                     <tbody>
                         @foreach ($foods as $food )
                             <tr>
-                                <td>
+                                <td class="w-25">
                                     @if (isset($food->img))
-                                      <img src="{{asset('storage/' . $food->img)}}" alt="foto" class="w-50">
+                                      <img src="{{asset('storage/' . $food->img)}}" alt="foto" class="img-fluid" >
                                     @else
-                                      <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="w-50">
+                                      <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="img-fluid" >
                                     @endif
                                 </td>
                                 <td>{{$food->name}}</td>
@@ -45,12 +45,41 @@
                                 <td class="d-flex">
                                     <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
                                     <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning mx-2">Edit</a>
-                                    <form action="{{route('admin.foods.destroy', $food->id)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-    
-                                        <button type="submit" class="btn btn-danger">Remove</button>
-                                    </form>
+
+                                        <!-- Button trigger modal -->
+                                    <!--nella onclick passare prima l'id e poi il nome della rotta-->
+                                    <button type="button" class="btn btn-danger" onclick="btnDelete('{{$food->id}}', 'foods');" data-toggle="modal" data-target="#cancel" >
+                                        Remove
+                                    </button>
+                                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="cancel" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Eliminazione</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" >
+                                                        <span >&times;</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <p>Sei sicuro di voler cancellare il piatto ?</p>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <form action="" method="POST" name="myForm" id='myForm'>
+                                                        @csrf
+                                                        @method('DELETE') 
+                                                        
+                                                        <button type="submit"  class="btn btn-danger">Remove</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </td>
                             </tr>
