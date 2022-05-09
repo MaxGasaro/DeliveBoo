@@ -10,3 +10,17 @@ function onChange() {
       confirm.setCustomValidity('Passwords do not match');
     }
 }
+
+function CheckBoxes(){ 
+  let checkBoxes = document.getElementsByClassName('control-check');
+  console.log(checkBoxes);
+  let isChecked = false; 
+  for (let i = 0; i < checkBoxes.length; i++){ 
+    if ( checkBoxes[i].checked ) { 
+      isChecked = true; 
+    } 
+  }
+  if (!isChecked) { 
+    alert( 'Seleziona almeno una tipologia'); 
+  } 
+}

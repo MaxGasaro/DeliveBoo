@@ -107,7 +107,7 @@
                                 <div class="row row-cols-2 flex-wrap">
                                     @foreach ($typologies as $typology)
                                     <div class="col align-content-stretch">
-                                        <input class="form-check-input" type="checkbox" name="typologies[]" id="typolgy_{{$typology->id}}" {{in_array($typology->id, old("typologies", [])) ? 'checked' : ''}} value="{{$typology->id}}">
+                                        <input class="form-check-input control-check" type="checkbox" name="typologies[]" id="typolgy_{{$typology->id}}" {{in_array($typology->id, old("typologies", [])) ? 'checked' : ''}} value="{{$typology->id}}">
                                             <label class="form-check-label" for="typolgy_{{$typology->id}}">{{$typology->name}}</label>    
                                         </div>
                                     @endforeach
@@ -145,7 +145,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" onclick="CheckBoxes">
                                     {{ __('Register') }}
                                 </button>
                             </div>
