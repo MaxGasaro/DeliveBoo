@@ -3,4 +3,17 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+import Home from './pages/Home';
+
+const router = new VueRouter({
+    mode: "history", //www.miosito.it/blog/mio-post
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+    ],    
+});
+
 export default router

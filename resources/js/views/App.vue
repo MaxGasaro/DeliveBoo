@@ -1,12 +1,16 @@
 <template>
     <div>
-        <h1>Questo è il frontend</h1>
+        <Main></Main>
     </div>
 </template>
 
 <script>
+import Main from '../components/Main.vue';
 export default {
     name: 'App',
+    components: {
+        Main,
+    }
 }
 </script>
 
