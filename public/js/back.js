@@ -106,6 +106,22 @@ function onChange() {
   }
 }
 
+function CheckBoxes() {
+  var checkBoxes = document.getElementsByClassName('control-check');
+  console.log(checkBoxes);
+  var isChecked = false;
+
+  for (var i = 0; i < checkBoxes.length; i++) {
+    if (checkBoxes[i].checked) {
+      isChecked = true;
+    }
+  }
+
+  if (!isChecked) {
+    alert('Seleziona almeno una tipologia');
+  }
+}
+
 /***/ }),
 
 /***/ 2:
@@ -115,7 +131,7 @@ function onChange() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
 
 
 /***/ })
