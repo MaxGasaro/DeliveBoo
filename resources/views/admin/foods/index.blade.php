@@ -24,7 +24,13 @@
                     <tbody>
                         @foreach ($foods as $food )
                             <tr>
-                                <td>{{$food->img}}</td>
+                                <td>
+                                    @if (isset($food->img))
+                                      <img src="{{asset('storage/' . $food->img)}}" alt="foto" class="w-50">
+                                    @else
+                                      <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="w-50">
+                                    @endif
+                                </td>
                                 <td>{{$food->name}}</td>
                                 <td>{{substr($food->description,0,30)}}</td>
                                 <td>{{$food->price}}</td>

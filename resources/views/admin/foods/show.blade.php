@@ -11,7 +11,11 @@
                 <h1 class="text-center">Dettaglio Piatto: {{$food->name}}</h1>
 
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    @if (isset($food->img))
+                        <img src="{{asset('storage/'.$food->img)}}" class="card-img-top w-25" alt="img">
+                    @else
+                        <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="card-img-top w-25" >
+                    @endif
                     <div class="card-body">
                         <h2 class="card-title">{{$food->name}}</h2>
                         <p class="card-text"> <strong>Descrizione:</strong>  {{$food->description}}</p>

@@ -12,6 +12,11 @@
                <form method="POST" action="{{route('admin.foods.update', $food->id)}}" enctype="multipart/form-data">
                    @csrf
                    @method('PUT')
+                        @if ($food->img)
+                            <div class="form-group">
+                                <img src="{{asset('storage/' . $food->img)}}" alt="img" class="w-50">
+                            </div>
+                        @endif
                     <div class="form-group">
                         <label for="img">Immagine</label>
                         <input type="file" class="form-control" id="img" name="img" >
