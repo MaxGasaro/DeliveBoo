@@ -12,6 +12,22 @@
                         @csrf
                         @method('PUT')
 
+                        <div class="modal" tabindex="-1" id="typology-selection">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Prima di continuare...</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Seleziona almeno una tipologia</p>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                         @if ($user->image)
                             <div class="form-group row">
                                 <div class="offset-md-4 col-md-6">
@@ -106,12 +122,12 @@
 
                                         @if ($errors->any())
                                             <div class="custom-control custom-checkbox">
-                                                <input name="typologies[]" type="checkbox" class="custom-control-input" id="typology_{{$typology->id}}" value={{$typology->id}} {{in_array($typology->id, old('typologies'))?'checked':''}}>
+                                                <input name="typologies[]" type="checkbox" class="custom-control-input control-check" id="typology_{{$typology->id}}" value={{$typology->id}} {{in_array($typology->id, old('typologies'))?'checked':''}}>
                                                 <label class="custom-control-label" for="typology_{{$typology->id}}">{{$typology->name}}</label>
                                             </div>
                                         @else
                                             <div class="custom-control custom-checkbox">
-                                                <input name="typologies[]" type="checkbox" class="custom-control-input" id="typology_{{$typology->id}}" value={{$typology->id}} {{$user->typologies->contains($typology->id)?'checked':''}}  >
+                                                <input name="typologies[]" type="checkbox" class="custom-control-input control-check" id="typology_{{$typology->id}}" value={{$typology->id}} {{$user->typologies->contains($typology->id)?'checked':''}}  >
                                                 <label class="custom-control-label" for="typology_{{$typology->id}}">{{$typology->name}}</label>
                                             </div>
                                         @endif
@@ -132,7 +148,7 @@
                                         </button>
                                     </div>
                                     <div class="col-6">
-                                        <button type="submit" class="btn btn-primary w-100">
+                                        <button id="register" type="submit" class="btn btn-primary w-100">
                                             Save Changes
                                         </button>
                                     </div>

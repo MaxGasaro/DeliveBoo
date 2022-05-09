@@ -19,9 +19,6 @@ function btnDelete(id,route){
 }
 
 let checkBoxes = document.getElementsByClassName('control-check');
-
-let form = document.getElementById("register-form");
-
 let button = document.getElementById("register");
 
 if (button){

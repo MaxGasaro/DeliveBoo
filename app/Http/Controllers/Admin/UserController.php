@@ -45,7 +45,7 @@ class UserController extends Controller
             'address' => ['required','string', 'min:8'],
             'p_iva' => ['exists:user,p_iva'],
             'image' => ['nullable','mimes:jpg,jpeg,png,bmp,gif,svg,webp','max:2048'],
-            'typologies' => ['nullable', 'exists:typologies,id']
+            'typologies' => ['required', 'exists:typologies,id']
         ]);
           
         $data = $request->all();
