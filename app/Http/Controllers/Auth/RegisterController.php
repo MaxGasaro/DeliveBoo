@@ -85,18 +85,7 @@ class RegisterController extends Controller
         }else{
             $data['image'] = null;
         }
-
-        $user =  User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'owner' => $data['owner'],
-            'image' => $data['image'],
-            'address' => $data['address'],
-            'p_iva' => $data['p_iva'],
-            
-        ]);
-
+        
         $slug = Str::slug($data['name']);
 
         $counter = 1;
@@ -109,6 +98,19 @@ class RegisterController extends Controller
 
         $data['slug'] = $slug;
         
+
+        $user =  User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'owner' => $data['owner'],
+            'image' => $data['image'],
+            'address' => $data['address'],
+            'p_iva' => $data['p_iva'],
+            'slug' => $data['slug']
+            
+        ]);
+
 
         if(isset($data['typologies'])){
             $user->typologies()->sync($data['typologies']);
