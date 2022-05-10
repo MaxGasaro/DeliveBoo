@@ -11,6 +11,14 @@ class RestaurantController extends Controller
 
         $restaurants = User::with(['foods', 'typologies'])->get();
 
+        $restaurants->each(function($restaurant) {
+            if ($restaurant->image) {
+                $restaurant->image = url('storage/'.$restaurant->image);
+            } else {
+                $restaurant->image = url('img/fallback_img.jpg');
+            }
+        });
+
         return response()->json(
             [
                 'results' => $restaurants,
@@ -22,6 +30,12 @@ class RestaurantController extends Controller
     public function show($id) {
 
         $restaurant = User::where('id', $id)->with(['foods', 'typologies'])->first();
+
+        if ($restaurant->image) {
+            $restaurant->image = url('storage/'.$restaurant->image);
+        } else {
+            $restaurant->image = url('img/fallback_img.jpg');
+        }
 
         if ($restaurant) {
             return response()->json(
