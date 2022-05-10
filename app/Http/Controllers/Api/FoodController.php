@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Food;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -13,10 +14,11 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
+    public function index($slug)
     {
        //richiamo tutti i foods, gestendo anche le categorie e l'user
-       $foods = Food::where('user_id', $user_id)->with(['category', 'users'])->get();
+       $user = User::where('slug', $slug)->first();
+       $foods = Food::where('user_id', $user->id)->with(['category', 'users'])->get();
 
        //do una path assoluta alle immagini
        foreach($foods as $food){
@@ -35,9 +37,10 @@ class FoodController extends Controller
        );
     }
 
-    public function show($user_id, $slug)
+    public function show($slug, $slug_food)
     {
-        $food = Food::where(['user_id' => $user_id, 'slug' => $slug])->with( ['category', 'users'])->first();
+        $user = User::where('slug', $slug)->first();
+        $food = Food::where(['user_id' => $user->id, 'slug' => $slug_food])->with( ['category', 'users'])->first();
         
         if ($food->img) {
             $food->img = url('storage/'.$food->img);

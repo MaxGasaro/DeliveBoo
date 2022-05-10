@@ -23,5 +23,5 @@ Route::get('/restaurants', 'Api\RestaurantController@index');
 Route::get('/restaurants/{slug}', 'Api\RestaurantController@show');
 
 
-Route::get('/foods/{user_id}', 'Api\FoodController@index');
-Route::get('/foods/{user_id}/{slug}', 'Api\FoodController@show');
+Route::get('/foods/{slug}', 'Api\FoodController@index');
+Route::get('/foods/{slug}/{slug_food}', 'Api\FoodController@show');
