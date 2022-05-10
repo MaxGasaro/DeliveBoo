@@ -4,6 +4,9 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from './pages/Home';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
+import { divide } from "lodash";
 
 const router = new VueRouter({
     mode: "history",
@@ -13,9 +16,17 @@ const router = new VueRouter({
             name: 'home',
             component: Home
         },
+        {
+            path: '/contacts',
+            name: 'contact',
+            component: Contact
+        },
+        {
+            path: '/*',
+            name: 'not-found',
+            component: NotFound
+        }
     ],    
 });
 
 export default router
-
-
