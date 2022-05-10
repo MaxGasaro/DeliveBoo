@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -96,6 +97,17 @@ class RegisterController extends Controller
             
         ]);
 
+        $slug = Str::slug($data['name']);
+
+        $counter = 1;
+
+        while (User::where('slug', '=', $slug)->first()) {
+            //impara-a-programmare-1
+            $slug = Str::slug($data['name']) . '-' . $counter;
+            $counter++;
+        }
+
+        $data['slug'] = $slug;
         
 
         if(isset($data['typologies'])){

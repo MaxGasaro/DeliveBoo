@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Typology;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -64,6 +66,18 @@ class UserController extends Controller
             $new_password = Hash::make($data['new_password']);
             $data['password'] = $new_password;
         }
+
+        $slug = Str::slug($data['name']);
+
+        if ($user->slug != $slug) {
+            $counter = 1;
+            while ( User::where('slug', '=', $slug)->first() ) {
+                $slug = Str::slug($data['name']) . '-' . $counter;
+                $counter++;
+            }
+            $data['slug'] = $slug;
+        }
+
 
         
         $user->update($data);
