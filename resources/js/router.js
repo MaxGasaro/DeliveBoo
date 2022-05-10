@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 import Home from './pages/Home';
 
 const router = new VueRouter({
-    mode: "history", //www.miosito.it/blog/mio-post
+    mode: "history",
     routes: [
         {
             path: '/',
@@ -17,3 +17,5 @@ const router = new VueRouter({
 });
 
 export default router
+
+

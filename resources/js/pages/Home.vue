@@ -1,6 +1,6 @@
 <template>
   <div>
-      cicioiaociasodiosd
+    cicioiaociasodiosd
   </div>
 </template>
 

@@ -661,7 +661,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    cicioiaociasodiosd\n")])
+  return _c("div", [_vm._v("\n  cicioiaociasodiosd\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16308,7 +16308,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
