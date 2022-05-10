@@ -8,14 +8,13 @@
             </div>
             <h2 class="card-title font-weight-bold">nome ristorante</h2>
             <h5 class="card-text">tipologie</h5>
-            <p class="card-text">punteggio</p>
         </router-link>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'CardFood',
+    name: 'CardRestaurant',
 }
 </script>
 

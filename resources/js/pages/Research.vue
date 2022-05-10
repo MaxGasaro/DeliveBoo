@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <CardFood/>           
+                    <CardRestaurant/>           
                 </div>
             </div>
         </div>
@@ -110,12 +110,12 @@
 </template>
 
 <script>
-import CardFood from "./../components/partials/CardFood";
+import CardRestaurant from "./../components/partials/CardRestaurant";
 export default {
     name: 'Research',
 
     components: {
-            CardFood
+            CardRestaurant
     },
 
 }
