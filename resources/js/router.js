@@ -4,9 +4,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import Home from './pages/Home';
+import Research from './pages/Research';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
-import { divide } from "lodash";
+// import { divide } from "lodash";
 
 const router = new VueRouter({
     mode: "history",
@@ -15,6 +16,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/research',
+            name: 'research',
+            component: Research
         },
         {
             path: '/contacts',
