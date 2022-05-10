@@ -27,9 +27,9 @@ class RestaurantController extends Controller
         );
     }
 
-    public function show($id) {
+    public function show($slug) {
 
-        $restaurant = User::where('id', $id)->with(['foods', 'typologies'])->first();
+        $restaurant = User::where('slug', $slug)->with(['foods', 'typologies'])->first();
 
         if ($restaurant->image) {
             $restaurant->image = url('storage/'.$restaurant->image);

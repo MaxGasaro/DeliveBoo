@@ -20,7 +20,7 @@ Route::get('typologies', 'Api\TypologyController@index');
 Route::get('/restaurants', 'Api\RestaurantController@index');
 
 // /api/restaurants/*
-Route::get('/restaurants/{id}', 'Api\RestaurantController@show');
+Route::get('/restaurants/{slug}', 'Api\RestaurantController@show');
 
 
 Route::get('/foods/{user_id}', 'Api\FoodController@index');
