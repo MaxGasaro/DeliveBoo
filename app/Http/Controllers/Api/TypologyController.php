@@ -11,9 +11,18 @@ class TypologyController extends Controller
     public function index(){
         $typologies = Typology::all();
 
-        return response()->json([
-            'success' => true,
-            'response' => $typologies
-        ]);
+        if($typologies){
+            return response()->json([
+                'success' => true,
+                'response' => $typologies
+            ]);
+        }else{
+            return response()->json([
+                'response' => 'nessuna tipologia trovata',
+                'success' => false
+            ]);
+        }
+
+        
     }
 }
