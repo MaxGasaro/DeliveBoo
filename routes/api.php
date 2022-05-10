@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// /api/restaurants
+Route::get('/restaurants', 'Api\RestaurantController@index');
 
+// /api/restaurants/*
+Route::get('/restaurants/{id}', 'Api\RestaurantController@show');
