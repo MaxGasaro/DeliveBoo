@@ -21,10 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('address', 200);
             $table->string('p_iva', 11);
             $table->string('image')->nullable();
+            $table->string('slug')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
         });
     }
 
