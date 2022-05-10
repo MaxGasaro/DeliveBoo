@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('typologies', 'Api\TypologyController@index');
 
+// /api/restaurants
+Route::get('/restaurants', 'Api\RestaurantController@index');
+
+// /api/restaurants/*
+Route::get('/restaurants/{id}', 'Api\RestaurantController@show');
