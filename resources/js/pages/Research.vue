@@ -56,8 +56,8 @@
                 </p>
                 <div class="collapse" id="collapseExample" data-bs-spy="scroll"> 
                     <ul>
-                        <li v-for="typology in typologies" :key="typology.id">
-                            <input type="checkbox" :id="typology.id" :name="typology.slug">
+                        <li v-for="(typology,index) in typologies" :key="index">
+                            <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug">
                             <label :for="typology.id">{{typology.name}}</label>
                         </li>
                         
@@ -98,8 +98,14 @@
                     <div class="col-3" v-for="restaurant in restaurants" :key="restaurant.id">
                         <CardFood :restaurant ="restaurant"/>           
                     </div>
+
+                    
                 </div>
                 
+                
+                <div v-for="(selected,index) in ArrayFiltratoRestaurants" :key="index">
+                    <li>{{selected}}</li>
+                </div>
             </div>
         </div>
     </div>
@@ -114,13 +120,20 @@ export default {
     data(){
         return{
             typologies: [],
-            restaurants: []
+            restaurants: [],
+            selected:[]
         }
     },
         
 
     components: {
         CardFood
+    },
+    computed:{
+        ArrayFiltratoRestaurants(){
+           return this.selected;
+           
+        }
     },
 
     methods:{
@@ -136,6 +149,7 @@ export default {
             axios.get("/api/restaurants")
             .then(response =>{
                 this.restaurants = response.data.results;
+                console.log(this.restaurants);
             })
         }
     },

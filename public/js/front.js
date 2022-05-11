@@ -2313,17 +2313,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
   data: function data() {
     return {
       typologies: [],
-      restaurants: []
+      restaurants: [],
+      selected: []
     };
   },
   components: {
     CardFood: _components_partials_CardFood__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  computed: {
+    ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
+      return this.selected;
+    }
   },
   methods: {
     GetTipologies: function GetTipologies() {
@@ -2339,6 +2351,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/restaurants").then(function (response) {
         _this2.restaurants = response.data.results;
+        console.log(_this2.restaurants);
       });
     }
   },
@@ -3911,13 +3924,48 @@ var render = function () {
             [
               _c(
                 "ul",
-                _vm._l(_vm.typologies, function (typology) {
-                  return _c("li", { key: typology.id }, [
+                _vm._l(_vm.typologies, function (typology, index) {
+                  return _c("li", { key: index }, [
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.selected,
+                          expression: "selected",
+                        },
+                      ],
                       attrs: {
                         type: "checkbox",
                         id: typology.id,
                         name: typology.slug,
+                      },
+                      domProps: {
+                        value: typology.slug,
+                        checked: Array.isArray(_vm.selected)
+                          ? _vm._i(_vm.selected, typology.slug) > -1
+                          : _vm.selected,
+                      },
+                      on: {
+                        change: function ($event) {
+                          var $$a = _vm.selected,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = typology.slug,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 && (_vm.selected = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.selected = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.selected = $$c
+                          }
+                        },
                       },
                     }),
                     _vm._v(" "),
@@ -3932,23 +3980,34 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-10 px-5" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row justify-content-stretch" },
-            _vm._l(_vm.restaurants, function (restaurant) {
-              return _c(
-                "div",
-                { key: restaurant.id, staticClass: "col-3" },
-                [_c("CardFood", { attrs: { restaurant: restaurant } })],
-                1
-              )
+        _c(
+          "div",
+          { staticClass: "col-10 px-5" },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row justify-content-stretch" },
+              _vm._l(_vm.restaurants, function (restaurant) {
+                return _c(
+                  "div",
+                  { key: restaurant.id, staticClass: "col-3" },
+                  [_c("CardFood", { attrs: { restaurant: restaurant } })],
+                  1
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.ArrayFiltratoRestaurants, function (selected, index) {
+              return _c("div", { key: index }, [
+                _c("li", [_vm._v(_vm._s(selected))]),
+              ])
             }),
-            0
-          ),
-        ]),
+          ],
+          2
+        ),
       ]),
     ]),
   ])
@@ -20293,7 +20352,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
