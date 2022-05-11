@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-stretch">
-                    <div class="col-3" v-for="restaurant in restaurants" :key="restaurant.id">
+                    <div class="col-3" v-for="restaurant in ArrayFiltratoRestaurants" :key="restaurant.id">
                         <CardFood :restaurant ="restaurant"/>           
                     </div>
 
@@ -103,9 +103,9 @@
                 </div>
                 
                 
-                <div v-for="(selected,index) in ArrayFiltratoRestaurants" :key="index">
+                <!-- <div v-for="(selected,index) in ArrayFiltratoRestaurants" :key="index">
                     <li>{{selected}}</li>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -124,14 +124,17 @@ export default {
             selected:[]
         }
     },
-        
-
     components: {
         CardFood
     },
     computed:{
         ArrayFiltratoRestaurants(){
-           return this.selected;
+           //return this.selected;
+           if(this.selected.length == 0){
+               return this.restaurants;
+           }else{
+               console.log(this.selected);
+           }
            
         }
     },

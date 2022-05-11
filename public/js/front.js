@@ -2334,7 +2334,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
-      return this.selected;
+      //return this.selected;
+      if (this.selected.length == 0) {
+        return this.restaurants;
+      } else {
+        console.log(this.selected);
+      }
     }
   },
   methods: {
@@ -3980,34 +3985,23 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-10 px-5" },
-          [
-            _vm._m(3),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row justify-content-stretch" },
-              _vm._l(_vm.restaurants, function (restaurant) {
-                return _c(
-                  "div",
-                  { key: restaurant.id, staticClass: "col-3" },
-                  [_c("CardFood", { attrs: { restaurant: restaurant } })],
-                  1
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.ArrayFiltratoRestaurants, function (selected, index) {
-              return _c("div", { key: index }, [
-                _c("li", [_vm._v(_vm._s(selected))]),
-              ])
+        _c("div", { staticClass: "col-10 px-5" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-stretch" },
+            _vm._l(_vm.ArrayFiltratoRestaurants, function (restaurant) {
+              return _c(
+                "div",
+                { key: restaurant.id, staticClass: "col-3" },
+                [_c("CardFood", { attrs: { restaurant: restaurant } })],
+                1
+              )
             }),
-          ],
-          2
-        ),
+            0
+          ),
+        ]),
       ]),
     ]),
   ])
