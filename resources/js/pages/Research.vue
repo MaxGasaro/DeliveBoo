@@ -98,8 +98,6 @@
                     <div class="col-3" v-for="restaurant in ArrayFiltratoRestaurants" :key="restaurant.id">
                         <CardFood :restaurant ="restaurant"/>           
                     </div>
-
-                    
                 </div>
                 
                 
@@ -121,7 +119,8 @@ export default {
         return{
             typologies: [],
             restaurants: [],
-            selected:[]
+            selected:[],
+            array_1:[]
         }
     },
     components: {
@@ -130,10 +129,26 @@ export default {
     computed:{
         ArrayFiltratoRestaurants(){
            //return this.selected;
+           //da completare con ogni caso possibile
            if(this.selected.length == 0){
                return this.restaurants;
            }else{
-               console.log(this.selected);
+               this.array_1= [];
+                this.restaurants.forEach(restaurant => {
+                    restaurant.typologies.forEach(typology => {
+                        this.selected.forEach(element => {
+                            if(element.includes(typology.slug)){
+                                if(!this.array_1.includes(restaurant)){
+                                    this.array_1.push(restaurant);
+                                }  
+                            }else{
+                                console.log(restaurant.name + " non è incluso");
+                            }   
+                        });                    
+                    })  
+                });  
+                
+                return this.array_1; 
            }
            
         }
@@ -143,7 +158,6 @@ export default {
         GetTipologies(){
             axios.get("/api/typologies")
             .then(response =>{
-                console.log(response);
                 this.typologies = response.data.response;
             });
         },

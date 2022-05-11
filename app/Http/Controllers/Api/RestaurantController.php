@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use SebastianBergmann\Environment\Console;
+
+use function GuzzleHttp\Promise\each;
 
 class RestaurantController extends Controller
 {
@@ -53,4 +56,5 @@ class RestaurantController extends Controller
             );
         }
     }
+
 }
