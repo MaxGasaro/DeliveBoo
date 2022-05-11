@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card h-100">
         <router-link :to="{name: 'single-food', params: {slug: slug}}">
             <img class="card-img-top" :src="restaurant.image" :alt="restaurant.name">
             <div class="card-body">

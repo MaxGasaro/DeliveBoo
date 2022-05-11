@@ -3703,7 +3703,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card" },
+    { staticClass: "card h-100" },
     [
       _c(
         "router-link",
