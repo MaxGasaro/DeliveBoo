@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Research from './pages/Research';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
+import Restaurant from './pages/Restaurant';
 // import { divide } from "lodash";
 
 const router = new VueRouter({
@@ -26,6 +27,11 @@ const router = new VueRouter({
             path: '/contacts',
             name: 'contact',
             component: Contact
+        },
+        {
+            path: '/research/restaurant/:slug',
+            name: 'restaurant',
+            component: Restaurant
         },
         {
             path: '/*',
