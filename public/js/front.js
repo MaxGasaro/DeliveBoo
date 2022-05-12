@@ -2328,8 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       typologies: [],
       restaurants: [],
-      selected: [] //array_1:[]
-
+      selected: []
     };
   },
   components: {
@@ -2337,51 +2336,69 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
-      var _this = this;
-
       //return this.selected;
       //da completare con ogni caso possibile
-      if (this.selected.length == 0) {
-        return this.restaurants;
-      } else {
-        this.array_1 = [];
-        this.restaurants.forEach(function (restaurant) {
-          restaurant.typologies.forEach(function (typology) {
-            _this.selected.forEach(function (element) {
-              if (element.includes(typology.slug)) {
-                if (!_this.array_1.includes(restaurant)) {
-                  _this.array_1.push(restaurant);
-                }
-              } else {
-                console.log(restaurant.name + " non è incluso");
-              }
-            });
-          });
-        });
-        return this.array_1;
-      }
+
+      /* if(this.selected.length == 0){
+          return this.restaurants;
+      }else{
+          this.array_1= [];
+           this.restaurants.forEach(restaurant => {
+               restaurant.typologies.forEach(typology => {
+                   this.selected.forEach(element => {
+                       if(element.includes(typology.slug)){
+                           if(!this.array_1.includes(restaurant)){
+                               this.array_1.push(restaurant);
+                           }  
+                       }else{
+                           console.log(restaurant.name + " non è incluso");
+                       }   
+                   });                    
+               })  
+           });  
+           
+           return this.array_1; 
+      } */
+      axios.get("/api/filtered-restaurants", {
+        'params': this.selected
+      }).then(function (response) {
+        console.log('risposta' + response.data.response);
+      });
     }
   },
   methods: {
     GetTipologies: function GetTipologies() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get("/api/typologies").then(function (response) {
-        _this2.typologies = response.data.response;
+        _this.typologies = response.data.response;
       });
     },
-    GetRestaurants: function GetRestaurants() {
-      var _this3 = this;
 
-      axios.get("/api/restaurants").then(function (response) {
-        _this3.restaurants = response.data.results;
-        console.log(_this3.restaurants);
+    /* GetRestaurants(){
+        axios.get("/api/restaurants")
+        .then(response =>{
+            this.restaurants = response.data.results;
+            console.log(this.restaurants);
+        })
+    }, */
+    getFilterRestaurants: function getFilterRestaurants() {
+      var _this2 = this;
+
+      axios.get("/api/restaurants/filtered", {
+        params: {
+          selected: this.selected
+        }
+      }).then(function (response) {
+        _this2.restaurants = response.data.results;
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   },
   mounted: function mounted() {
     this.GetTipologies();
-    this.GetRestaurants();
+    /* this.GetRestaurants(); */
   }
 });
 
@@ -4064,25 +4081,30 @@ var render = function () {
                             : _vm.selected,
                         },
                         on: {
-                          change: function ($event) {
-                            var $$a = _vm.selected,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = typology.slug,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 && (_vm.selected = $$a.concat([$$v]))
+                          change: [
+                            function ($event) {
+                              var $$a = _vm.selected,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = typology.slug,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 && (_vm.selected = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.selected = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
                               } else {
-                                $$i > -1 &&
-                                  (_vm.selected = $$a
-                                    .slice(0, $$i)
-                                    .concat($$a.slice($$i + 1)))
+                                _vm.selected = $$c
                               }
-                            } else {
-                              _vm.selected = $$c
-                            }
-                          },
+                            },
+                            function ($event) {
+                              return _vm.getFilterRestaurants()
+                            },
+                          ],
                         },
                       }),
                       _vm._v(" "),
@@ -4108,7 +4130,7 @@ var render = function () {
             {
               staticClass: "row justify-content-stretch container-restaurants",
             },
-            _vm._l(_vm.ArrayFiltratoRestaurants, function (restaurant) {
+            _vm._l(_vm.restaurants, function (restaurant) {
               return _c(
                 "div",
                 { key: restaurant.id, staticClass: "col-3" },

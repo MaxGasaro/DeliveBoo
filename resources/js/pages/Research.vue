@@ -59,7 +59,7 @@
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
                         <ul>
                             <li v-for="(typology,index) in typologies" :key="index">
-                                <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug">
+                                <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug" @change="getFilterRestaurants()">
                                 <label :for="typology.id">{{typology.name}}</label>
                             </li>              
                         </ul>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-stretch container-restaurants">
-                    <div class="col-3" v-for="restaurant in ArrayFiltratoRestaurants" :key="restaurant.id">
+                    <div class="col-3" v-for="restaurant in restaurants" :key="restaurant.id">
                         <CardRestaurant :restaurant ="restaurant"/>           
                     </div>
                 </div>
@@ -123,7 +123,6 @@ export default {
             typologies: [],
             restaurants: [],
             selected:[],
-            //array_1:[]
         }
     },
     components: {
@@ -133,7 +132,7 @@ export default {
         ArrayFiltratoRestaurants(){
            //return this.selected;
            //da completare con ogni caso possibile
-        if(this.selected.length == 0){
+           /* if(this.selected.length == 0){
                return this.restaurants;
            }else{
                this.array_1= [];
@@ -152,7 +151,13 @@ export default {
                 });  
                 
                 return this.array_1; 
-           }
+           } */
+
+           axios.get("/api/filtered-restaurants", {
+               'params' : this.selected,
+           }).then(response =>{
+                console.log('risposta' + response.data.response);
+            });
            
         }
     },
@@ -165,18 +170,29 @@ export default {
             });
         },
 
-        GetRestaurants(){
+        /* GetRestaurants(){
             axios.get("/api/restaurants")
             .then(response =>{
                 this.restaurants = response.data.results;
                 console.log(this.restaurants);
             })
+        }, */
+
+        getFilterRestaurants(){
+            axios.get("/api/restaurants/filtered",
+            {params: {selected : this.selected}})
+            .then(response =>{
+                this.restaurants = response.data.results;
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
         }
     },
 
     mounted(){
         this.GetTipologies();
-        this.GetRestaurants();
+        /* this.GetRestaurants(); */
     }
 
 }
