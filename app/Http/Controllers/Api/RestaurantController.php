@@ -57,17 +57,4 @@ class RestaurantController extends Controller
         }
     }
 
-
-    public function filter($selected = null){
-        $restaurants = User::with(['foods', 'typologies'])->get();
-        $restaurants->typologies->slug
-        foreach ($selected as $select) {
-           $restaurants->where('')
-        }
-
-        $restaurants = new  
-
-
-    }
-
 }
