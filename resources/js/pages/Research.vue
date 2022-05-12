@@ -10,7 +10,7 @@
             <div class="row justify-content-center mx-auto">
                 <form class="form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." aria-label="Search">
+                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." aria-label="Search" v-bind="search">
                 </form>
             </div>
             <div class="ml-auto pr-5">
@@ -51,9 +51,10 @@
                 <!-- Category -->
                 <div class="category">
                     <p>  
-                        <a v-fo data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a @click="changeArrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Categoria
-                            <i onclick="changeArrow()" class="fa fa-arrow-right"></i>
+                            <i v-if="expandedCategory" class="fa fa-arrow-right"></i>
+                            <i v-else class="fa fa-arrow-down"></i>
                         </a>
                     </p>
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
@@ -123,51 +124,25 @@ export default {
             typologies: [],
             restaurants: [],
             selected:[],
+            search: '',
+            expandedCategory: true,
         }
     },
     components: {
         CardRestaurant
     },
-    computed:{
-        ArrayFiltratoRestaurants(){
-           //return this.selected;
-           //da completare con ogni caso possibile
-           /* if(this.selected.length == 0){
-               return this.restaurants;
-           }else{
-               this.array_1= [];
-                this.restaurants.forEach(restaurant => {
-                    restaurant.typologies.forEach(typology => {
-                        this.selected.forEach(element => {
-                            if(element.includes(typology.slug)){
-                                if(!this.array_1.includes(restaurant)){
-                                    this.array_1.push(restaurant);
-                                }  
-                            }else{
-                                console.log(restaurant.name + " non è incluso");
-                            }   
-                        });                    
-                    })  
-                });  
-                
-                return this.array_1; 
-           } */
-
-           axios.get("/api/filtered-restaurants", {
-               'params' : this.selected,
-           }).then(response =>{
-                console.log('risposta' + response.data.response);
-            });
-           
-        }
-    },
-
-    methods:{   
+    
+    methods:{ 
+          
         GetTipologies(){
             axios.get("/api/typologies")
             .then(response =>{
                 this.typologies = response.data.response;
             });
+        },
+
+        changeArrow(){
+            this.expandedCategory = !this.expandedCategory;
         },
 
         /* GetRestaurants(){
@@ -180,8 +155,12 @@ export default {
 
         getFilterRestaurants(){
             axios.get("/api/restaurants/filtered",
-            {params: {selected : this.selected}})
+            {params: {
+                selected : JSON.stringify(this.selected),
+                RestaurantToFind : this.search
+                }})
             .then(response =>{
+                console.log(response.data.results);
                 this.restaurants = response.data.results;
                 console.log('sono qui');
             })

@@ -2321,6 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -2328,43 +2329,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       typologies: [],
       restaurants: [],
-      selected: []
+      selected: [],
+      search: '',
+      expandedCategory: true
     };
   },
   components: {
     CardRestaurant: _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  computed: {
-    ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
-      //return this.selected;
-      //da completare con ogni caso possibile
-
-      /* if(this.selected.length == 0){
-          return this.restaurants;
-      }else{
-          this.array_1= [];
-           this.restaurants.forEach(restaurant => {
-               restaurant.typologies.forEach(typology => {
-                   this.selected.forEach(element => {
-                       if(element.includes(typology.slug)){
-                           if(!this.array_1.includes(restaurant)){
-                               this.array_1.push(restaurant);
-                           }  
-                       }else{
-                           console.log(restaurant.name + " non è incluso");
-                       }   
-                   });                    
-               })  
-           });  
-           
-           return this.array_1; 
-      } */
-      axios.get("/api/filtered-restaurants", {
-        'params': this.selected
-      }).then(function (response) {
-        console.log('risposta' + response.data.response);
-      });
-    }
   },
   methods: {
     GetTipologies: function GetTipologies() {
@@ -2373,6 +2344,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/typologies").then(function (response) {
         _this.typologies = response.data.response;
       });
+    },
+    changeArrow: function changeArrow() {
+      this.expandedCategory = !this.expandedCategory;
     },
 
     /* GetRestaurants(){
@@ -2387,9 +2361,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/restaurants/filtered", {
         params: {
-          selected: this.selected
+          selected: JSON.stringify(this.selected),
+          RestaurantToFind: this.search
         }
       }).then(function (response) {
+        console.log(response.data.results);
         _this2.restaurants = response.data.results;
         console.log('sono qui');
       })["catch"](function (error) {
@@ -3850,7 +3826,10 @@ var render = function () {
         [
           _c("img", {
             staticClass: "card-img-top",
-            attrs: { src: _vm.restaurant.image, alt: _vm.restaurant.name },
+            attrs: {
+              src: "/storage/" + _vm.restaurant.image,
+              alt: _vm.restaurant.name,
+            },
           }),
           _vm._v(" "),
           _c(
@@ -3860,6 +3839,9 @@ var render = function () {
               _c("h2", { staticClass: "card-title font-weight-bold" }, [
                 _vm._v(_vm._s(_vm.restaurant.name)),
               ]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.restaurant.address))]),
+              _c("br"),
               _vm._v(" "),
               _vm._l(_vm.restaurant.typologies, function (typology) {
                 return _c(
@@ -4015,21 +3997,71 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+      [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+          _vm._v("Deliveboo"),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" },
+          },
+          [
+            _c("div", { staticClass: "row justify-content-center mx-auto" }, [
+              _c(
+                "form",
+                {
+                  staticClass:
+                    "form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1",
+                },
+                [
+                  _c("i", { staticClass: "fa-solid fa-magnifying-glass" }),
+                  _vm._v(" "),
+                  _c(
+                    "input",
+                    _vm._b(
+                      {
+                        staticClass: "form-control mr-sm-2 border-0",
+                        attrs: {
+                          type: "search",
+                          placeholder: "Ristoranti, tipologie...",
+                          "aria-label": "Search",
+                        },
+                      },
+                      "input",
+                      _vm.search,
+                      false
+                    )
+                  ),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+          ]
+        ),
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "px-5" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-2 p-left" }, [
-          _vm._m(1),
-          _vm._v(" "),
           _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "category" }, [
             _c("p", [
               _c(
                 "a",
                 {
-                  directives: [{ name: "fo", rawName: "v-fo" }],
                   attrs: {
                     "data-toggle": "collapse",
                     href: "#collapseExample",
@@ -4037,15 +4069,15 @@ var render = function () {
                     "aria-expanded": "false",
                     "aria-controls": "collapseExample",
                   },
+                  on: { click: _vm.changeArrow },
                 },
                 [
                   _vm._v(
                     "\n                          Categoria\n                          "
                   ),
-                  _c("i", {
-                    staticClass: "fa fa-arrow-right",
-                    attrs: { onclick: "changeArrow()" },
-                  }),
+                  _vm.expandedCategory
+                    ? _c("i", { staticClass: "fa fa-arrow-right" })
+                    : _c("i", { staticClass: "fa fa-arrow-down" }),
                 ]
               ),
             ]),
@@ -4122,9 +4154,9 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10 px-5 p-right" }, [
-          _vm._m(3),
-          _vm._v(" "),
           _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "div",
@@ -4152,76 +4184,39 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
-      [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Deliveboo"),
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "navbar-toggler",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#navbarSupportedContent",
-              "aria-controls": "navbarSupportedContent",
-              "aria-expanded": "false",
-              "aria-label": "Toggle navigation",
-            },
-          },
-          [_c("span", { staticClass: "navbar-toggler-icon" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarSupportedContent" },
-          },
-          [
-            _c("div", { staticClass: "row justify-content-center mx-auto" }, [
-              _c(
-                "form",
-                {
-                  staticClass:
-                    "form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1",
-                },
-                [
-                  _c("i", { staticClass: "fa-solid fa-magnifying-glass" }),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control mr-sm-2 border-0",
-                    attrs: {
-                      type: "search",
-                      placeholder: "Ristoranti, tipologie...",
-                      "aria-label": "Search",
-                    },
-                  }),
-                ]
-              ),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "ml-auto pr-5" }, [
-              _c("ul", { staticClass: "navbar-nav" }, [
-                _c("li", { staticClass: "nav-item active" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-success my-2 my-sm-0",
-                      attrs: { type: "submit" },
-                    },
-                    [_vm._v("Menu")]
-                  ),
-                ]),
-              ]),
-            ]),
-          ]
-        ),
-      ]
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation",
+        },
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "ml-auto pr-5" }, [
+      _c("ul", { staticClass: "navbar-nav" }, [
+        _c("li", { staticClass: "nav-item active" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success my-2 my-sm-0",
+              attrs: { type: "submit" },
+            },
+            [_vm._v("Menu")]
+          ),
+        ]),
+      ]),
+    ])
   },
   function () {
     var _vm = this
@@ -20637,7 +20632,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

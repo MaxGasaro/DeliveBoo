@@ -61,39 +61,20 @@ class RestaurantController extends Controller
 
 
     public function filter(Request $request){
-       
-        $typologies = $request->selected;
+        $restaurantToFind = $request->RestaurantToFind;
+
+        $typologies = json_decode($request->selected);
         if(!empty($typologies)){
-            $ristorantiFiltrati = [];
+            $finalRestaurant = [];
             foreach($typologies as $typology){
                 $myRestaurant = Typology::where('name', $typology)->first()->users()->get();
 
                 foreach ($myRestaurant as $singleRestaurant) {
-                    array_push($ristorantiFiltrati, $singleRestaurant );
-                }
-            }
-            $finalRestaurant = [];
-            $allReadyIn = [];
-            $allTypologies = true;
-
-            foreach($ristorantiFiltrati as $ristorante){
-                $restaurantTypologyName = [];
-                $restaurantTypologies = $ristorante->typologies()->get();
-                foreach($restaurantTypologies as $restaurantTypology){
-                    array_push($restaurantTypologyName, $restaurantTypology->name );
-                }
-                foreach($typologies as $typology){
-                    if(!in_array($typology,$restaurantTypologyName )){
-                        $allTypologies = false;
-                    }
-                }
-                if($allTypologies){
-                    if(!in_array($ristorante->id, $allReadyIn )){
-                        array_push($finalRestaurant, $ristorante );
-                        array_push($allReadyIn, $ristorante->id );
-                    }
-                }
-                $allTypologies = true;
+                    $typologies = $singleRestaurant->typologies()->get();
+                    $singleRestaurant->typologies = $typologies;
+                    array_search($singleRestaurant, $finalRestaurant);
+                    array_push($finalRestaurant, $singleRestaurant );
+                }     
             }
 
         }else{
