@@ -107,10 +107,6 @@
                     </div>
                 </div>
                 
-                
-                <!-- <div v-for="(selected,index) in ArrayFiltratoRestaurants" :key="index">
-                    <li>{{selected}}</li>
-                </div> -->
             </div>
         </div>
     </div>
@@ -127,7 +123,7 @@ export default {
             typologies: [],
             restaurants: [],
             selected:[],
-            array_1:[]
+            //array_1:[]
         }
     },
     components: {
@@ -137,26 +133,15 @@ export default {
         ArrayFiltratoRestaurants(){
            //return this.selected;
            //da completare con ogni caso possibile
-           if(this.selected.length == 0){
+           /* if(this.selected.length == 0){
                return this.restaurants;
            }else{
                this.array_1= [];
-                this.restaurants.forEach(restaurant => {
-                    restaurant.typologies.forEach(typology => {
-                        this.selected.forEach(element => {
-                            if(element.includes(typology.slug)){
-                                if(!this.array_1.includes(restaurant)){
-                                    this.array_1.push(restaurant);
-                                }  
-                            }else{
-                                console.log(restaurant.name + " non è incluso");
-                            }   
-                        });                    
-                    })  
+                 
                 });  
                 
                 return this.array_1; 
-           }
+           } */
            
         }
     },

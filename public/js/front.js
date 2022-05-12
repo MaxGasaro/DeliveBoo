@@ -2321,10 +2321,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -2332,54 +2328,53 @@ __webpack_require__.r(__webpack_exports__);
     return {
       typologies: [],
       restaurants: [],
-      selected: [],
-      array_1: []
+      selected: [] //array_1:[]
+
     };
   },
   components: {
     CardRestaurant: _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: {
-    ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
-      var _this = this;
-
-      //return this.selected;
+    ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {//return this.selected;
       //da completare con ogni caso possibile
-      if (this.selected.length == 0) {
-        return this.restaurants;
-      } else {
-        this.array_1 = [];
-        this.restaurants.forEach(function (restaurant) {
-          restaurant.typologies.forEach(function (typology) {
-            _this.selected.forEach(function (element) {
-              if (element.includes(typology.slug)) {
-                if (!_this.array_1.includes(restaurant)) {
-                  _this.array_1.push(restaurant);
-                }
-              } else {
-                console.log(restaurant.name + " non è incluso");
-              }
-            });
-          });
-        });
-        return this.array_1;
-      }
+
+      /* if(this.selected.length == 0){
+          return this.restaurants;
+      }else{
+          this.array_1= [];
+           this.restaurants.forEach(restaurant => {
+               restaurant.typologies.forEach(typology => {
+                   this.selected.forEach(element => {
+                       if(element.includes(typology.slug)){
+                           if(!this.array_1.includes(restaurant)){
+                               this.array_1.push(restaurant);
+                           }  
+                       }else{
+                           console.log(restaurant.name + " non è incluso");
+                       }   
+                   });                    
+               })  
+           });  
+           
+           return this.array_1; 
+      } */
     }
   },
   methods: {
     GetTipologies: function GetTipologies() {
-      var _this2 = this;
+      var _this = this;
 
       axios.get("/api/typologies").then(function (response) {
-        _this2.typologies = response.data.response;
+        _this.typologies = response.data.response;
       });
     },
     GetRestaurants: function GetRestaurants() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.get("/api/restaurants").then(function (response) {
-        _this3.restaurants = response.data.results;
-        console.log(_this3.restaurants);
+        _this2.restaurants = response.data.results;
+        console.log(_this2.restaurants);
       });
     }
   },

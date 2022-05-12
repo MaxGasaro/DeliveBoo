@@ -12,7 +12,7 @@ class RestaurantController extends Controller
 {
     public function index() {
 
-        $restaurants = User::with(['foods', 'typologies'])->get();
+        $restaurants = User::with(['foods', 'typologies'])->take(10);
 
         $restaurants->each(function($restaurant) {
             if ($restaurant->image) {
@@ -55,6 +55,19 @@ class RestaurantController extends Controller
                 ]
             );
         }
+    }
+
+
+    public function filter($selected = null){
+        $restaurants = User::with(['foods', 'typologies'])->get();
+        $restaurants->typologies->slug
+        foreach ($selected as $select) {
+           $restaurants->where('')
+        }
+
+        $restaurants = new  
+
+
     }
 
 }
