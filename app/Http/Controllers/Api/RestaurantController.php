@@ -57,4 +57,22 @@ class RestaurantController extends Controller
         }
     }
 
+
+    public function filter($slug){
+        $typologySelected = [];
+        $typologySelected[] = $slug;
+        
+        $restaurants = User::with(['foods', 'typologies'])->get();
+        foreach ($restaurants->typologies as $typology){
+            foreach ($typologySelected as $select) {
+/*                 $filteredRestaurants = User::with(['foods', 'typologies'])->where($typology->pivot->typology_id, $select)->get();
+ */            } 
+        }
+        
+
+        return $restaurants;
+
+
+    }
+
 }

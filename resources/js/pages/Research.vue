@@ -59,7 +59,7 @@
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
                         <ul>
                             <li v-for="(typology,index) in typologies" :key="index">
-                                <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug">
+                                <input type="checkbox" :id="typology.id" :name="typology.id" v-model="selected" :value="typology.id">
                                 <label :for="typology.id">{{typology.name}}</label>
                             </li>              
                         </ul>
@@ -131,28 +131,22 @@ export default {
     },
     computed:{
         ArrayFiltratoRestaurants(){
-           //return this.selected;
-           //da completare con ogni caso possibile
-        if(this.selected.length == 0){
+            //return this.selected;
+            //da completare con ogni caso possibile
+            if(this.selected.length == 0){
                return this.restaurants;
-           }else{
-               this.array_1= [];
-                this.restaurants.forEach(restaurant => {
-                    restaurant.typologies.forEach(typology => {
-                        this.selected.forEach(element => {
-                            if(element.includes(typology.slug)){
-                                if(!this.array_1.includes(restaurant)){
-                                    this.array_1.push(restaurant);
-                                }  
-                            }else{
-                                console.log(restaurant.name + " non è incluso");
-                            }   
-                        });                    
-                    })  
-                });  
-                
-                return this.array_1; 
-           }
+            }else{
+
+                //scorro tutte le tipologie selezionato, e chiamo la rotta axios per ogni selected
+                this.selected.forEach(select => {
+                    axios.get("/api/filter/", + {
+                        "params" : {
+                            'id' : select
+                        }
+                    }) 
+                });
+                  
+            }
            
         }
     },
