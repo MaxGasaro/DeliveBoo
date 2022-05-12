@@ -5,7 +5,7 @@
             <div v-if="restaurant">
                 <h1>{{restaurant.name}}</h1>
 
-                <img class="img-fluid" :src="restaurant.image" :alt="restaurant.name">
+                <img class="w-50" :src="restaurant.image" :alt="restaurant.name">
                 <!--Aggiungere tutte le tipologie del ristorante-->
                 <p>{{restaurant.address}}</p>
 
@@ -15,6 +15,8 @@
                     </li>
                 </ul>
 
+                
+
             </div>
           </div>
       </div>
@@ -23,46 +25,43 @@
 
 <script>
 export default {
-    name:'Restaurant',
+    name:'SingleRestaurant',
     data(){
-    return{
-      restaurant : null,
-      foods: null,
-    }
+        return{
+            restaurant : null,
+            foods: [],
+            slug: this.$route.params.slug
+        }
     },
     methods:{
         getRestaurant(){
-            const slug = this.$route.params.slug;
-            console.log(slug);
-            axios.get('/api/restaurant/' + slug)
+            axios.get('/api/restaurants/' + this.slug)
             .then(response =>{
             if (response.data.success == false){
+                
                 this.$router.push({name: 'not-found'});
             }else{
                 console.log(response);
-                this.restaurant = response.data.results;
+                this.restaurant = response.data.result;
+                
             }
             })
         },
         getFoods(){
-            const slug = this.$route.params.slug;
-            axios.get('/api/foods/' + slug)
+            axios.get('/api/foods/' + this.slug)
             .then(response =>{
             if (response.data.success == false){
                 this.$router.push({name: 'not-found'});
             }else{
-                console.log(response);
                 this.foods = response.data.result;
             }
             })
         }
-
     },
     mounted(){
-        this.getRestaurant;
+        this.getRestaurant();
+        this.getFoods();
     }
-
-    
 }
 </script>
 
