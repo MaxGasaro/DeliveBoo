@@ -8,8 +8,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="row justify-content-center mx-auto">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Ristoranti, tipologie..." aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." aria-label="Search">
                 </form>
             </div>
             <div class="ml-auto pr-5">
@@ -24,7 +25,7 @@
     <div class="px-5">
         <div class="row">
             <!-- Part left -->
-            <div class="col-2">
+            <div class="col-2 p-left">
                 <div class="row">
                     <div class="col-3">
                         <img src="" alt="">
@@ -41,31 +42,37 @@
                     <div class="input-group">
                         <form>
                             <div id="select">
-                                <input type="radio" value="val1" name="select" id="consegna"><label for="consegna">Consegna</label><br>
-                                <input type="radio" value="val2" name="select" id="ritiro"><label for="ritiro">Ritiro</label>
+                                <input type="radio" value="val1" name="select" id="consegna"><label for="consegna"><span class="ml-1"> Consegna</span></label><br>
+                                <input type="radio" value="val2" name="select" id="ritiro"><label for="ritiro"><span class="ml-1"> Ritiro</span></label>
                             </div>
                         </form>                     
                     </div>
                 </div>
                 <!-- Category -->
-                <p>
-                    
-                    <a v-fo data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Categoria
-                    </a>
-                </p>
-                <div class="collapse" id="collapseExample" data-bs-spy="scroll"> 
-                    <ul>
-                        <li v-for="(typology,index) in typologies" :key="index">
-                            <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug">
-                            <label :for="typology.id">{{typology.name}}</label>
-                        </li>
-                        
-                    </ul>
-                </div>         
+                <div class="category">
+                    <p>  
+                        <a v-fo data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Categoria
+                            <i onclick="changeArrow()" class="fa fa-arrow-right"></i>
+                        </a>
+                    </p>
+                    <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
+                        <ul>
+                            <li v-for="(typology,index) in typologies" :key="index">
+                                <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug">
+                                <label :for="typology.id">{{typology.name}}</label>
+                            </li>              
+                        </ul>
+                    </div> 
+                </div>        
             </div>
             <!-- Part right -->
-            <div class="col-10 px-5">
+            <div class="col-10 px-5 p-right">
+                <div class="row">
+                    <div>
+                        <!-- qui andranno le categorie selezionate -->
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -94,9 +101,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-stretch">
+                <div class="row justify-content-stretch container-restaurants">
                     <div class="col-3" v-for="restaurant in ArrayFiltratoRestaurants" :key="restaurant.id">
-                        <CardFood :restaurant ="restaurant"/>           
+                        <CardRestaurant :restaurant ="restaurant"/>           
                     </div>
                 </div>
                 
@@ -111,7 +118,7 @@
 </template>
 
 <script>
-import CardFood from "./../components/partials/CardFood";
+import CardRestaurant from "./../components/partials/CardRestaurant";
 export default {
     name: 'Research',
     
@@ -124,7 +131,7 @@ export default {
         }
     },
     components: {
-        CardFood
+        CardRestaurant
     },
     computed:{
         ArrayFiltratoRestaurants(){
@@ -154,7 +161,7 @@ export default {
         }
     },
 
-    methods:{
+    methods:{   
         GetTipologies(){
             axios.get("/api/typologies")
             .then(response =>{
@@ -185,6 +192,26 @@ export default {
     margin: 0;
     box-sizing: border-box;
     list-style-type: none;
+    }
 
-}
+    .p-left{
+    height: 100vh;
+    }
+
+    .list-category{
+    overflow-y: scroll;
+    height: 500px;
+    }
+
+    .container-restaurants{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll; 
+    height: 100vh;
+    }
+
+    .container-restaurants::-webkit-scrollbar {
+    display: none;
+    }
+
 </style>

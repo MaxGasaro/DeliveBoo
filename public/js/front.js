@@ -2071,10 +2071,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2096,8 +2096,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CardFood',
+  name: 'CardRestaurant',
   props: ["restaurant"]
 });
 
@@ -2204,7 +2205,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_partials_CardFood__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/partials/CardFood */ "./resources/js/components/partials/CardFood.vue");
+/* harmony import */ var _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../components/partials/CardRestaurant */ "./resources/js/components/partials/CardRestaurant.vue");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2329,7 +2337,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    CardFood: _components_partials_CardFood__WEBPACK_IMPORTED_MODULE_0__["default"]
+    CardRestaurant: _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: {
     ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
@@ -2543,7 +2551,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n    list-style-type: none;\n}\n", ""]);
+exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100vh;\n}\n.list-category{\noverflow-y: scroll;\nheight: 500px;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n\n", ""]);
 
 // exports
 
@@ -3799,10 +3807,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2& ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3997,104 +4005,118 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "px-5" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-2" }, [
+        _c("div", { staticClass: "col-2 p-left" }, [
           _vm._m(1),
           _vm._v(" "),
           _vm._m(2),
           _vm._v(" "),
-          _c("p", [
-            _c(
-              "a",
-              {
-                directives: [{ name: "fo", rawName: "v-fo" }],
-                attrs: {
-                  "data-toggle": "collapse",
-                  href: "#collapseExample",
-                  role: "button",
-                  "aria-expanded": "false",
-                  "aria-controls": "collapseExample",
+          _c("div", { staticClass: "category" }, [
+            _c("p", [
+              _c(
+                "a",
+                {
+                  directives: [{ name: "fo", rawName: "v-fo" }],
+                  attrs: {
+                    "data-toggle": "collapse",
+                    href: "#collapseExample",
+                    role: "button",
+                    "aria-expanded": "false",
+                    "aria-controls": "collapseExample",
+                  },
                 },
+                [
+                  _vm._v(
+                    "\n                          Categoria\n                          "
+                  ),
+                  _c("i", {
+                    staticClass: "fa fa-arrow-right",
+                    attrs: { onclick: "changeArrow()" },
+                  }),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse list-category",
+                attrs: { id: "collapseExample", "data-bs-spy": "scroll" },
               },
-              [_vm._v("\n                      Categoria\n                  ")]
+              [
+                _c(
+                  "ul",
+                  _vm._l(_vm.typologies, function (typology, index) {
+                    return _c("li", { key: index }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selected,
+                            expression: "selected",
+                          },
+                        ],
+                        attrs: {
+                          type: "checkbox",
+                          id: typology.id,
+                          name: typology.slug,
+                        },
+                        domProps: {
+                          value: typology.slug,
+                          checked: Array.isArray(_vm.selected)
+                            ? _vm._i(_vm.selected, typology.slug) > -1
+                            : _vm.selected,
+                        },
+                        on: {
+                          change: function ($event) {
+                            var $$a = _vm.selected,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = typology.slug,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 && (_vm.selected = $$a.concat([$$v]))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.selected = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.selected = $$c
+                            }
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _c("label", { attrs: { for: typology.id } }, [
+                        _vm._v(_vm._s(typology.name)),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
+              ]
             ),
           ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-10 px-5 p-right" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
             {
-              staticClass: "collapse",
-              attrs: { id: "collapseExample", "data-bs-spy": "scroll" },
+              staticClass: "row justify-content-stretch container-restaurants",
             },
-            [
-              _c(
-                "ul",
-                _vm._l(_vm.typologies, function (typology, index) {
-                  return _c("li", { key: index }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.selected,
-                          expression: "selected",
-                        },
-                      ],
-                      attrs: {
-                        type: "checkbox",
-                        id: typology.id,
-                        name: typology.slug,
-                      },
-                      domProps: {
-                        value: typology.slug,
-                        checked: Array.isArray(_vm.selected)
-                          ? _vm._i(_vm.selected, typology.slug) > -1
-                          : _vm.selected,
-                      },
-                      on: {
-                        change: function ($event) {
-                          var $$a = _vm.selected,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = typology.slug,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 && (_vm.selected = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.selected = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.selected = $$c
-                          }
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("label", { attrs: { for: typology.id } }, [
-                      _vm._v(_vm._s(typology.name)),
-                    ]),
-                  ])
-                }),
-                0
-              ),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-10 px-5" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row justify-content-stretch" },
             _vm._l(_vm.ArrayFiltratoRestaurants, function (restaurant) {
               return _c(
                 "div",
                 { key: restaurant.id, staticClass: "col-3" },
-                [_c("CardFood", { attrs: { restaurant: restaurant } })],
+                [_c("CardRestaurant", { attrs: { restaurant: restaurant } })],
                 1
               )
             }),
@@ -4142,16 +4164,25 @@ var staticRenderFns = [
           },
           [
             _c("div", { staticClass: "row justify-content-center mx-auto" }, [
-              _c("form", { staticClass: "form-inline my-2 my-lg-0" }, [
-                _c("input", {
-                  staticClass: "form-control mr-sm-2",
-                  attrs: {
-                    type: "search",
-                    placeholder: "Ristoranti, tipologie...",
-                    "aria-label": "Search",
-                  },
-                }),
-              ]),
+              _c(
+                "form",
+                {
+                  staticClass:
+                    "form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1",
+                },
+                [
+                  _c("i", { staticClass: "fa-solid fa-magnifying-glass" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control mr-sm-2 border-0",
+                    attrs: {
+                      type: "search",
+                      placeholder: "Ristoranti, tipologie...",
+                      "aria-label": "Search",
+                    },
+                  }),
+                ]
+              ),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "ml-auto pr-5" }, [
@@ -4209,7 +4240,9 @@ var staticRenderFns = [
                 id: "consegna",
               },
             }),
-            _c("label", { attrs: { for: "consegna" } }, [_vm._v("Consegna")]),
+            _c("label", { attrs: { for: "consegna" } }, [
+              _c("span", { staticClass: "ml-1" }, [_vm._v(" Consegna")]),
+            ]),
             _c("br"),
             _vm._v(" "),
             _c("input", {
@@ -4220,11 +4253,19 @@ var staticRenderFns = [
                 id: "ritiro",
               },
             }),
-            _c("label", { attrs: { for: "ritiro" } }, [_vm._v("Ritiro")]),
+            _c("label", { attrs: { for: "ritiro" } }, [
+              _c("span", { staticClass: "ml-1" }, [_vm._v(" Ritiro")]),
+            ]),
           ]),
         ]),
       ]),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [_c("div")])
   },
   function () {
     var _vm = this
@@ -19899,17 +19940,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/partials/CardFood.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/components/partials/CardFood.vue ***!
-  \*******************************************************/
+/***/ "./resources/js/components/partials/CardRestaurant.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/partials/CardRestaurant.vue ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardFood.vue?vue&type=template&id=591ba5d0& */ "./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0&");
-/* harmony import */ var _CardFood_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardFood.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardRestaurant.vue?vue&type=template&id=9077dca2& */ "./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2&");
+/* harmony import */ var _CardRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardRestaurant.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -19919,9 +19960,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CardFood_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CardRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -19931,38 +19972,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/partials/CardFood.vue"
+component.options.__file = "resources/js/components/partials/CardRestaurant.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardFood_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardFood.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardFood.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardFood_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardRestaurant.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardRestaurant.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2& ***!
+  \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardFood.vue?vue&type=template&id=591ba5d0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardFood.vue?vue&type=template&id=591ba5d0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CardRestaurant.vue?vue&type=template&id=9077dca2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/partials/CardRestaurant.vue?vue&type=template&id=9077dca2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardFood_vue_vue_type_template_id_591ba5d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardRestaurant_vue_vue_type_template_id_9077dca2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -20577,7 +20618,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
