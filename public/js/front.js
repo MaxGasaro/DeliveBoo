@@ -2391,6 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.restaurants = response.data.results;
+        console.log('sono qui');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2398,7 +2399,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.GetTipologies();
-    /* this.GetRestaurants(); */
+    this.getFilterRestaurants();
   }
 });
 

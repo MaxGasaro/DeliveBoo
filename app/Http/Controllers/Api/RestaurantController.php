@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Typology;
 use App\User;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 use SebastianBergmann\Environment\Console;
 
 use function GuzzleHttp\Promise\each;
@@ -97,7 +97,7 @@ class RestaurantController extends Controller
             }
 
         }else{
-            $finalRestaurant =  User::take(10)->get();
+            $finalRestaurant =  User::with(['foods', 'typologies'])->take(10)->get();
         }
         
         return response()->json(

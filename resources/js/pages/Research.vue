@@ -183,6 +183,7 @@ export default {
             {params: {selected : this.selected}})
             .then(response =>{
                 this.restaurants = response.data.results;
+                console.log('sono qui');
             })
             .catch((error)=>{
                 console.log(error);
@@ -192,7 +193,7 @@ export default {
 
     mounted(){
         this.GetTipologies();
-        /* this.GetRestaurants(); */
+        this.getFilterRestaurants();
     }
 
 }
