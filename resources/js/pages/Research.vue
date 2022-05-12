@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Deliveboo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -10,7 +10,7 @@
             <div class="row justify-content-center mx-auto">
                 <form class="form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." aria-label="Search">
+                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." >
                 </form>
             </div>
             <div class="ml-auto pr-5">
@@ -51,18 +51,26 @@
                 <!-- Category -->
                 <div class="category">
                     <p>  
-                        <a v-fo data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <a v-fo data-toggle="collapse" href="#collapseExample" role="button">
                             Categoria
                             <i onclick="changeArrow()" class="fa fa-arrow-right"></i>
                         </a>
                     </p>
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
-                        <ul>
-                            <li v-for="(typology,index) in typologies" :key="index">
-                                <input type="checkbox" :id="typology.id" :name="typology.slug" v-model="selected" :value="typology.slug" @change="getFilterRestaurants()">
-                                <label :for="typology.id">{{typology.name}}</label>
-                            </li>              
-                        </ul>
+                        <form action="" @submit.prevent="getFilterRestaurants()">
+                            <ul >
+                                <li v-for="typology in typologies" :key="typology.id">
+                                    <input class="form-check-input" type="checkbox" v-model="selected" :value="typology.id" :id="'typology_' + typology.id">
+                                    <label class="form-check-label" :for="'typology_' + typology.id">{{typology.name}}</label>
+                                </li>
+
+                            </ul>
+
+                        
+                            <div>
+                                <button type="submit" class="btn btn-primary">Cerca</button>
+                            </div>
+                        </form>
                     </div> 
                 </div>        
             </div>
@@ -128,39 +136,6 @@ export default {
     components: {
         CardRestaurant
     },
-    computed:{
-        ArrayFiltratoRestaurants(){
-           //return this.selected;
-           //da completare con ogni caso possibile
-           /* if(this.selected.length == 0){
-               return this.restaurants;
-           }else{
-               this.array_1= [];
-                this.restaurants.forEach(restaurant => {
-                    restaurant.typologies.forEach(typology => {
-                        this.selected.forEach(element => {
-                            if(element.includes(typology.slug)){
-                                if(!this.array_1.includes(restaurant)){
-                                    this.array_1.push(restaurant);
-                                }  
-                            }else{
-                                console.log(restaurant.name + " non è incluso");
-                            }   
-                        });                    
-                    })  
-                });  
-                
-                return this.array_1; 
-           } */
-
-           axios.get("/api/filtered-restaurants", {
-               'params' : this.selected,
-           }).then(response =>{
-                console.log('risposta' + response.data.response);
-            });
-           
-        }
-    },
 
     methods:{   
         GetTipologies(){
@@ -170,30 +145,31 @@ export default {
             });
         },
 
-        /* GetRestaurants(){
+        GetRestaurants(){
             axios.get("/api/restaurants")
             .then(response =>{
                 this.restaurants = response.data.results;
                 console.log(this.restaurants);
             })
-        }, */
+        },
 
         getFilterRestaurants(){
-            axios.get("/api/restaurants/filtered",
-            {params: {selected : this.selected}})
-            .then(response =>{
-                this.restaurants = response.data.results;
-                console.log('sono qui');
-            })
-            .catch((error)=>{
-                console.log(error);
-            });
+            this.restaurants = [];
+                if(this.selected.length > 0){
+                    axios.get('api/restaurants/'+ this.selected) 
+                    .then(response =>{
+                        this.restaurants = response.data.results;
+                        console.log(this.restaurants);
+                    })
+                }else{
+                    this.GetRestaurants();
+                }
         }
     },
 
     mounted(){
         this.GetTipologies();
-        this.getFilterRestaurants();
+        this.GetRestaurants();
     }
 
 }
@@ -209,11 +185,6 @@ export default {
 
     .p-left{
     height: 100vh;
-    }
-
-    .list-category{
-    overflow-y: scroll;
-    height: 500px;
     }
 
     .container-restaurants{

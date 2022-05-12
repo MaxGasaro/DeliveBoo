@@ -14,7 +14,7 @@ class RestaurantController extends Controller
 {
     public function index() {
 
-        $restaurants = User::with(['foods', 'typologies'])->take(10);
+        $restaurants = User::with(['foods', 'typologies'])->take(10)->get();
 
         $restaurants->each(function($restaurant) {
             if ($restaurant->image) {
@@ -60,50 +60,39 @@ class RestaurantController extends Controller
     }
 
 
-    public function filter(Request $request){
-       
-        $typologies = $request->selected;
-        if(!empty($typologies)){
-            $ristorantiFiltrati = [];
-            foreach($typologies as $typology){
-                $myRestaurant = Typology::where('name', $typology)->first()->users()->get();
+    public function filter($filter) {
 
-                foreach ($myRestaurant as $singleRestaurant) {
-                    array_push($ristorantiFiltrati, $singleRestaurant );
-                }
-            }
-            $finalRestaurant = [];
-            $allReadyIn = [];
-            $allTypologies = true;
+        $filter = explode(",", $filter);
+        $restaurantArray = [];
 
-            foreach($ristorantiFiltrati as $ristorante){
-                $restaurantTypologyName = [];
-                $restaurantTypologies = $ristorante->typologies()->get();
-                foreach($restaurantTypologies as $restaurantTypology){
-                    array_push($restaurantTypologyName, $restaurantTypology->name );
-                }
-                foreach($typologies as $typology){
-                    if(!in_array($typology,$restaurantTypologyName )){
-                        $allTypologies = false;
+
+        $restaurants = User::with(['typologies'])->get();
+
+        foreach($filter as $filterX){
+            foreach($restaurants as $restaurant) {
+                foreach($restaurant->typologies as $type) {
+                    if ($type->id == $filterX) {
+
+                        if(!in_array($restaurant, $restaurantArray)){
+                            $restaurantArray[] = $restaurant;
+                        }
                     }
                 }
-                if($allTypologies){
-                    if(!in_array($ristorante->id, $allReadyIn )){
-                        array_push($finalRestaurant, $ristorante );
-                        array_push($allReadyIn, $ristorante->id );
-                    }
-                }
-                $allTypologies = true;
             }
-
-        }else{
-            $finalRestaurant =  User::with(['foods', 'typologies'])->take(10)->get();
         }
-        
+
+        foreach($restaurantArray as $restaurant) {
+            if ($restaurant->image) {
+                $restaurant->image = url('storage/'.$restaurant->image);
+            } else {
+                $restaurant->image = url('img/fallback_img.jpg');
+            }
+        };
+
         return response()->json(
             [
-                'results' => $finalRestaurant,
-                'success' => true
+                'results' => $restaurantArray,
+                'success'=> true,
             ]
         );
 

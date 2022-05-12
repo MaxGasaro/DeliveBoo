@@ -2321,6 +2321,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -2334,38 +2342,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CardRestaurant: _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  computed: {
-    ArrayFiltratoRestaurants: function ArrayFiltratoRestaurants() {
-      //return this.selected;
-      //da completare con ogni caso possibile
-
-      /* if(this.selected.length == 0){
-          return this.restaurants;
-      }else{
-          this.array_1= [];
-           this.restaurants.forEach(restaurant => {
-               restaurant.typologies.forEach(typology => {
-                   this.selected.forEach(element => {
-                       if(element.includes(typology.slug)){
-                           if(!this.array_1.includes(restaurant)){
-                               this.array_1.push(restaurant);
-                           }  
-                       }else{
-                           console.log(restaurant.name + " non è incluso");
-                       }   
-                   });                    
-               })  
-           });  
-           
-           return this.array_1; 
-      } */
-      axios.get("/api/filtered-restaurants", {
-        'params': this.selected
-      }).then(function (response) {
-        console.log('risposta' + response.data.response);
-      });
-    }
-  },
   methods: {
     GetTipologies: function GetTipologies() {
       var _this = this;
@@ -2374,32 +2350,32 @@ __webpack_require__.r(__webpack_exports__);
         _this.typologies = response.data.response;
       });
     },
-
-    /* GetRestaurants(){
-        axios.get("/api/restaurants")
-        .then(response =>{
-            this.restaurants = response.data.results;
-            console.log(this.restaurants);
-        })
-    }, */
-    getFilterRestaurants: function getFilterRestaurants() {
+    GetRestaurants: function GetRestaurants() {
       var _this2 = this;
 
-      axios.get("/api/restaurants/filtered", {
-        params: {
-          selected: this.selected
-        }
-      }).then(function (response) {
+      axios.get("/api/restaurants").then(function (response) {
         _this2.restaurants = response.data.results;
-        console.log('sono qui');
-      })["catch"](function (error) {
-        console.log(error);
+        console.log(_this2.restaurants);
       });
+    },
+    getFilterRestaurants: function getFilterRestaurants() {
+      var _this3 = this;
+
+      this.restaurants = [];
+
+      if (this.selected.length > 0) {
+        axios.get('api/restaurants/' + this.selected).then(function (response) {
+          _this3.restaurants = response.data.results;
+          console.log(_this3.restaurants);
+        });
+      } else {
+        this.GetRestaurants();
+      }
     }
   },
   mounted: function mounted() {
     this.GetTipologies();
-    this.getFilterRestaurants();
+    this.GetRestaurants();
   }
 });
 
@@ -2565,7 +2541,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100vh;\n}\n.list-category{\noverflow-y: scroll;\nheight: 500px;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n\n", ""]);
+exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100vh;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n\n", ""]);
 
 // exports
 
@@ -4034,8 +4010,6 @@ var render = function () {
                     "data-toggle": "collapse",
                     href: "#collapseExample",
                     role: "button",
-                    "aria-expanded": "false",
-                    "aria-controls": "collapseExample",
                   },
                 },
                 [
@@ -4058,63 +4032,80 @@ var render = function () {
               },
               [
                 _c(
-                  "ul",
-                  _vm._l(_vm.typologies, function (typology, index) {
-                    return _c("li", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.selected,
-                            expression: "selected",
-                          },
-                        ],
-                        attrs: {
-                          type: "checkbox",
-                          id: typology.id,
-                          name: typology.slug,
-                        },
-                        domProps: {
-                          value: typology.slug,
-                          checked: Array.isArray(_vm.selected)
-                            ? _vm._i(_vm.selected, typology.slug) > -1
-                            : _vm.selected,
-                        },
-                        on: {
-                          change: [
-                            function ($event) {
-                              var $$a = _vm.selected,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = typology.slug,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 && (_vm.selected = $$a.concat([$$v]))
+                  "form",
+                  {
+                    attrs: { action: "" },
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.getFilterRestaurants()
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "ul",
+                      _vm._l(_vm.typologies, function (typology) {
+                        return _c("li", { key: typology.id }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.selected,
+                                expression: "selected",
+                              },
+                            ],
+                            staticClass: "form-check-input",
+                            attrs: {
+                              type: "checkbox",
+                              id: "typology_" + typology.id,
+                            },
+                            domProps: {
+                              value: typology.id,
+                              checked: Array.isArray(_vm.selected)
+                                ? _vm._i(_vm.selected, typology.id) > -1
+                                : _vm.selected,
+                            },
+                            on: {
+                              change: function ($event) {
+                                var $$a = _vm.selected,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = typology.id,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.selected = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.selected = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
                                 } else {
-                                  $$i > -1 &&
-                                    (_vm.selected = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
+                                  _vm.selected = $$c
                                 }
-                              } else {
-                                _vm.selected = $$c
-                              }
+                              },
                             },
-                            function ($event) {
-                              return _vm.getFilterRestaurants()
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "form-check-label",
+                              attrs: { for: "typology_" + typology.id },
                             },
-                          ],
-                        },
+                            [_vm._v(_vm._s(typology.name))]
+                          ),
+                        ])
                       }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: typology.id } }, [
-                        _vm._v(_vm._s(typology.name)),
-                      ]),
-                    ])
-                  }),
-                  0
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm._m(3),
+                  ]
                 ),
               ]
             ),
@@ -4122,9 +4113,9 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10 px-5 p-right" }, [
-          _vm._m(3),
-          _vm._v(" "),
           _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "div",
@@ -4167,9 +4158,6 @@ var staticRenderFns = [
               type: "button",
               "data-toggle": "collapse",
               "data-target": "#navbarSupportedContent",
-              "aria-controls": "navbarSupportedContent",
-              "aria-expanded": "false",
-              "aria-label": "Toggle navigation",
             },
           },
           [_c("span", { staticClass: "navbar-toggler-icon" })]
@@ -4197,7 +4185,6 @@ var staticRenderFns = [
                     attrs: {
                       type: "search",
                       placeholder: "Ristoranti, tipologie...",
-                      "aria-label": "Search",
                     },
                   }),
                 ]
@@ -4278,6 +4265,18 @@ var staticRenderFns = [
           ]),
         ]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Cerca")]
+      ),
     ])
   },
   function () {
