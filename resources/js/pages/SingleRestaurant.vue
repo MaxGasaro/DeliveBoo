@@ -35,7 +35,7 @@ export default {
     },
     methods:{
         getRestaurant(){
-            axios.get('/api/restaurants/' + this.slug)
+            axios.get('/api/restaurant/' + this.slug)
             .then(response =>{
             if (response.data.success == false){
                 

@@ -2424,7 +2424,7 @@ __webpack_require__.r(__webpack_exports__);
     getRestaurant: function getRestaurant() {
       var _this = this;
 
-      axios.get('/api/restaurants/' + this.slug).then(function (response) {
+      axios.get('/api/restaurant/' + this.slug).then(function (response) {
         if (response.data.success == false) {
           _this.$router.push({
             name: 'not-found'
