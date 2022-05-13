@@ -22,7 +22,7 @@ Route::middleware('auth')
     ->group(function (){
         //admin
         Route::get('/', 'HomeController@index')->name('home');
-
+        
         Route::get('user', 'UserController@edit')->name('user.edit');
         Route::put('user', 'UserController@update')->name('user.update');
         Route::delete('user/{user}', 'UserController@destroy')->name('user.destroy');

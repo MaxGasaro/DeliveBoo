@@ -145,14 +145,6 @@ export default {
             this.expandedCategory = !this.expandedCategory;
         },
 
-        /* GetRestaurants(){
-            axios.get("/api/restaurants")
-            .then(response =>{
-                this.restaurants = response.data.results;
-                console.log(this.restaurants);
-            })
-        }, */
-
         getFilterRestaurants(){
             axios.get("/api/restaurants/filtered",
             {params: {

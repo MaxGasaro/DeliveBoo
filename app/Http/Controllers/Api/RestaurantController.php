@@ -33,7 +33,7 @@ class RestaurantController extends Controller
     }
 
     public function show($slug) {
-
+        
         $restaurant = User::where('slug', $slug)->with(['foods', 'typologies'])->first();
 
         if ($restaurant->image) {
@@ -66,6 +66,7 @@ class RestaurantController extends Controller
         $typologiesSelected = json_decode($request->selected);
         if(!empty($typologiesSelected)){
             $finalRestaurant = [];
+
             foreach($typologiesSelected as $typologySelected){
                 $myRestaurant = Typology::where('name', $typologySelected)->first()->users()->get();
                 
@@ -76,7 +77,7 @@ class RestaurantController extends Controller
                     array_push($finalRestaurant, $singleRestaurant ); 
                     }                                                       
                 }      
-            }          
+            }                 
         }else{
             $finalRestaurant =  User::with(['foods', 'typologies'])->take(10)->get();
         }
@@ -87,6 +88,7 @@ class RestaurantController extends Controller
                 'success' => true
             ]
         );
+        
 
     }
 
