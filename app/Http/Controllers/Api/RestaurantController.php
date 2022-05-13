@@ -63,20 +63,20 @@ class RestaurantController extends Controller
     public function filter(Request $request){
         $restaurantToFind = $request->RestaurantToFind;
 
-        $typologies = json_decode($request->selected);
-        if(!empty($typologies)){
+        $typologiesSelected = json_decode($request->selected);
+        if(!empty($typologiesSelected)){
             $finalRestaurant = [];
-            foreach($typologies as $typology){
-                $myRestaurant = Typology::where('name', $typology)->first()->users()->get();
-
-                foreach ($myRestaurant as $singleRestaurant) {
+            foreach($typologiesSelected as $typologySelected){
+                $myRestaurant = Typology::where('name', $typologySelected)->first()->users()->get();
+                
+                foreach($myRestaurant as $singleRestaurant) {
                     $typologies = $singleRestaurant->typologies()->get();
                     $singleRestaurant->typologies = $typologies;
-                    array_search($singleRestaurant, $finalRestaurant);
-                    array_push($finalRestaurant, $singleRestaurant );
-                }     
-            }
-
+                    if (!array_search($singleRestaurant, $finalRestaurant)){
+                    array_push($finalRestaurant, $singleRestaurant ); 
+                    }                                                       
+                }      
+            }          
         }else{
             $finalRestaurant =  User::with(['foods', 'typologies'])->take(10)->get();
         }
