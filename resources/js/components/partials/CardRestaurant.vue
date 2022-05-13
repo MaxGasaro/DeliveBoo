@@ -4,7 +4,7 @@
             <img class="card-img-top" :src="restaurant.image" :alt="restaurant.name">
             <div class="card-body">
                 <h2 class="card-title font-weight-bold">{{restaurant.name}}</h2>
-                <!-- <span>{{address.name}}</span> -->
+                <p>{{restaurant.address}}</p>
                 <span v-for="typology in restaurant.typologies" :key="typology.id" class="card-text">
                     &#183; {{typology.name}}
                 </span>

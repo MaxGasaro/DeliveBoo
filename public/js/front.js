@@ -3833,6 +3833,8 @@ var render = function () {
                 _vm._v(_vm._s(_vm.restaurant.name)),
               ]),
               _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.restaurant.address))]),
+              _vm._v(" "),
               _vm._l(_vm.restaurant.typologies, function (typology) {
                 return _c(
                   "span",
@@ -3997,28 +3999,7 @@ var render = function () {
           _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "category" }, [
-            _c("p", [
-              _c(
-                "a",
-                {
-                  directives: [{ name: "fo", rawName: "v-fo" }],
-                  attrs: {
-                    "data-toggle": "collapse",
-                    href: "#collapseExample",
-                    role: "button",
-                  },
-                },
-                [
-                  _vm._v(
-                    "\n                          Categoria\n                          "
-                  ),
-                  _c("i", {
-                    staticClass: "fa fa-arrow-right",
-                    attrs: { onclick: "changeArrow()" },
-                  }),
-                ]
-              ),
-            ]),
+            _vm._m(3),
             _vm._v(" "),
             _c(
               "div",
@@ -4106,9 +4087,9 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10 px-5 p-right" }, [
-          _vm._m(3),
-          _vm._v(" "),
           _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "div",
@@ -4258,6 +4239,32 @@ var staticRenderFns = [
           ]),
         ]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c(
+        "a",
+        {
+          attrs: {
+            "data-toggle": "collapse",
+            href: "#collapseExample",
+            role: "button",
+          },
+        },
+        [
+          _vm._v(
+            "\n                          Categoria\n                          "
+          ),
+          _c("i", {
+            staticClass: "fa fa-arrow-right",
+            attrs: { onclick: "changeArrow()" },
+          }),
+        ]
+      ),
     ])
   },
   function () {

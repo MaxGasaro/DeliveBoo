@@ -51,7 +51,7 @@
                 <!-- Category -->
                 <div class="category">
                     <p>  
-                        <a v-fo data-toggle="collapse" href="#collapseExample" role="button">
+                        <a data-toggle="collapse" href="#collapseExample" role="button">
                             Categoria
                             <i onclick="changeArrow()" class="fa fa-arrow-right"></i>
                         </a>
