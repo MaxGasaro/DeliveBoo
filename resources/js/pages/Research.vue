@@ -57,7 +57,7 @@
                         </a>
                     </p>
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
-                        <form action="" @submit.prevent="getFilterRestaurants()">
+                        <form action="" id="MyForm" @change="getFilterRestaurants()">
                             <ul >
                                 <li v-for="typology in typologies" :key="typology.id">
                                     <input class="form-check-input" type="checkbox" v-model="selected" :value="typology.id" :id="'typology_' + typology.id">
@@ -65,11 +65,6 @@
                                 </li>
 
                             </ul>
-
-                        
-                            <div>
-                                <button type="submit" class="btn btn-primary">Cerca</button>
-                            </div>
                         </form>
                     </div> 
                 </div>        
@@ -155,6 +150,7 @@ export default {
 
         getFilterRestaurants(){
             this.restaurants = [];
+            document.getElementById('MyForm').submit;
                 if(this.selected.length > 0){
                     axios.get('api/restaurants/'+ this.selected) 
                     .then(response =>{

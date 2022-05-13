@@ -80,6 +80,8 @@ class RestaurantController extends Controller
                 }
             }
         }
+        //devo trasformare l'array filter e devo creare un array di tutte le tipologie del ristorante,
+        // devono essere entrambi due array key=> $value e usando !array_diff vedo se filter è contenuto nell'array delle tipologie
 
         foreach($restaurantArray as $restaurant) {
             if ($restaurant->image) {

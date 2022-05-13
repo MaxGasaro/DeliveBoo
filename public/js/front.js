@@ -2324,11 +2324,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -2362,6 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       this.restaurants = [];
+      document.getElementById('MyForm').submit;
 
       if (this.selected.length > 0) {
         axios.get('api/restaurants/' + this.selected).then(function (response) {
@@ -4034,10 +4030,9 @@ var render = function () {
                 _c(
                   "form",
                   {
-                    attrs: { action: "" },
+                    attrs: { action: "", id: "MyForm" },
                     on: {
-                      submit: function ($event) {
-                        $event.preventDefault()
+                      change: function ($event) {
                         return _vm.getFilterRestaurants()
                       },
                     },
@@ -4103,8 +4098,6 @@ var render = function () {
                       }),
                       0
                     ),
-                    _vm._v(" "),
-                    _vm._m(3),
                   ]
                 ),
               ]
@@ -4113,9 +4106,9 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-10 px-5 p-right" }, [
-          _vm._m(4),
+          _vm._m(3),
           _vm._v(" "),
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c(
             "div",
@@ -4265,18 +4258,6 @@ var staticRenderFns = [
           ]),
         ]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Cerca")]
-      ),
     ])
   },
   function () {
