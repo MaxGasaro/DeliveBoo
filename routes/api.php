@@ -19,10 +19,10 @@ Route::get('typologies', 'Api\TypologyController@index');
 // /api/restaurants
 Route::get('/restaurants', 'Api\RestaurantController@index');
 
-Route::get('/restaurants/{filter}', 'Api\RestaurantController@filter');
-
 // /api/restaurants/*
-Route::get('/restaurants/{slug}', 'Api\RestaurantController@show');
+Route::get('/restaurant/{slug}', 'Api\RestaurantController@show');
+
+Route::get('/restaurants/{filter}', 'Api\RestaurantController@filter');
 
 Route::get('/foods/{slug}', 'Api\FoodController@index');
 Route::get('/foods/{slug}/{slug_food}', 'Api\FoodController@show');

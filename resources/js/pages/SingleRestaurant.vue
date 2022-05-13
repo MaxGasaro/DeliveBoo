@@ -15,9 +15,10 @@
                     </li>
                 </ul>
 
-                
-
             </div>
+
+            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn-btn-primary">Procedi all'ordine</router-link>
+
           </div>
       </div>
   </div>
@@ -35,7 +36,7 @@ export default {
     },
     methods:{
         getRestaurant(){
-            axios.get('/api/restaurants/' + this.slug)
+            axios.get('/api/restaurant/' + this.slug)
             .then(response =>{
             if (response.data.success == false){
                 
@@ -43,6 +44,7 @@ export default {
             }else{
                 console.log(response);
                 this.restaurant = response.data.result;
+                console.log(this.restaurant);
                 
             }
             })
