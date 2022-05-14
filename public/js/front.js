@@ -2411,13 +2411,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
     return {
       restaurant: null,
       foods: [],
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
+      showCart: false
     };
   },
   methods: {
@@ -4093,9 +4152,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "div",
-            {
-              staticClass: "row justify-content-stretch container-restaurants",
-            },
+            { staticClass: "row container-restaurants " },
             _vm._l(_vm.restaurants, function (restaurant) {
               return _c(
                 "div",
@@ -4381,42 +4438,222 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
-        _vm.restaurant
-          ? _c("div", [
-              _c("h1", [_vm._v(_vm._s(_vm.restaurant.name))]),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "w-50",
-                attrs: { src: _vm.restaurant.image, alt: _vm.restaurant.name },
-              }),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(_vm.restaurant.address))]),
-              _vm._v(" "),
-              _c(
-                "ul",
-                _vm._l(_vm.foods, function (food) {
-                  return _c("li", { key: food.id }, [
-                    _vm._v(
-                      "\n                      " +
-                        _vm._s(food.name) +
-                        ", " +
-                        _vm._s(food.price) +
-                        "\n                  "
-                    ),
-                  ])
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col" }, [
+          _vm.restaurant
+            ? _c("div", [
+                _c("h1", [_vm._v(_vm._s(_vm.restaurant.name))]),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass: "w-50",
+                  attrs: {
+                    src: _vm.restaurant.image,
+                    alt: _vm.restaurant.name,
+                  },
                 }),
-                0
-              ),
-            ])
-          : _vm._e(),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.restaurant.address))]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-8" }, [
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.foods, function (food) {
+                        return _c(
+                          "div",
+                          { key: food.id, staticClass: "col-6 mb-2" },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "card  h-100",
+                                staticStyle: { "max-width": "540px" },
+                              },
+                              [
+                                _c("div", { staticClass: "row no-gutters " }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "col-md-4 d-flex justify-content-center align-items-center pl-2 ",
+                                    },
+                                    [
+                                      _c("img", {
+                                        staticClass: "img-fluid",
+                                        attrs: {
+                                          src: food.img,
+                                          alt: food.name,
+                                        },
+                                      }),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-md-8" }, [
+                                    _c("div", { staticClass: "card-body" }, [
+                                      _c("h5", { staticClass: "card-title" }, [
+                                        _vm._v(_vm._s(food.name)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "card-text" }, [
+                                        _vm._v(_vm._s(food.description)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "card-text" }, [
+                                        _vm._v(_vm._s(food.price) + "€"),
+                                      ]),
+                                    ]),
+                                  ]),
+                                ]),
+                              ]
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1),
+                ]),
+              ])
+            : _vm._e(),
+        ]),
       ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", [
+      _c(
+        "nav",
+        { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+        [
+          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+            _vm._v("Deliveboo"),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "navbar-toggler",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#navbarSupportedContent",
+              },
+            },
+            [_c("span", { staticClass: "navbar-toggler-icon" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarSupportedContent" },
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+                _c("li", { staticClass: "nav-item active" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _vm._v("Home "),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)"),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                    _vm._v("Link"),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: " dropdown my-2 mr-5 my-lg-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link dropdown-toggle",
+                    attrs: {
+                      href: "#",
+                      id: "navbarDropdown",
+                      role: "button",
+                      "data-toggle": "dropdown",
+                      "aria-expanded": "false",
+                    },
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-shopping-cart" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "total-quantity" }, [
+                      _vm._v("0"),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "navbarDropdown" },
+                  },
+                  [
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Action")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Another action")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "dropdown-divider" }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Something else here")]
+                    ),
+                  ]
+                ),
+              ]),
+            ]
+          ),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-4" }, [
+      _c("div", { staticClass: "box" }, [
+        _c("div", [
+          _c("i", { staticClass: "fa-solid fa-cart-shopping" }),
+          _vm._v(" "),
+          _c("p", [_vm._v("Il carrello è vuoto")]),
+        ]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-secondary" }, [
+          _vm._v("Vai al pagamento"),
+        ]),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

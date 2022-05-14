@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-stretch container-restaurants">
+                <div class="row container-restaurants ">
                     <div class="col-3" v-for="restaurant in restaurants" :key="restaurant.id">
                         <CardRestaurant :restaurant ="restaurant"/>           
                     </div>

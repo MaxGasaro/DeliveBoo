@@ -18,7 +18,7 @@ class FoodController extends Controller
     {
        //richiamo tutti i foods, gestendo anche le categorie e l'user
        $user = User::where('slug', $slug)->first();
-       $foods = Food::where('user_id', $user->id)->with(['category', 'users'])->get();
+       $foods = Food::where('user_id', $user->id)->with(['category', 'users','orders'])->get();
 
        //do una path assoluta alle immagini
        foreach($foods as $food){
