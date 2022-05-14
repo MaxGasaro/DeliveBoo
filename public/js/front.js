@@ -2498,6 +2498,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -4651,7 +4657,33 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _c("div", { staticClass: "col-4" }, [
+                    _c("div", { staticClass: "box" }, [
+                      _c("div", [
+                        _c("i", { staticClass: "fa-solid fa-cart-shopping" }),
+                        _vm._v(" "),
+                        _c("p", [_vm._v("Il carrello è vuoto")]),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          _vm._l(_vm.cart, function (el, index) {
+                            return _c("li", { key: index }, [
+                              _vm._v(
+                                "\r\n                                        " +
+                                  _vm._s(el.food.name) +
+                                  "\r\n                                    "
+                              ),
+                            ])
+                          }),
+                          0
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("button", { staticClass: "btn btn-secondary" }, [
+                        _vm._v("Vai al pagamento"),
+                      ]),
+                    ]),
+                  ]),
                 ]),
               ])
             : _vm._e(),
@@ -4780,24 +4812,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4" }, [
-      _c("div", { staticClass: "box" }, [
-        _c("div", [
-          _c("i", { staticClass: "fa-solid fa-cart-shopping" }),
-          _vm._v(" "),
-          _c("p", [_vm._v("Il carrello è vuoto")]),
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-secondary" }, [
-          _vm._v("Vai al pagamento"),
-        ]),
-      ]),
-    ])
   },
 ]
 render._withStripped = true

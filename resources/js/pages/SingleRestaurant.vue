@@ -96,6 +96,12 @@
                             <div>
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
+
+                                <ul>
+                                    <li v-for="(el, index) in cart " :key="index">
+                                        {{el.food.name}}
+                                    </li>
+                                </ul>
                             </div>
                             <button class="btn btn-secondary">Vai al pagamento</button>
                         </div>
