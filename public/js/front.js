@@ -2239,12 +2239,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   data: function data() {
     return {
-      name: this.$route.params.name
+      name: this.$route.params.name,
+      customer_name: '',
+      customer_address: '',
+      customer_phone: '',
+      comment: '',
+      errors: {}
     };
+  },
+  methods: {
+    makeOrder: function makeOrder() {
+      var _this = this;
+
+      axios.post("/api/order", {
+        "customer_name": this.customer_name,
+        "customer_address": this.customer_address,
+        "customer_phone": this.customer_phone,
+        "customer_note": this.customer_note
+      }).then(function (response) {
+        console.log(response);
+
+        if (response.data.errors) {
+          _this.errors = response.data.errors;
+          console.log(_this.errors);
+        } else {
+          _this.customer_name = '';
+          _this.customer_address = '';
+          _this.customer_phone = '';
+          _this.comment = '';
+        }
+      });
+    }
   }
 });
 
@@ -4051,7 +4102,259 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "form",
+        {
+          staticClass: "w-100",
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.makeOrder.apply(null, arguments)
+            },
+          },
+        },
+        [
+          _c("div", { staticClass: "col-8" }, [
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.customer_name,
+                      expression: "customer_name",
+                    },
+                  ],
+                  staticClass: "col-7",
+                  attrs: {
+                    type: "text",
+                    name: "customer_name",
+                    id: "customer_name",
+                    maxlength: "50",
+                    required: "",
+                    placeholder: "inserisci il tuo nome",
+                  },
+                  domProps: { value: _vm.customer_name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.customer_name = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.customer_name, function (error, index) {
+                  return _c(
+                    "p",
+                    {
+                      key: "error_name" + index,
+                      staticClass: "invalid-feedback",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      ),
+                    ]
+                  )
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.customer_address,
+                      expression: "customer_address",
+                    },
+                  ],
+                  staticClass: "col-7",
+                  attrs: {
+                    type: "text",
+                    name: "customer_address",
+                    id: "customer_address",
+                    maxlength: "100",
+                    required: "",
+                    placeholder: "inserisci il tuo indirizzo",
+                  },
+                  domProps: { value: _vm.customer_address },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.customer_address = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.customer_address, function (error, index) {
+                  return _c(
+                    "p",
+                    {
+                      key: "error_address" + index,
+                      staticClass: "invalid-feedback",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      ),
+                    ]
+                  )
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.customer_phone,
+                      expression: "customer_phone",
+                    },
+                  ],
+                  staticClass: "col-7",
+                  attrs: {
+                    type: "text",
+                    name: "customer_phone",
+                    id: "customer_phone",
+                    required: "",
+                    pattern: "[0-9]+",
+                    maxlength: "15",
+                    placeholder: "inserisci il tuo telefono",
+                  },
+                  domProps: { value: _vm.customer_phone },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.customer_phone = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.customer_phone, function (error, index) {
+                  return _c(
+                    "p",
+                    {
+                      key: "error_phone" + index,
+                      staticClass: "invalid-feedback",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      ),
+                    ]
+                  )
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group" },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-form-label col-4",
+                    attrs: { for: "comment" },
+                  },
+                  [_vm._v("Note aggiuntive")]
+                ),
+                _vm._v(" "),
+                _c("small", { staticClass: "d-block col-4" }, [
+                  _vm._v("max: 255 caratteri"),
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comment,
+                      expression: "comment",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "comment",
+                    id: "comment",
+                    cols: "30",
+                    rows: "10",
+                  },
+                  domProps: { value: _vm.comment },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comment = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.errors.comment, function (error, index) {
+                  return _c(
+                    "p",
+                    {
+                      key: "error_comment" + index,
+                      staticClass: "invalid-feedback",
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      ),
+                    ]
+                  )
+                }),
+              ],
+              2
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Ordina")]
+          ),
+        ]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -4059,95 +4362,34 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-8" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-form-label col-4",
-              attrs: { for: "client_name" },
-            },
-            [_vm._v("Nome e cognome"), _c("strong", [_vm._v("*")])]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "col-7",
-            attrs: {
-              type: "text",
-              name: "",
-              id: "client_name",
-              required: "",
-              placeholder: "inserisci il tuo nome",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-form-label col-4",
-              attrs: { for: "client_address" },
-            },
-            [_vm._v("Indirizzo"), _c("strong", [_vm._v("*")])]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "col-7",
-            attrs: {
-              type: "text",
-              name: "",
-              id: "client_address",
-              required: "",
-              placeholder: "inserisci il tuo indirizzo",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-form-label col-4",
-              attrs: { for: "client_phone" },
-            },
-            [_vm._v("Numero di cellulare"), _c("strong", [_vm._v("*")])]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "col-7",
-            attrs: {
-              type: "text",
-              name: "",
-              id: "client_phone",
-              required: "",
-              placeholder: "inserisci il tuo telefono",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c(
-            "label",
-            {
-              staticClass: "col-form-label col-4",
-              attrs: { for: "client_note" },
-            },
-            [_vm._v("Note aggiuntive")]
-          ),
-          _vm._v(" "),
-          _c("small", { staticClass: "d-block col-4" }, [
-            _vm._v("max: 255 caratteri"),
-          ]),
-          _vm._v(" "),
-          _c("textarea", {
-            staticClass: "form-control",
-            attrs: { name: "", id: "client_note", cols: "30", rows: "10" },
-          }),
-        ]),
-      ]),
-    ])
+    return _c(
+      "label",
+      { staticClass: "col-form-label col-4", attrs: { for: "customer_name" } },
+      [_vm._v("Nome e cognome"), _c("strong", [_vm._v("*")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "col-form-label col-4",
+        attrs: { for: "customer_address" },
+      },
+      [_vm._v("Indirizzo"), _c("strong", [_vm._v("*")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-form-label col-4", attrs: { for: "customer_phone" } },
+      [_vm._v("Numero di cellulare"), _c("strong", [_vm._v("*")])]
+    )
   },
 ]
 render._withStripped = true
