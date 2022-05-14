@@ -2324,6 +2324,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -3810,7 +3813,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card" },
+    { staticClass: "card h-100" },
     [
       _c(
         "router-link",
@@ -4091,21 +4094,21 @@ var render = function () {
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "row justify-content-stretch container-restaurants",
-            },
-            _vm._l(_vm.restaurants, function (restaurant) {
-              return _c(
-                "div",
-                { key: restaurant.id, staticClass: "col-3" },
-                [_c("CardRestaurant", { attrs: { restaurant: restaurant } })],
-                1
-              )
-            }),
-            0
-          ),
+          _c("div", { staticClass: "container-restaurants" }, [
+            _c(
+              "div",
+              { staticClass: "row " },
+              _vm._l(_vm.restaurants, function (restaurant) {
+                return _c(
+                  "div",
+                  { key: restaurant.id, staticClass: "col-3" },
+                  [_c("CardRestaurant", { attrs: { restaurant: restaurant } })],
+                  1
+                )
+              }),
+              0
+            ),
+          ]),
         ]),
       ]),
     ]),
