@@ -4132,6 +4132,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "col-7",
+                  class: { "is-invalid": _vm.errors.customer_name },
                   attrs: {
                     type: "text",
                     name: "customer_name",
@@ -4187,6 +4188,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "col-7",
+                  class: { "is-invalid": _vm.errors.customer_address },
                   attrs: {
                     type: "text",
                     name: "customer_address",
@@ -4242,12 +4244,14 @@ var render = function () {
                     },
                   ],
                   staticClass: "col-7",
+                  class: { "is-invalid": _vm.errors.customer_phone },
                   attrs: {
                     type: "text",
                     name: "customer_phone",
                     id: "customer_phone",
                     required: "",
                     pattern: "[0-9]+",
+                    minlength: "9",
                     maxlength: "15",
                     placeholder: "inserisci il tuo telefono",
                   },
@@ -4309,6 +4313,7 @@ var render = function () {
                     },
                   ],
                   staticClass: "form-control",
+                  class: { "is-invalid": _vm.errors.comment },
                   attrs: {
                     name: "comment",
                     id: "comment",

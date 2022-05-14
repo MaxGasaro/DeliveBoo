@@ -8,7 +8,7 @@
                 <div class="col-8">
                     <div class="form-group">
                         <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
-                        <input v-model="customer_name" class="col-7" type="text" name="customer_name" id="customer_name" maxlength="50" required placeholder="inserisci il tuo nome">
+                        <input v-model="customer_name" class="col-7" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" maxlength="50" required placeholder="inserisci il tuo nome">
 
                         <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                             {{error}}
@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <label for="customer_address" class="col-form-label col-4">Indirizzo<strong>*</strong></label>
-                        <input v-model="customer_address" class="col-7" type="text" name="customer_address" id="customer_address" maxlength="100" required placeholder="inserisci il tuo indirizzo">
+                        <input v-model="customer_address" class="col-7" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" maxlength="100" required placeholder="inserisci il tuo indirizzo">
                     
                         <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                             {{error}}
@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         <label for="customer_phone" class="col-form-label col-4">Numero di cellulare<strong>*</strong></label>
-                        <input v-model="customer_phone" class="col-7" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" maxlength="15" placeholder="inserisci il tuo telefono">
+                        <input v-model="customer_phone" class="col-7" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required  pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                     
                         <p v-for="(error, index) in errors.customer_phone" :key="'error_phone' + index" class="invalid-feedback">
                             {{error}}
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="comment" class="col-form-label col-4">Note aggiuntive</label>
                         <small class="d-block col-4">max: 255 caratteri</small>
-                        <textarea v-model="comment" class="form-control" name="comment" id="comment" cols="30" rows="10"></textarea>
+                        <textarea v-model="comment" class="form-control" :class="{'is-invalid':errors.comment}" name="comment" id="comment" cols="30" rows="10"></textarea>
                     
                         <p v-for="(error, index) in errors.comment" :key="'error_comment' + index" class="invalid-feedback">
                             {{error}}

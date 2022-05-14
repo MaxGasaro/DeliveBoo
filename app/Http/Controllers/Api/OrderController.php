@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function store(Request $request){
         $data = $request->all();
         $data['date'] = Carbon::now();
-        $data['price'] = 12.50;
+        /* $data['price'] = 12.50; */
 
         //validazione backend dei dati inseriti
         $validator = Validator::make($data, [
@@ -38,6 +38,7 @@ class OrderController extends Controller
             $order->fill($data);
             /* dd($order); */
             $order->save();
+            
             return response()->json([
                 'success' => true
             ]);
