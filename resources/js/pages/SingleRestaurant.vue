@@ -42,11 +42,38 @@
                 <!--Aggiungere tutte le tipologie del ristorante-->
                 <p>{{restaurant.address}}</p>
 
+                <div class="modal" tabindex="-1" id="card-product">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title w-100">{{singleFood.name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" id="closed">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img :src="singleFood.img" :alt="singleFood.name" class="w-100">
+                            <p>{{singleFood.description}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="w-100">
+
+                                <span class="btn btn-secondary" :class="(quantityFood == 1)? 'disabled':''" @click="(quantityFood == 1)? '': quantityFood --">-</span>
+                                <span>{{quantityFood}}</span>
+                                <span class="btn btn-secondary" @click="quantityFood ++">+</span>
+
+                                <button class="w-100 btn btn-primary m-2" @click="addToCart()">Aggiungi al carrello</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-8">
                        <div class="row">
                             <div class="col-6 mb-2" v-for="food in foods" :key="food.id">
-                               <div class="card  h-100" style="max-width: 540px;">
+                               <div id="card-product" class="card  h-100" style="max-width: 540px;"  @click="getSingleFood(food)">
                                     <div class="row no-gutters ">
                                         <div class="col-md-4 d-flex justify-content-center align-items-center pl-2 ">
                                             <img :src="food.img" :alt="food.name" class="img-fluid">
@@ -73,6 +100,8 @@
                             <button class="btn btn-secondary">Vai al pagamento</button>
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
           </div>
@@ -89,7 +118,9 @@ export default {
             restaurant : null,
             foods: [],
             slug: this.$route.params.slug,
-            showCart: false,
+            singleFood: [],
+            quantityFood: 1,
+            cart: [],
         }
     },
     methods:{
@@ -115,6 +146,24 @@ export default {
                 this.foods = response.data.result;
             }
             })
+        },
+        getSingleFood(food){
+            $("#card-product").modal(); 
+            this.singleFood = [];
+            this.quantityFood = 1;
+            this.singleFood = food;
+            console.log(this.singleFood);
+  
+        },
+
+        addToCart(){
+            this.cart.push({
+                food: this.singleFood,
+                quantity : this.quantityFood
+            })
+
+            console.log(this.cart);
+            document.getElementById('closed').click();
         }
     },
     mounted(){

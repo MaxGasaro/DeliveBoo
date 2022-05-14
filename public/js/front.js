@@ -2469,6 +2469,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -2476,7 +2505,9 @@ __webpack_require__.r(__webpack_exports__);
       restaurant: null,
       foods: [],
       slug: this.$route.params.slug,
-      showCart: false
+      singleFood: [],
+      quantityFood: 1,
+      cart: []
     };
   },
   methods: {
@@ -2506,6 +2537,21 @@ __webpack_require__.r(__webpack_exports__);
           _this2.foods = response.data.result;
         }
       });
+    },
+    getSingleFood: function getSingleFood(food) {
+      $("#card-product").modal();
+      this.singleFood = [];
+      this.quantityFood = 1;
+      this.singleFood = food;
+      console.log(this.singleFood);
+    },
+    addToCart: function addToCart() {
+      this.cart.push({
+        food: this.singleFood,
+        quantity: this.quantityFood
+      });
+      console.log(this.cart);
+      document.getElementById('closed').click();
     }
   },
   mounted: function mounted() {
@@ -4458,6 +4504,87 @@ var render = function () {
                 _vm._v(" "),
                 _c("p", [_vm._v(_vm._s(_vm.restaurant.address))]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal",
+                    attrs: { tabindex: "-1", id: "card-product" },
+                  },
+                  [
+                    _c("div", { staticClass: "modal-dialog" }, [
+                      _c("div", { staticClass: "modal-content text-center" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title w-100" }, [
+                            _vm._v(_vm._s(_vm.singleFood.name)),
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("img", {
+                            staticClass: "w-100",
+                            attrs: {
+                              src: _vm.singleFood.img,
+                              alt: _vm.singleFood.name,
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.singleFood.description))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c("div", { staticClass: "w-100" }, [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "btn btn-secondary",
+                                class: _vm.quantityFood == 1 ? "disabled" : "",
+                                on: {
+                                  click: function ($event) {
+                                    _vm.quantityFood == 1
+                                      ? ""
+                                      : _vm.quantityFood--
+                                  },
+                                },
+                              },
+                              [_vm._v("-")]
+                            ),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(_vm.quantityFood))]),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "btn btn-secondary",
+                                on: {
+                                  click: function ($event) {
+                                    _vm.quantityFood++
+                                  },
+                                },
+                              },
+                              [_vm._v("+")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "w-100 btn btn-primary m-2",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.addToCart()
+                                  },
+                                },
+                              },
+                              [_vm._v("Aggiungi al carrello")]
+                            ),
+                          ]),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "col-8" }, [
                     _c(
@@ -4473,6 +4600,12 @@ var render = function () {
                               {
                                 staticClass: "card  h-100",
                                 staticStyle: { "max-width": "540px" },
+                                attrs: { id: "card-product" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.getSingleFood(food)
+                                  },
+                                },
                               },
                               [
                                 _c("div", { staticClass: "row no-gutters " }, [
@@ -4518,7 +4651,7 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _vm._m(2),
                 ]),
               ])
             : _vm._e(),
@@ -4634,6 +4767,19 @@ var staticRenderFns = [
         ]
       ),
     ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal", id: "closed" },
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function () {
     var _vm = this
