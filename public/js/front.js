@@ -2275,19 +2275,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   created: function created() {
@@ -4276,41 +4263,27 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
-    _c("div", [
+    _c("div", { staticClass: "pt-5" }, [
       _c("div", { staticClass: "container" }, [
         _c("h1", [_vm._v("La selezione di Delivero")]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-5", on: { click: _vm.click_card } }, [
+          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
             _vm._m(3),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-7", on: { click: _vm.click_card } }, [
+          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
             _vm._m(4),
           ]),
         ]),
         _vm._v(" "),
-        _c("h1", [_vm._v("La selezione di Delivero")]),
-        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-5", on: { click: _vm.click_card } }, [
+          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
             _vm._m(5),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-7", on: { click: _vm.click_card } }, [
+          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
             _vm._m(6),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("h1", [_vm._v("La selezione di Delivero")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-5", on: { click: _vm.click_card } }, [
-            _vm._m(7),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-7", on: { click: _vm.click_card } }, [
-            _vm._m(8),
           ]),
         ]),
       ]),
@@ -4378,21 +4351,33 @@ var staticRenderFns = [
         {
           staticClass: "row px-2 m-1",
           staticStyle: {
-            height: "25vh",
+            height: "15vh",
             "background-origin": "content-box",
             "background-position": "center",
-            "background-size": "auto",
+            "background-size": "120%",
             "background-repeat": "no-repeat",
             "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
+              "url('https://img.freepik.com/free-photo/big-hamburger-with-double-beef-french-fries_252907-8.jpg?w=2000')",
           },
         },
         [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white  m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
+          _c(
+            "div",
+            { staticClass: "col-12 text-center my-auto p-5 text-white  m-1" },
+            [_c("h3", [_vm._v("Compfort food")])]
+          ),
         ]
       ),
+      _vm._v(" "),
+      _c("div", [
+        _c("span", [
+          _vm._v(
+            "I grandi classici che scaldano il cuore, perfetti in ogni momento."
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("a", [_vm._v("Scopri Comfort food")]),
     ])
   },
   function () {
@@ -4405,21 +4390,31 @@ var staticRenderFns = [
         {
           staticClass: "row px-2 m-1",
           staticStyle: {
-            height: "25vh",
+            height: "15vh",
             "background-origin": "content-box",
             "background-position": "center",
-            "background-size": "auto",
+            "background-size": "120%",
             "background-repeat": "no-repeat",
             "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
+              "url('https://insanelygoodrecipes.com/wp-content/uploads/2021/02/Homemade-Key-Lime-Fruit-Tart-with-Berries-800x530.png')",
           },
         },
         [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
+          _c(
+            "div",
+            { staticClass: "col-12 text-center my-auto p-5 text-white m-1" },
+            [_c("h3", [_vm._v("Dolci e dessert")])]
+          ),
         ]
       ),
+      _vm._v(" "),
+      _c("div", [
+        _c("span", [
+          _vm._v("Dolci piaceri per rendere la giornata ancora più gustosa."),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("a", [_vm._v("Scopri Dolci e dessert")]),
     ])
   },
   function () {
@@ -4432,21 +4427,33 @@ var staticRenderFns = [
         {
           staticClass: "row px-2 m-1",
           staticStyle: {
-            height: "25vh",
+            height: "15vh",
             "background-origin": "content-box",
             "background-position": "center",
-            "background-size": "auto",
+            "background-size": "120%",
             "background-repeat": "no-repeat",
             "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
+              "url('https://media.timeout.com/images/105634384/image.jpg')",
           },
         },
         [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white  m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
+          _c(
+            "div",
+            { staticClass: "col-12 text-center my-auto p-5 text-white  m-1" },
+            [_c("h3", [_vm._v("Perfetti da condividere")])]
+          ),
         ]
       ),
+      _vm._v(" "),
+      _c("div", [
+        _c("span", [
+          _vm._v(
+            "Serve una scusa per stare insieme? Ordina dai ristoranti che trasformeranno la tua serata in un vera festa."
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("a", [_vm._v("Scopri Perfetti da condividere")]),
     ])
   },
   function () {
@@ -4457,77 +4464,45 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "row px-2 m-1",
+          staticClass: "row mx-2 m-1 py-auto",
           staticStyle: {
-            height: "25vh",
+            height: "15vh",
             "background-origin": "content-box",
             "background-position": "center",
-            "background-size": "auto",
+            "background-size": "120%",
             "background-repeat": "no-repeat",
             "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
+              "url('https://www.foodsafetynews.com/files/2020/03/dreamstime_food-delivery-online-food-sales.jpg')",
           },
         },
         [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "col-12 text-center text-white ",
+              staticStyle: {
+                heigth: "100%",
+                "background-color": "rgba(0, 0, 0, 0.2)",
+              },
+            },
+            [
+              _c("h3", { staticClass: "font-weight-bold mt-4" }, [
+                _vm._v("Esclusiva Deliberoo"),
+              ]),
+            ]
+          ),
         ]
       ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#top" } }, [
-      _c(
-        "div",
-        {
-          staticClass: "row px-2 m-1",
-          staticStyle: {
-            height: "25vh",
-            "background-origin": "content-box",
-            "background-position": "center",
-            "background-size": "auto",
-            "background-repeat": "no-repeat",
-            "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
-          },
-        },
-        [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white  m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
-        ]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#top" } }, [
-      _c(
-        "div",
-        {
-          staticClass: "row px-2 m-1",
-          staticStyle: {
-            height: "25vh",
-            "background-origin": "content-box",
-            "background-position": "center",
-            "background-size": "auto",
-            "background-repeat": "no-repeat",
-            "background-image":
-              "url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg')",
-          },
-        },
-        [
-          _c("div", { staticClass: "col-12 text-center p-5 text-white m-1" }, [
-            _c("h2", [_vm._v("Compfort food")]),
-          ]),
-        ]
-      ),
+      _vm._v(" "),
+      _c("div", [
+        _c("span", [
+          _vm._v(
+            "I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo."
+          ),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c("a", [_vm._v("Scopri Esclusiva Deliberoo")]),
     ])
   },
 ]

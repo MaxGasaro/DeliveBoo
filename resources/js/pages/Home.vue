@@ -50,68 +50,55 @@
     </div>
     <!-- fine sezione cerca -->
     <!-- inizio main -->
-    <div>
+    <div class="pt-5">
       <div class="container">
         <h1>La selezione di Delivero</h1>
         <div class="row">     
-          <div class="col-5" @click="click_card"> 
+          <div class="col-6" @click="click_card"> 
             <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white  m-1">
-                  <h2>Compfort food</h2>
+              <div class="row px-2 m-1" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://img.freepik.com/free-photo/big-hamburger-with-double-beef-french-fries_252907-8.jpg?w=2000');">
+                <div class="col-12 text-center my-auto p-5 text-white  m-1">
+                  <h3>Compfort food</h3>
                 </div>
               </div>
+              <div><span>I grandi classici che scaldano il cuore, perfetti in ogni momento.</span></div>
+              <a>Scopri Comfort food</a>
+
             </a>
           </div>
-          <div class="col-7" @click="click_card">
+          <div class="col-6" @click="click_card">
             <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white m-1">
-                  <h2>Compfort food</h2>
+              <div class="row px-2 m-1" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://insanelygoodrecipes.com/wp-content/uploads/2021/02/Homemade-Key-Lime-Fruit-Tart-with-Berries-800x530.png');">
+                <div class="col-12 text-center my-auto p-5 text-white m-1">
+                  <h3>Dolci e dessert</h3>
                 </div>
               </div>
-            </a>
-          </div>
-        </div>
-        <h1>La selezione di Delivero</h1>
-        <div class="row">     
-          <div class="col-5" @click="click_card"> 
-            <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white  m-1">
-                  <h2>Compfort food</h2>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-7" @click="click_card">
-            <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white m-1">
-                  <h2>Compfort food</h2>
-                </div>
-              </div>
+              <div><span>Dolci piaceri per rendere la giornata ancora più gustosa.</span></div>
+              <a>Scopri Dolci e dessert</a>
             </a>
           </div>
         </div>
-        <h1>La selezione di Delivero</h1>
         <div class="row">     
-          <div class="col-5" @click="click_card"> 
+          <div class="col-6" @click="click_card"> 
             <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white  m-1">
-                  <h2>Compfort food</h2>
+              <div class="row px-2 m-1" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://media.timeout.com/images/105634384/image.jpg');">
+                <div class="col-12 text-center my-auto p-5 text-white  m-1">
+                  <h3>Perfetti da condividere</h3>
                 </div>
               </div>
+              <div><span>Serve una scusa per stare insieme? Ordina dai ristoranti che trasformeranno la tua serata in un vera festa.</span></div>
+              <a>Scopri Perfetti da condividere</a>
             </a>
           </div>
-          <div class="col-7" @click="click_card">
+          <div class="col-6" @click="click_card">
             <a  href="#top">
-              <div class="row px-2 m-1" style="height: 25vh; background-origin: content-box; background-position: center; background-size: auto; background-repeat: no-repeat; background-image: url('https://www.utphysicians.com/wp-content/uploads/2021/03/woman-enjoying-soup.jpg');">
-                <div class="col-12 text-center p-5 text-white m-1">
-                  <h2>Compfort food</h2>
+              <div class="row mx-2 m-1 py-auto" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://www.foodsafetynews.com/files/2020/03/dreamstime_food-delivery-online-food-sales.jpg');">
+                <div class="col-12 text-center text-white " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);">
+                  <h3 class="font-weight-bold mt-4">Esclusiva Deliberoo</h3>
                 </div>
               </div>
+              <div><span>I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo.</span></div>
+              <a>Scopri Esclusiva Deliberoo</a>
             </a>
           </div>
         </div>
