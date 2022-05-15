@@ -5,9 +5,9 @@
 
             <div class="row">
 
-                <form @submit.prevent="makeOrder" class="w-100">
-                    <div class="col-8">
-
+                
+                <div class="col-8">
+                    <form @submit.prevent="makeOrder" class="w-100">
                         <div v-if="orderSent" class="alert alert-success">
                             ordine inviato con successo
                         </div>
@@ -48,10 +48,24 @@
                                 {{error}}
                             </p>
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn btn-primary">Ordina</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Ordina</button>
+                    </form>
+                </div>
+
+                <div class="col-4">
+                    <h3>Riepilogo Ordine</h3>
+                    <ul>
+                        <li v-for="(el, index) in cart " :key="index">
+                            {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
+                        </li>
+                    </ul>
+                </div>
+                    
+
+                    
+                
+
                 
             </div> 
         </div>
@@ -70,7 +84,8 @@
                 customer_phone: '',
                 comment: '',
                 errors: {},
-                orderSent: false //booleano che mostra la conferma di ordine inviato
+                orderSent: false, //booleano che mostra la conferma di ordine inviato
+                cart: null
 
             }
         },
@@ -95,7 +110,15 @@
                         this.comment= '';
                     }
                 });
+            },
+            getLocal(){
+               this.cart =  localStorage.getItem('myCart');
+               this.cart = JSON.parse(this.cart);
+               console.log(this.cart);
             }
+        },
+        mounted() {
+            this.getLocal();
         }
     }
 </script>

@@ -105,7 +105,7 @@
                                     </li>
                                 </ul>
 
-                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary">Vai al pagamento</router-link>
+                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary" >Vai al pagamento</router-link>
 
                             </div>
 
@@ -181,18 +181,6 @@ export default {
                 this.cartVoid = false; 
             
             }else{
-               /*  this.cart.forEach(element => {
-                    if(element.food.id == this.singleFood.id ){
-                        element.quantity += this.quantityFood;
-                        break;
-                    }else{
-                        this.cart.push({
-                            food: this.singleFood,
-                            quantity : this.quantityFood
-                        }) 
-                        break;
-                    }  
-                }); */
                 let found = false;
 
                 for(let i = 0; i < this.cart.length; i++){
@@ -202,8 +190,6 @@ export default {
                         found = true;
                         break;
                     }
-
-
                 }
 
                 if(!found){
@@ -216,7 +202,8 @@ export default {
             }
             console.log(this.cart);
             document.getElementById('closed').click();
-        }   
+            localStorage.setItem('myCart', JSON.stringify(this.cart));
+        }
     },
     mounted(){
         this.getRestaurant();

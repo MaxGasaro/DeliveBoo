@@ -2266,6 +2266,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   data: function data() {
@@ -2276,8 +2290,9 @@ __webpack_require__.r(__webpack_exports__);
       customer_phone: '',
       comment: '',
       errors: {},
-      orderSent: false //booleano che mostra la conferma di ordine inviato
-
+      orderSent: false,
+      //booleano che mostra la conferma di ordine inviato
+      cart: null
     };
   },
   methods: {
@@ -2303,7 +2318,15 @@ __webpack_require__.r(__webpack_exports__);
           _this.comment = '';
         }
       });
+    },
+    getLocal: function getLocal() {
+      this.cart = localStorage.getItem('myCart');
+      this.cart = JSON.parse(this.cart);
+      console.log(this.cart);
     }
+  },
+  mounted: function mounted() {
+    this.getLocal();
   }
 });
 
@@ -2684,18 +2707,6 @@ __webpack_require__.r(__webpack_exports__);
         });
         this.cartVoid = false;
       } else {
-        /*  this.cart.forEach(element => {
-             if(element.food.id == this.singleFood.id ){
-                 element.quantity += this.quantityFood;
-                 break;
-             }else{
-                 this.cart.push({
-                     food: this.singleFood,
-                     quantity : this.quantityFood
-                 }) 
-                 break;
-             }  
-         }); */
         var found = false;
 
         for (var i = 0; i < this.cart.length; i++) {
@@ -2716,6 +2727,7 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log(this.cart);
       document.getElementById('closed').click();
+      localStorage.setItem('myCart', JSON.stringify(this.cart));
     }
   },
   mounted: function mounted() {
@@ -4317,19 +4329,19 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c(
-          "form",
-          {
-            staticClass: "w-100",
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.makeOrder.apply(null, arguments)
+        _c("div", { staticClass: "col-8" }, [
+          _c(
+            "form",
+            {
+              staticClass: "w-100",
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.makeOrder.apply(null, arguments)
+                },
               },
             },
-          },
-          [
-            _c("div", { staticClass: "col-8" }, [
+            [
               _vm.orderSent
                 ? _c("div", { staticClass: "alert alert-success" }, [
                     _vm._v(
@@ -4572,15 +4584,39 @@ var render = function () {
                 ],
                 2
               ),
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Ordina")]
-            ),
-          ]
-        ),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                [_vm._v("Ordina")]
+              ),
+            ]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-4" }, [
+          _c("h3", [_vm._v("Riepilogo Ordine")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.cart, function (el, index) {
+              return _c("li", { key: index }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(el.food.name) +
+                    " " +
+                    _vm._s(el.quantity) +
+                    " x " +
+                    _vm._s(el.food.price) +
+                    " =  " +
+                    _vm._s((el.quantity * el.food.price).toFixed(2)) +
+                    " €\n                    "
+                ),
+              ])
+            }),
+            0
+          ),
+        ]),
       ]),
     ]),
   ])
@@ -21686,7 +21722,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
