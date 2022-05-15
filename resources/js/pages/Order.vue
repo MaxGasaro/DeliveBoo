@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
+            <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
-            <h1>Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
 
             <div class="row">
 
