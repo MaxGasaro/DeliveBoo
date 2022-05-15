@@ -51,21 +51,23 @@
                 <!-- Category -->
                 <div class="category">
                     <p>  
-                        <a data-toggle="collapse" href="#collapseExample" role="button">
+                        <a @click="changeArrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Categoria
-                            <i onclick="changeArrow()" class="fa fa-arrow-right"></i>
+                            <i v-if="expandedCategory" class="fa fa-arrow-right"></i>
+                            <i v-else class="fa fa-arrow-down"></i>
                         </a>
                     </p>
                     <div class="collapse list-category" id="collapseExample" data-bs-spy="scroll"> 
-                        <form action="" id="MyForm" @change="getFilterRestaurants()">
-                            <ul >
-                                <li v-for="typology in typologies" :key="typology.id">
-                                    <input class="form-check-input" type="checkbox" v-model="selected" :value="typology.id" :id="'typology_' + typology.id">
-                                    <label class="form-check-label" :for="'typology_' + typology.id">{{typology.name}}</label>
-                                </li>
+                        <!-- <form class="" action="" id="MyForm" > -->
 
+                            <ul>
+                                <li v-for="(typology,index) in typologies" :key="index">
+                                    <input type="checkbox" v-model="selected" :value="typology.id" :id="'typology_' + typology.id" @change="getFilterRestaurants()">
+                                    <label :for="'typology_' + typology.id">{{typology.name}}</label>
+                                </li>
                             </ul>
-                        </form>
+                        
+                        <!-- </form> -->
                     </div> 
                 </div>        
             </div>
@@ -129,6 +131,7 @@ export default {
             typologies: [],
             restaurants: [],
             selected:[],
+            expandedCategory: true,
         }
     },
     components: {
@@ -143,6 +146,10 @@ export default {
             });
         },
 
+        changeArrow(){
+            this.expandedCategory = !this.expandedCategory;
+        },
+
         GetRestaurants(){
             axios.get("/api/restaurants")
             .then(response =>{
@@ -153,7 +160,7 @@ export default {
 
         getFilterRestaurants(){
             this.restaurants = [];
-            document.getElementById('MyForm').submit;
+            // document.getElementById('MyForm').submit;
                 if(this.selected.length > 0){
                     axios.get('api/restaurants/'+ this.selected) 
                     .then(response =>{
@@ -184,6 +191,11 @@ export default {
 
     .p-left{
     height: 100vh;
+    }
+
+    .list-category{
+    overflow-y: scroll;
+    height: 500px;
     }
 
     .container-restaurants{
