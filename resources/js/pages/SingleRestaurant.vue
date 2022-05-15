@@ -93,13 +93,15 @@
 
                     <div class="col-4">
                         <div class="box">
-                            <div>
+                            
+                            <div v-if="cartVoid">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
-
+                            </div>
+                            <div v-else>
                                 <ul>
                                     <li v-for="(el, index) in cart " :key="index">
-                                        {{el.food.name}}
+                                        {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
                                     </li>
                                 </ul>
                             </div>
@@ -127,6 +129,7 @@ export default {
             singleFood: [],
             quantityFood: 1,
             cart: [],
+            cartVoid: true,
         }
     },
     methods:{
@@ -163,14 +166,51 @@ export default {
         },
 
         addToCart(){
-            this.cart.push({
-                food: this.singleFood,
-                quantity : this.quantityFood
-            })
 
+            if(this.cartVoid){
+               this.cart.push({
+                    food: this.singleFood,
+                    quantity : this.quantityFood
+                })
+                this.cartVoid = false; 
+            
+            }else{
+               /*  this.cart.forEach(element => {
+                    if(element.food.id == this.singleFood.id ){
+                        element.quantity += this.quantityFood;
+                        break;
+                    }else{
+                        this.cart.push({
+                            food: this.singleFood,
+                            quantity : this.quantityFood
+                        }) 
+                        break;
+                    }  
+                }); */
+                let found = false;
+
+                for(let i = 0; i < this.cart.length; i++){
+                    
+                    if(this.cart[i].food.id == this.singleFood.id ){
+                        this.cart[i].quantity += this.quantityFood;
+                        found = true;
+                        break;
+                    }
+
+
+                }
+
+                if(!found){
+                    this.cart.push({
+                        food: this.singleFood,
+                        quantity : this.quantityFood
+                    })
+                }  
+               
+            }
             console.log(this.cart);
             document.getElementById('closed').click();
-        }
+        }   
     },
     mounted(){
         this.getRestaurant();
