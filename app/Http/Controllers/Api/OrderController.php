@@ -14,7 +14,8 @@ class OrderController extends Controller
     public function store(Request $request){
         $data = $request->all();
         $data['date'] = Carbon::now();
-        /* $data['price'] = 12.50; */
+
+        $data['price'] = 12.50; //valore di default da rimuovere in seguito
 
         //validazione backend dei dati inseriti
         $validator = Validator::make($data, [
