@@ -2625,6 +2625,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -5200,19 +5202,18 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-4" }, [
-                    _c(
-                      "div",
-                      { staticClass: "box" },
-                      [
-                        _vm.cartVoid
-                          ? _c("div", [
-                              _c("i", {
-                                staticClass: "fa-solid fa-cart-shopping",
-                              }),
-                              _vm._v(" "),
-                              _c("p", [_vm._v("Il carrello è vuoto")]),
-                            ])
-                          : _c("div", [
+                    _c("div", { staticClass: "box" }, [
+                      _vm.cartVoid
+                        ? _c("div", [
+                            _c("i", {
+                              staticClass: "fa-solid fa-cart-shopping",
+                            }),
+                            _vm._v(" "),
+                            _c("p", [_vm._v("Il carrello è vuoto")]),
+                          ])
+                        : _c(
+                            "div",
+                            [
                               _c(
                                 "ul",
                                 _vm._l(_vm.cart, function (el, index) {
@@ -5236,24 +5237,24 @@ var render = function () {
                                 }),
                                 0
                               ),
-                            ]),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: {
-                              to: {
-                                name: "order",
-                                params: { name: _vm.restaurant.name },
-                              },
-                            },
-                          },
-                          [_vm._v("Vai al pagamento")]
-                        ),
-                      ],
-                      1
-                    ),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: {
+                                    to: {
+                                      name: "order",
+                                      params: { name: _vm.restaurant.name },
+                                    },
+                                  },
+                                },
+                                [_vm._v("Vai al pagamento")]
+                              ),
+                            ],
+                            1
+                          ),
+                    ]),
                   ]),
                 ]),
               ])
@@ -21685,7 +21686,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

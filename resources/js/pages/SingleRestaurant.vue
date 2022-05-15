@@ -104,9 +104,11 @@
                                         {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
                                     </li>
                                 </ul>
+
+                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary">Vai al pagamento</router-link>
+
                             </div>
 
-                            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary">Vai al pagamento</router-link>
 
                         </div>
                     </div>
