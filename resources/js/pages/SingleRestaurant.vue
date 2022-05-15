@@ -115,8 +115,6 @@
                 </div>
             </div>
 
-            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn-btn-primary">Procedi all'ordine</router-link>
-
           </div>
       </div>
   </div>

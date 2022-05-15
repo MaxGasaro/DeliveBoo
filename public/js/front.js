@@ -2528,7 +2528,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
 //
 //
 //
@@ -2623,8 +2622,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-=======
->>>>>>> feat-test-orderController
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -4742,8 +4742,6 @@ var render = function () {
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
-<<<<<<< HEAD
-<<<<<<< HEAD
           _c("div", { staticClass: "container-restaurants" }, [
             _c(
               "div",
@@ -4759,23 +4757,6 @@ var render = function () {
               0
             ),
           ]),
-=======
-=======
->>>>>>> feat-test-orderController
-          _c(
-            "div",
-            { staticClass: "row container-restaurants " },
-            _vm._l(_vm.restaurants, function (restaurant) {
-              return _c(
-                "div",
-                { key: restaurant.id, staticClass: "col-3" },
-                [_c("CardRestaurant", { attrs: { restaurant: restaurant } })],
-                1
-              )
-            }),
-            0
-          ),
->>>>>>> feat-cart
         ]),
       ]),
     ]),
@@ -5051,21 +5032,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
   return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col" }, [
-=======
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col" },
-        [
->>>>>>> feat-test-orderController
           _vm.restaurant
             ? _c("div", [
                 _c("h1", [_vm._v(_vm._s(_vm.restaurant.name))]),
@@ -5081,7 +5053,6 @@ var render = function () {
                 _c("p", [_vm._v(_vm._s(_vm.restaurant.address))]),
                 _vm._v(" "),
                 _c(
-<<<<<<< HEAD
                   "div",
                   {
                     staticClass: "modal",
@@ -5229,81 +5200,66 @@ var render = function () {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-4" }, [
-                    _c("div", { staticClass: "box" }, [
-                      _vm.cartVoid
-                        ? _c("div", [
-                            _c("i", {
-                              staticClass: "fa-solid fa-cart-shopping",
-                            }),
-                            _vm._v(" "),
-                            _c("p", [_vm._v("Il carrello è vuoto")]),
-                          ])
-                        : _c("div", [
-                            _c(
-                              "ul",
-                              _vm._l(_vm.cart, function (el, index) {
-                                return _c("li", { key: index }, [
-                                  _vm._v(
-                                    "\r\n                                        " +
-                                      _vm._s(el.food.name) +
-                                      " " +
-                                      _vm._s(el.quantity) +
-                                      " x " +
-                                      _vm._s(el.food.price) +
-                                      " =  " +
-                                      _vm._s(
-                                        (el.quantity * el.food.price).toFixed(2)
-                                      ) +
-                                      " €\r\n                                    "
-                                  ),
-                                ])
+                    _c(
+                      "div",
+                      { staticClass: "box" },
+                      [
+                        _vm.cartVoid
+                          ? _c("div", [
+                              _c("i", {
+                                staticClass: "fa-solid fa-cart-shopping",
                               }),
-                              0
-                            ),
-                          ]),
-                      _vm._v(" "),
-                      _c("button", { staticClass: "btn btn-secondary" }, [
-                        _vm._v("Vai al pagamento"),
-                      ]),
-                    ]),
+                              _vm._v(" "),
+                              _c("p", [_vm._v("Il carrello è vuoto")]),
+                            ])
+                          : _c("div", [
+                              _c(
+                                "ul",
+                                _vm._l(_vm.cart, function (el, index) {
+                                  return _c("li", { key: index }, [
+                                    _vm._v(
+                                      "\r\n                                        " +
+                                        _vm._s(el.food.name) +
+                                        " " +
+                                        _vm._s(el.quantity) +
+                                        " x " +
+                                        _vm._s(el.food.price) +
+                                        " =  " +
+                                        _vm._s(
+                                          (el.quantity * el.food.price).toFixed(
+                                            2
+                                          )
+                                        ) +
+                                        " €\r\n                                    "
+                                    ),
+                                  ])
+                                }),
+                                0
+                              ),
+                            ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              to: {
+                                name: "order",
+                                params: { name: _vm.restaurant.name },
+                              },
+                            },
+                          },
+                          [_vm._v("Vai al pagamento")]
+                        ),
+                      ],
+                      1
+                    ),
                   ]),
                 ]),
               ])
             : _vm._e(),
         ]),
       ]),
-=======
-                  "ul",
-                  _vm._l(_vm.foods, function (food) {
-                    return _c("li", { key: food.id }, [
-                      _vm._v(
-                        "\n                      " +
-                          _vm._s(food.name) +
-                          ", " +
-                          _vm._s(food.price) +
-                          "\n                  "
-                      ),
-                    ])
-                  }),
-                  0
-                ),
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn-btn-primary",
-              attrs: {
-                to: { name: "order", params: { name: _vm.restaurant.name } },
-              },
-            },
-            [_vm._v("Procedi all'ordine")]
-          ),
-        ],
-        1
-      ),
->>>>>>> feat-test-orderController
     ]),
   ])
 }
@@ -21528,15 +21484,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/pages/SingleRestaurant.vue ***!
   \*************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SingleRestaurant_vue_vue_type_template_id_2ff820ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SingleRestaurant.vue?vue&type=template&id=2ff820ae& */ "./resources/js/pages/SingleRestaurant.vue?vue&type=template&id=2ff820ae&");
 /* harmony import */ var _SingleRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SingleRestaurant.vue?vue&type=script&lang=js& */ "./resources/js/pages/SingleRestaurant.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SingleRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SingleRestaurant_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -21566,7 +21521,7 @@ component.options.__file = "resources/js/pages/SingleRestaurant.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/pages/SingleRestaurant.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21730,7 +21685,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
