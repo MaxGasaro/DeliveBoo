@@ -105,13 +105,18 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button class="btn btn-secondary">Vai al pagamento</button>
+
+                            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary">Vai al pagamento</router-link>
+
                         </div>
                     </div>
 
                     
                 </div>
             </div>
+
+            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn-btn-primary">Procedi all'ordine</router-link>
+
           </div>
       </div>
   </div>
@@ -142,6 +147,7 @@ export default {
             }else{
                 console.log(response);
                 this.restaurant = response.data.result;
+                console.log(this.restaurant);
                 
             }
             })
