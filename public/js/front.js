@@ -2879,7 +2879,6 @@ __webpack_require__.r(__webpack_exports__);
     getLocal: function getLocal() {
       this.cart = localStorage.getItem('myCart');
       this.cart = JSON.parse(this.cart);
-      console.log("sono la variabile locale" + this.cart);
 
       if (this.cart.length != 0) {
         this.cartVoid = false;
@@ -3013,7 +3012,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".info-restaurant[data-v-2ff820ae] {\n  border-top: 1px solid #e9e9e9;\n  border-bottom: 1px solid #e9e9e9;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element[data-v-2ff820ae] {\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element .cart[data-v-2ff820ae] {\n  color: #abadad;\n}\n.cart-element .cart i[data-v-2ff820ae] {\n  font-size: 35px;\n}\n.food-card[data-v-2ff820ae] {\n  cursor: pointer;\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.margin0-padding0[data-v-2ff820ae] {\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding: 0px !important;\n}\n.ms-btn-cart[data-v-2ff820ae] {\n  color: #fff;\n  background-color: #00ccbc;\n  border-color: #00ccbc;\n}\n.ms-btn-cart[data-v-2ff820ae]:hover {\n  background-color: rgba(4, 138, 127, 0.9843137255);\n}\n.my-color-text[data-v-2ff820ae] {\n  color: #00ccbc;\n}", ""]);
+exports.push([module.i, ".info-restaurant[data-v-2ff820ae] {\n  border-top: 1px solid #e9e9e9;\n  border-bottom: 1px solid #e9e9e9;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element[data-v-2ff820ae] {\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element .cart[data-v-2ff820ae] {\n  color: #abadad;\n}\n.cart-element .cart i[data-v-2ff820ae] {\n  font-size: 35px;\n}\n.food-card[data-v-2ff820ae] {\n  cursor: pointer;\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.food-card[data-v-2ff820ae]:hover {\n  box-shadow: 7px 23px 18px #ebebeb;\n}\n.margin0-padding0[data-v-2ff820ae] {\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding: 0px !important;\n}\n.ms-btn-cart[data-v-2ff820ae] {\n  color: #fff;\n  background-color: #00ccbc;\n  border-color: #00ccbc;\n}\n.ms-btn-cart[data-v-2ff820ae]:hover {\n  background-color: rgba(4, 138, 127, 0.9843137255);\n}\n.my-color-text[data-v-2ff820ae] {\n  color: #00ccbc;\n}", ""]);
 
 // exports
 

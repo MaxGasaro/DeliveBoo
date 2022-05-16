@@ -183,7 +183,6 @@ export default {
         getLocal(){
             this.cart =  localStorage.getItem('myCart'); 
             this.cart = JSON.parse(this.cart);
-            console.log("sono la variabile locale" + this.cart);
             if(this.cart.length != 0 ){
                 this.cartVoid = false;
             }
@@ -221,6 +220,10 @@ export default {
         cursor: pointer;
         border: none;
         box-shadow: 3px 6px 18px #ebebeb ;
+
+        &:hover{
+            box-shadow: 7px 23px 18px #ebebeb;
+        }
     }
 
     .margin0-padding0 {
