@@ -10962,9 +10962,20 @@ a.text-dark:focus {
   }
 }
 
+.navbar_container {
+  color: black;
+  font-size: 1.3rem;
+}
+
+.navbar_container .logo {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
 .navbar_container .logo img {
-  width: 2.8rem;
-  height: 2.8rem;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
   vertical-align: middle;
 }
 
@@ -10995,18 +11006,18 @@ a.text-dark:focus {
   font-weight: 900;
 }
 
-.background_top_container1 .background_top_container2 .btn_green {
+.background_top_container1 .background_top_container2 .terms_and_conditions {
+  color: #7a7d7d;
+  font-size: 0.8rem;
+}
+
+.btn_green {
   -webkit-text-decoration-color: blac;
           text-decoration-color: blac;
   background-color: #00ccbc;
 }
 
-.background_top_container1 .background_top_container2 .btn_green:hover {
+.btn_green:hover {
   background-color: rgb(0, 184, 168);
-}
-
-.background_top_container1 .background_top_container2 .terms_and_conditions {
-  color: #7a7d7d;
-  font-size: 0.8rem;
 }
 

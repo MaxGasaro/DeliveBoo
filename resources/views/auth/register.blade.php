@@ -4,52 +4,76 @@
 
 
 {{-- NAVBAR --}}
-<nav class="navbar navbar-expand-lg navbar-light bg-white navbar_container">
+<nav class="navbar navbar-expand-lg navbar-light text-black bg-white fixed-top navbar_container">
     <a href="#" class="logo">
         <img src="{{ asset('img/Deliveroo-Logo.jpg')}}" alt="Deliveboo Logo">
         <font color="#00ccbc"><b>Deliveboo</b></font>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler border-0 text-center" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <svg class="style="color="#00ccbc" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Inizia
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Consegna</a>
-            <a class="dropdown-item" href="#">Ritiro</a>
-            <a class="dropdown-item" href="#">Spesa</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Servizi
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Marketing</a>
-              <a class="dropdown-item" href="#">Packaging</a>
-              <a class="dropdown-item" href="#">Forniture</a>
-              <a class="dropdown-item" href="#">Integrazione del Sistema di Cassa</a>
-              <a class="dropdown-item" href="#">Fotografia</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Assistenza
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Contattaci</a>
-              <a class="dropdown-item" href="#">Aiuto</a>
-              <a class="dropdown-item" href="#">Restaurant Hub</a>
-              <a class="dropdown-item" href="#">COVID-19</a>
-            </div>
-          </li>
-      </ul>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav text-center">
+
+            <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inizia
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item dropdown-item" href="#">Consegna</li>
+                        <li class="list-group-item dropdown-item" href="#">Ritiro</li>
+                        <li class="list-group-item dropdown-item" href="#">Spesa</li>
+                    </ul>
+                    
+                </div>
+
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Servizi
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item dropdown-item" href="#">Marketing</li>
+                        <li class="list-group-item dropdown-item" href="#">Packaging</li>
+                        <li class="list-group-item dropdown-item" href="#">Forniture</li>
+                        <li class="list-group-item dropdown-item" href="#">Integrazione del Sistema di Cassa</li>
+                        <li class="list-group-item dropdown-item" href="#">Fotografia</li>
+                    </ul>
+
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Assistenza
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDropdownMenuLink">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item dropdown-item" href="#">Contattaci</li>
+                        <li class="list-group-item dropdown-item" href="#">Aiuto</li>
+                        <li class="list-group-item dropdown-item" href="#">Restaurant Hub</li>
+                        <li class="list-group-item dropdown-item" href="#">COVID-19</li>
+                    </ul>
+
+                </div>
+            </li>
+
+            <li class="nav-item dropdown d-flex align-items-center">
+
+                <button class="btn text-white btn_green dropdown-item" type="submit">Diventa nostro partner</button>
+
+            </li>
+        </ul>
     </div>
-  </nav>
+</nav>
 {{-- FINE NAVBAR --}}
 
 

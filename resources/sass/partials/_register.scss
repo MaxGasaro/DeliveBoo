@@ -1,8 +1,13 @@
 .navbar_container {
+    color: black;
+    font-size: 1.3rem;
     .logo {
+        font-size: 1.3rem;
+        font-weight: 900;
         img {
-            width: 2.8rem;
-            height: 2.8rem;
+            align-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
             vertical-align: middle;
         }
     }
@@ -30,17 +35,18 @@
             font-size: 3rem;
             font-weight: 900;
         }
-        .btn_green {
-            text-decoration-color: blac;
-            background-color: #00ccbc;
-
-            &:hover {
-                background-color: rgba(0,184,168,1);
-            }
-        }
         .terms_and_conditions {
             color: #7a7d7d;
             font-size: 0.8rem;
         }
+    }
+}
+// COMMONS
+.btn_green {
+    text-decoration-color: blac;
+    background-color: #00ccbc;
+
+    &:hover {
+        background-color: rgba(0,184,168,1);
     }
 }
