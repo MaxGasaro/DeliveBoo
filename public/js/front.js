@@ -2287,10 +2287,9 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push('/admin');
       this.$router.go();
     }, */
-
-    /* link_research(){
+    link_research: function link_research() {
       this.$router.push('/research');
-    }, */
+    },
     click_card: function click_card() {
       var _this = this;
 
@@ -4598,87 +4597,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "bg-yellow" }, [
-      _c(
-        "nav",
-        { staticClass: "container navbar navbar-expand-lg navbar-light" },
-        [
-          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("Deliveboo"),
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "collapse navbar-collapse",
-              attrs: { id: "navbarSupportedContent" },
-            },
-            [
-              _c("form", { staticClass: "form-inline my-2 my-lg-0 ml-auto" }, [
-                _c("div", { staticClass: "dropdown" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-dark dropdown-toggle",
-                      attrs: {
-                        type: "button",
-                        id: "dropdownMenuButton",
-                        "data-toggle": "dropdown",
-                        "aria-expanded": "false",
-                      },
-                    },
-                    [_vm._v("\n            Collabora con noi\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-menu",
-                      attrs: { "aria-labelledby": "dropdownMenuButton" },
-                    },
-                    [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          attrs: { href: "http://127.0.0.1:8000/login" },
-                          on: { click: _vm.link_admin },
-                        },
-                        [_vm._v("Area ristorante")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "dropdown-item",
-                          attrs: { href: "http://127.0.0.1:8000/register" },
-                        },
-                        [_vm._v("Lavora con noi")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Unisciti a noi")]
-                      ),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-dark mx-1 my-2 my-sm-0",
-                    attrs: { type: "submit" },
-                  },
-                  [_vm._v("Menu")]
-                ),
-              ]),
-            ]
-          ),
-        ]
-      ),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "container pt-5" }, [
         _c("div", { staticClass: "row" }, [
@@ -4759,19 +4678,98 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#navbarSupportedContent",
-          "aria-controls": "navbarSupportedContent",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation",
-        },
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
+      "nav",
+      { staticClass: "container navbar navbar-expand-lg navbar-light" },
+      [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+          _vm._v("Deliveboo"),
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "navbar-toggler",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#navbarSupportedContent",
+              "aria-controls": "navbarSupportedContent",
+              "aria-expanded": "false",
+              "aria-label": "Toggle navigation",
+            },
+          },
+          [_c("span", { staticClass: "navbar-toggler-icon" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" },
+          },
+          [
+            _c("form", { staticClass: "form-inline my-2 my-lg-0 ml-auto" }, [
+              _c("div", { staticClass: "dropdown" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-dark dropdown-toggle",
+                    attrs: {
+                      type: "button",
+                      id: "dropdownMenuButton",
+                      "data-toggle": "dropdown",
+                      "aria-expanded": "false",
+                    },
+                  },
+                  [_vm._v("\n            Collabora con noi\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "dropdownMenuButton" },
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "http://127.0.0.1:8000/login" },
+                      },
+                      [_vm._v("Area ristorante")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "http://127.0.0.1:8000/register" },
+                      },
+                      [_vm._v("Lavora con noi")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Unisciti a noi")]
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-dark mx-1 my-2 my-sm-0",
+                  attrs: { type: "submit" },
+                },
+                [_vm._v("Menu")]
+              ),
+            ]),
+          ]
+        ),
+      ]
     )
   },
   function () {
