@@ -1,46 +1,26 @@
 <template>
 <div>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Deliveboo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                </ul>
-                <div class=" dropdown my-2 mr-5 my-lg-0">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="total-quantity">0</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-                
-            </div>
-        </nav>
-    </header>
   <div class="container-fluid">
       <div class="row">
           <div class="col">
             <div v-if="restaurant">
-                <h1>{{restaurant.name}}</h1>
 
-                <img class="w-50" :src="restaurant.image" :alt="restaurant.name">
-                <!--Aggiungere tutte le tipologie del ristorante-->
-                <p>{{restaurant.address}}</p>
+                <div class="row p-md-5 info-restaurant">
+                    <div class="col-12 col-sm-4 margin0-padding0">
+                        <img class="img-fluid"  :src="restaurant.image" :alt="restaurant.name">
+                    </div>
+
+                    <div class="col-8">
+                        <h1>{{restaurant.name}}</h1>
+                        <span v-for="typology in restaurant.typologies" :key="typology.id" class="card-text font-weight-light">
+                            {{typology.name}} &#183; 
+                        </span>
+                        <p>{{restaurant.address}}</p>
+
+                    </div>
+                </div>
+
+                
 
                 <div class="modal" tabindex="-1" id="card-product">
                     <div class="modal-dialog">
@@ -56,29 +36,26 @@
                             <p>{{singleFood.description}}</p>
                         </div>
                         <div class="modal-footer">
-                            <div class="w-100">
+                            <div class="w-100 d-flex justify-content-center align-items-center">
 
-                                <span class="btn btn-secondary" :class="(quantityFood == 1)? 'disabled':''" @click="(quantityFood == 1)? '': quantityFood --">-</span>
-                                <span>{{quantityFood}}</span>
-                                <span class="btn btn-secondary" @click="quantityFood ++">+</span>
+                                <i class="fa-solid fa-circle-minus my-color-text" :class="(quantityFood == 1)? 'disabled':''" @click="(quantityFood == 1)? '': quantityFood --"></i>
+                                <span class="px-4 h3">{{quantityFood}}</span>
+                                <i class="fa-solid fa-circle-plus my-color-text" @click="quantityFood ++"></i>
 
-                                <button class="w-100 btn btn-primary m-2" @click="addToCart()">Aggiungi al carrello</button>
                             </div>
+                            <button class="w-100 btn ms-btn-cart m-2 " @click="addToCart()">Aggiungi al carrello</button>
                         </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-8">
-                       <div class="row">
-                            <div class="col-6 mb-2" v-for="food in foods" :key="food.id">
-                               <div id="card-product" class="card  h-100 food-card" style="max-width: 540px;"  @click="getSingleFood(food)">
-                                    <div class="row no-gutters ">
-                                        <div class="col-md-4 d-flex justify-content-center align-items-center pl-2 ">
-                                            <img :src="food.img" :alt="food.name" class="img-fluid">
-                                        </div>
-                                        <div class="col-md-8">
+                <div class="row my-3">
+                    <div class=" col-12 col-md-8">
+                       <div class="row ">
+                            <div class="col-12 col-lg-6 mb-lg-2" v-for="food in foods" :key="food.id">
+                               <div id="card-product" class="card  h-100  food-card"  @click="getSingleFood(food)">
+                                    <div class="row">
+                                        <div class="col">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{food.name}}</h5>
                                                 <p class="card-text">{{food.description}}</p>
@@ -91,22 +68,29 @@
                         </div> 
                     </div>
 
-                    <div class="col-4">
-                        <div class="card d-flex justify-content-center align-items-center p-5 ">
+                    <div class="col-12 col-md-4">
+                        <div class="card d-flex justify-content-center align-items-center p-3 cart-element">
                             
                             <div v-if="cartVoid" class="text-center cart">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
                             </div>
-                            <div v-else>
-                                <ul>
-                                    <li v-for="(el, index) in cart " :key="index">
-                                        {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
-                                    </li>
-                                </ul>
+                            <div v-else v-for="(el, index) in cart " :key="index" class="d-flex justify-content-between w-100 py-1 cart-foods"> 
+                                 
+                                <span>{{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;</span>  
+                                <span  @click="removeToCart(index)"> <i class="fa-solid fa-trash-can"></i></span>
 
-                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary w-100" >Vai al pagamento</router-link>
+                               <!--  <i class="fa-solid fa-circle-minus my-color-text" ></i>
+                                <span class="px-4 h3">{{el.quantity}}</span>
+                                <i class="fa-solid fa-circle-plus my-color-text" ></i>
+                                 -->
+                                
 
+                            </div>
+
+                            <div class="pay-section w-100">
+                                <p><strong>Totale: </strong> {{(totalPrice).toFixed(2)}}&euro;</p>
+                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn w-100" :class="(cartVoid)? 'disabled  btn-secondary':'ms-btn-cart'" >Vai al pagamento</router-link>
                             </div>
 
 
@@ -135,6 +119,7 @@ export default {
             quantityFood: 1,
             cart: [],
             cartVoid: true,
+            totalPrice:0
         }
     },
     methods:{
@@ -142,13 +127,9 @@ export default {
             axios.get('/api/restaurant/' + this.slug)
             .then(response =>{
             if (response.data.success == false){
-                
                 this.$router.push({name: 'not-found'});
             }else{
-                console.log(response);
                 this.restaurant = response.data.result;
-                console.log(this.restaurant);
-                
             }
             })
         },
@@ -167,8 +148,7 @@ export default {
             this.singleFood = [];
             this.quantityFood = 1;
             this.singleFood = food;
-            console.log(this.singleFood);
-  
+
         },
 
         addToCart(){
@@ -176,7 +156,8 @@ export default {
             if(this.cartVoid){
                this.cart.push({
                     food: this.singleFood,
-                    quantity : this.quantityFood
+                    quantity : this.quantityFood,
+                    total: this.quantityFood*this.singleFood.price
                 })
                 this.cartVoid = false; 
             
@@ -187,6 +168,7 @@ export default {
                     
                     if(this.cart[i].food.id == this.singleFood.id ){
                         this.cart[i].quantity += this.quantityFood;
+                        this.cart[i].total = this.cart[i].quantity *this.singleFood.price
                         found = true;
                         break;
                     }
@@ -195,34 +177,113 @@ export default {
                 if(!found){
                     this.cart.push({
                         food: this.singleFood,
-                        quantity : this.quantityFood
+                        quantity : this.quantityFood,
+                        total: this.quantityFood*this.singleFood.price
                     })
                 }  
                
             }
-            console.log(this.cart);
             document.getElementById('closed').click();
             localStorage.setItem('myCart', JSON.stringify(this.cart));
+            this.getTotal();
+        },
+        removeToCart(index){
+            this.cart.splice(index,1);
+            localStorage.setItem('myCart', JSON.stringify(this.cart));
+
+            if(this.cart.length == 0){
+                this.cartVoid = true;
+            }
+            this.getTotal();
+        },
+        getLocal(){
+            this.cart =  localStorage.getItem('myCart'); 
+            this.cart = JSON.parse(this.cart);
+            if(this.cart.length != 0 ){
+                this.cartVoid = false;
+            }
+            
+        },
+        getTotal(){
+            this.totalPrice = 0;
+
+            for(let i = 0; i <= this.cart.length; i++){
+                this.totalPrice += this.cart[i].total;
+            }
+        
+            
         }
+
     },
     mounted(){
         this.getRestaurant();
         this.getFoods();
+        this.getLocal();
+        this.getTotal();
     }
 }
 </script>
 
 <style lang="scss" scoped>
 
-    .cart{
-        color: #777777;
-        i{
-            font-size: 35px;
+   .info-restaurant{
+       border-top: 1px solid #e9e9e9;
+       border-bottom: 1px solid #e9e9e9;
+       box-shadow: 3px 6px 18px #ebebeb ;
+   }
+
+   .cart-element{
+       border: none;
+       box-shadow: 3px 6px 18px #ebebeb ;
+       .cart{
+           color: #abadad;
+           i{
+               font-size: 35px;
+           }
+       }
+
+       .cart-foods{
+           font-size: 1.1rem;
+           i:hover{
+               color: red;
+               cursor: pointer;
+           }
         }
-    }
+        .pay-section{
+            border-top: 1px solid #e9e9e9 ;
+        }
+   }
 
     .food-card{
         cursor: pointer;
+        border: none;
+        box-shadow: 3px 6px 18px #ebebeb ;
+
+        &:hover{
+            box-shadow: 7px 23px 18px #ebebeb;
+        }
     }
+
+    .margin0-padding0 {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        padding: 0px !important;
+    }
+
+    .ms-btn-cart{
+        color: #fff;
+        background-color: #00ccbc;
+        border-color: #00ccbc;
+
+        &:hover{
+         background-color: #048a7ffb;   
+        }
+    }
+
+    .my-color-text{
+        color: #00ccbc;
+    }
+
+    
     
 </style>
