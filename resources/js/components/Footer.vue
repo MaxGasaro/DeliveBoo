@@ -1,24 +1,24 @@
 <template>
     <footer class="my_bg_footer">
 
-        <div class="container-md w-100 text-white ">
+        <div class="container-fluid  text-white ">
 
             <div class="row px-5 py-4 justify-content-around">
 
 
-                <div class="col-3">
+                <div class=" col-12 mb-2 col-sm-6 col-lg-3">
                     <FooterPartial title="Scopri Deliveboo" :items="discoverDeliveboo"/>
                 </div>
 
-                <div class="col-3">
+                <div class=" col-12 mb-2 col-sm-6 col-lg-3">
                     <FooterPartial title="Note legali" :items="legalNotices"/>
                 </div>
 
-                <div class="col-3">
+                <div class=" col-12 mb-2 col-sm-6 col-lg-3">
                     <FooterPartial title="Aiuto" :items="help"/>
                 </div>
 
-                <div class="col-3">
+                <div class=" col-12 mb-2 col-sm-6 col-lg-3">
                     <FooterPartial title="Deliveboo Apps" :items="bringDeliveboo"/>
                 </div>
 
