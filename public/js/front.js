@@ -5490,7 +5490,7 @@ var staticRenderFns = [
       "nav",
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+        _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
           _vm._v("Deliveboo"),
         ]),
         _vm._v(" "),
@@ -5524,13 +5524,13 @@ var staticRenderFns = [
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "px-5" }, [
+        _c("div", { staticClass: "px-4" }, [
           _c("ul", { staticClass: "navbar-nav" }, [
             _c("li", { staticClass: "nav-item active" }, [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-outline-success my-2 my-sm-0",
+                  staticClass: "btn btn-outline-success my-sm-0",
                   attrs: { type: "submit" },
                 },
                 [_vm._v("Menu")]

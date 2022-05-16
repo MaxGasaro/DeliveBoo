@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Deliveboo</a>
+        <a class="navbar-brand pl-4" href="#">Deliveboo</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="ml-auto row">
@@ -11,10 +11,10 @@
                 </form>
             </div>
         </div>
-        <div class="px-5">
+        <div class="px-4">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Menu</button>
+                    <button class="btn btn-outline-success my-sm-0" type="submit">Menu</button>
                 </li>
             </ul>
         </div>
