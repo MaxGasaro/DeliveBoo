@@ -2283,13 +2283,14 @@ __webpack_require__.r(__webpack_exports__);
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
-    link_admin: function link_admin() {
+    /* link_admin(){
       this.$router.push('/admin');
       this.$router.go();
-    },
-    link_research: function link_research() {
+    }, */
+
+    /* link_research(){
       this.$router.push('/research');
-    },
+    }, */
     click_card: function click_card() {
       var _this = this;
 
@@ -4641,7 +4642,7 @@ var render = function () {
                         "a",
                         {
                           staticClass: "dropdown-item",
-                          attrs: { href: "#" },
+                          attrs: { href: "http://127.0.0.1:8000/login" },
                           on: { click: _vm.link_admin },
                         },
                         [_vm._v("Area ristorante")]
@@ -4649,7 +4650,10 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
+                        {
+                          staticClass: "dropdown-item",
+                          attrs: { href: "http://127.0.0.1:8000/register" },
+                        },
                         [_vm._v("Lavora con noi")]
                       ),
                       _vm._v(" "),
@@ -22504,7 +22508,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Mirko\Boolean Careers\Classe #53\08 - Progetto finale\Progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
