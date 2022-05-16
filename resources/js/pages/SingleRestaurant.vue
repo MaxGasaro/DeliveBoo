@@ -73,7 +73,7 @@
                     <div class="col-8">
                        <div class="row">
                             <div class="col-6 mb-2" v-for="food in foods" :key="food.id">
-                               <div id="card-product" class="card  h-100" style="max-width: 540px;"  @click="getSingleFood(food)">
+                               <div id="card-product" class="card  h-100 food-card" style="max-width: 540px;"  @click="getSingleFood(food)">
                                     <div class="row no-gutters ">
                                         <div class="col-md-4 d-flex justify-content-center align-items-center pl-2 ">
                                             <img :src="food.img" :alt="food.name" class="img-fluid">
@@ -92,9 +92,9 @@
                     </div>
 
                     <div class="col-4">
-                        <div class="box">
+                        <div class="card d-flex justify-content-center align-items-center p-5 ">
                             
-                            <div v-if="cartVoid">
+                            <div v-if="cartVoid" class="text-center cart">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
                             </div>
@@ -105,7 +105,7 @@
                                     </li>
                                 </ul>
 
-                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary" >Vai al pagamento</router-link>
+                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn btn-primary w-100" >Vai al pagamento</router-link>
 
                             </div>
 
@@ -212,6 +212,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
+    .cart{
+        color: #777777;
+        i{
+            font-size: 35px;
+        }
+    }
+
+    .food-card{
+        cursor: pointer;
+    }
+    
 </style>
