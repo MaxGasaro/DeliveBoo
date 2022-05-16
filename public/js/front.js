@@ -2799,6 +2799,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -2875,6 +2876,10 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('closed').click();
       localStorage.setItem('myCart', JSON.stringify(this.cart));
       this.getLocal();
+    },
+    removeToCart: function removeToCart(index) {
+      this.cart.splice(index, 1);
+      localStorage.setItem('myCart', JSON.stringify(this.cart));
     },
     getLocal: function getLocal() {
       this.cart = localStorage.getItem('myCart');
@@ -3012,7 +3017,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".info-restaurant[data-v-2ff820ae] {\n  border-top: 1px solid #e9e9e9;\n  border-bottom: 1px solid #e9e9e9;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element[data-v-2ff820ae] {\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element .cart[data-v-2ff820ae] {\n  color: #abadad;\n}\n.cart-element .cart i[data-v-2ff820ae] {\n  font-size: 35px;\n}\n.food-card[data-v-2ff820ae] {\n  cursor: pointer;\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.food-card[data-v-2ff820ae]:hover {\n  box-shadow: 7px 23px 18px #ebebeb;\n}\n.margin0-padding0[data-v-2ff820ae] {\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding: 0px !important;\n}\n.ms-btn-cart[data-v-2ff820ae] {\n  color: #fff;\n  background-color: #00ccbc;\n  border-color: #00ccbc;\n}\n.ms-btn-cart[data-v-2ff820ae]:hover {\n  background-color: rgba(4, 138, 127, 0.9843137255);\n}\n.my-color-text[data-v-2ff820ae] {\n  color: #00ccbc;\n}", ""]);
+exports.push([module.i, ".info-restaurant[data-v-2ff820ae] {\n  border-top: 1px solid #e9e9e9;\n  border-bottom: 1px solid #e9e9e9;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element[data-v-2ff820ae] {\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.cart-element .cart[data-v-2ff820ae] {\n  color: #abadad;\n}\n.cart-element .cart i[data-v-2ff820ae] {\n  font-size: 35px;\n}\n.cart-element .cart-foods[data-v-2ff820ae] {\n  font-size: 1.1rem;\n}\n.cart-element .cart-foods i[data-v-2ff820ae]:hover {\n  color: red;\n  cursor: pointer;\n}\n.cart-element .pay-section[data-v-2ff820ae] {\n  border-top: 1px solid #e9e9e9;\n}\n.food-card[data-v-2ff820ae] {\n  cursor: pointer;\n  border: none;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.food-card[data-v-2ff820ae]:hover {\n  box-shadow: 7px 23px 18px #ebebeb;\n}\n.margin0-padding0[data-v-2ff820ae] {\n  margin-left: 0px !important;\n  margin-right: 0px !important;\n  padding: 0px !important;\n}\n.ms-btn-cart[data-v-2ff820ae] {\n  color: #fff;\n  background-color: #00ccbc;\n  border-color: #00ccbc;\n}\n.ms-btn-cart[data-v-2ff820ae]:hover {\n  background-color: rgba(4, 138, 127, 0.9843137255);\n}\n.my-color-text[data-v-2ff820ae] {\n  color: #00ccbc;\n}", ""]);
 
 // exports
 
@@ -5968,7 +5973,7 @@ var render = function () {
                       "div",
                       {
                         staticClass:
-                          "card d-flex justify-content-center align-items-center p-5 cart-element",
+                          "card d-flex justify-content-center align-items-center p-3 cart-element",
                       },
                       [
                         _vm.cartVoid
@@ -5979,14 +5984,18 @@ var render = function () {
                               _vm._v(" "),
                               _c("p", [_vm._v("Il carrello è vuoto")]),
                             ])
-                          : _c("div", [
-                              _c(
-                                "ul",
-                                _vm._l(_vm.cart, function (el, index) {
-                                  return _c("li", { key: index }, [
+                          : _vm._l(_vm.cart, function (el, index) {
+                              return _c(
+                                "div",
+                                {
+                                  key: index,
+                                  staticClass:
+                                    "d-flex justify-content-between w-100 py-1 cart-foods",
+                                },
+                                [
+                                  _c("span", [
                                     _vm._v(
-                                      "\r\n                                        \r\n                                        " +
-                                        _vm._s(el.food.name) +
+                                      _vm._s(el.food.name) +
                                         " " +
                                         _vm._s(el.quantity) +
                                         " x " +
@@ -5997,35 +6006,56 @@ var render = function () {
                                             2
                                           )
                                         ) +
-                                        " € "
+                                        " €"
                                     ),
-                                    _c("i", {
-                                      staticClass: "fa-solid fa-trash-can",
-                                    }),
-                                  ])
-                                }),
-                                0
-                              ),
-                            ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.removeToCart(index)
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fa-solid fa-trash-can",
+                                      }),
+                                    ]
+                                  ),
+                                ]
+                              )
+                            }),
                         _vm._v(" "),
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "btn w-100",
-                            class: _vm.cartVoid
-                              ? "disabled  btn-secondary"
-                              : "ms-btn-cart",
-                            attrs: {
-                              to: {
-                                name: "order",
-                                params: { name: _vm.restaurant.name },
+                          "div",
+                          { staticClass: "pay-section w-100" },
+                          [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn w-100",
+                                class: _vm.cartVoid
+                                  ? "disabled  btn-secondary"
+                                  : "ms-btn-cart",
+                                attrs: {
+                                  to: {
+                                    name: "order",
+                                    params: { name: _vm.restaurant.name },
+                                  },
+                                },
                               },
-                            },
-                          },
-                          [_vm._v("Vai al pagamento")]
+                              [_vm._v("Vai al pagamento")]
+                            ),
+                          ],
+                          1
                         ),
                       ],
-                      1
+                      2
                     ),
                   ]),
                 ]),
@@ -6049,6 +6079,12 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Totale")])])
   },
 ]
 render._withStripped = true

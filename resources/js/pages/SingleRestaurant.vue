@@ -69,24 +69,25 @@
                     </div>
 
                     <div class="col-12 col-md-4">
-                        <div class="card d-flex justify-content-center align-items-center p-5 cart-element">
+                        <div class="card d-flex justify-content-center align-items-center p-3 cart-element">
                             
                             <div v-if="cartVoid" class="text-center cart">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
                             </div>
-                            <div v-else>
-                                <ul>
-                                    <li v-for="(el, index) in cart " :key="index">
-                                        
-                                        {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro; <i class="fa-solid fa-trash-can"></i>
-                                    </li>
-                                </ul>
-
+                            <div v-else v-for="(el, index) in cart " :key="index" class="d-flex justify-content-between w-100 py-1 cart-foods"> 
+                                 
+                                <span>{{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;</span>  
+                                <span  @click="removeToCart(index)"> <i class="fa-solid fa-trash-can"></i></span>
+                                
 
                             </div>
 
-                            <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn w-100" :class="(cartVoid)? 'disabled  btn-secondary':'ms-btn-cart'" >Vai al pagamento</router-link>
+                            <div class="pay-section w-100">
+                                <p><strong>Totale</strong> </p>
+                                <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn w-100" :class="(cartVoid)? 'disabled  btn-secondary':'ms-btn-cart'" >Vai al pagamento</router-link>
+                            </div>
+
 
                         </div>
                     </div>
@@ -180,6 +181,10 @@ export default {
             this.getLocal();
             
         },
+        removeToCart(index){
+            this.cart.splice(index,1);
+            localStorage.setItem('myCart', JSON.stringify(this.cart));
+        },
         getLocal(){
             this.cart =  localStorage.getItem('myCart'); 
             this.cart = JSON.parse(this.cart);
@@ -214,6 +219,17 @@ export default {
                font-size: 35px;
            }
        }
+
+       .cart-foods{
+           font-size: 1.1rem;
+           i:hover{
+               color: red;
+               cursor: pointer;
+           }
+        }
+        .pay-section{
+            border-top: 1px solid #e9e9e9 ;
+        }
    }
 
     .food-card{
@@ -245,5 +261,7 @@ export default {
     .my-color-text{
         color: #00ccbc;
     }
+
+    
     
 </style>
