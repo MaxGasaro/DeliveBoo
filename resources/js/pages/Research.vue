@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand pl-4" href="#">
-            <img id="logo" src="img/logo-deliveroo.png" alt="">
+            <img id="logo" src="img/logo-deliveroo.png" alt="logo deliveroo">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
