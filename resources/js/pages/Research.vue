@@ -243,6 +243,10 @@ export default {
         height: 30px;
     }
 
+    .category a {
+        color:#00b8a9;
+    }
+
    
 
 </style>
