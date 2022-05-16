@@ -14,7 +14,7 @@
                         
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
-                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" maxlength="50" required placeholder="inserisci il tuo nome">
+                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" maxlength="50" placeholder="inserisci il tuo nome">
 
                             <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="customer_address" class="col-form-label col-4">Indirizzo<strong>*</strong></label>
-                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" maxlength="100" required placeholder="inserisci il tuo indirizzo">
+                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" maxlength="100" placeholder="inserisci il tuo indirizzo">
                         
                             <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                                 {{error}}
@@ -60,6 +60,8 @@
                             {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
                         </li>
                     </ul>
+
+                    <h2>Totale: {{totalPrice}}</h2>
                 </div>
                     
 
@@ -85,7 +87,8 @@
                 comment: '',
                 errors: {},
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
-                cart: null
+                cart: null,
+                totalPrice: 0
 
             }
         },
@@ -95,7 +98,9 @@
                     "customer_name" : this.customer_name,
                     "customer_address" : this.customer_address,
                     "customer_phone" : this.customer_phone,
-                    "customer_note" : this.customer_note
+                    "customer_note" : this.customer_note,
+                    "cart" : this.cart,
+                    "price" : this.totalPrice
                 }).then(response =>{
                     console.log(response);
 
@@ -115,10 +120,20 @@
                this.cart =  localStorage.getItem('myCart');
                this.cart = JSON.parse(this.cart);
                console.log(this.cart);
+            },
+            getTotal(){
+                this.totalPrice = 0;
+
+                for(let i = 0; i <= this.cart.length; i++){
+                    this.totalPrice += this.cart[i].total;
+                }
+            
+                
             }
         },
         mounted() {
             this.getLocal();
+            this.getTotal();
         }
     }
 </script>
