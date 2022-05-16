@@ -11,7 +11,7 @@ class Food extends Model
     public function orders(){
         return $this->belongsToMany('App\Order');
     }
-    public function users(){
+    public function user(){
         return $this->belongsTo('App\User');
     }
     public function category(){

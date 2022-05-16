@@ -2800,6 +2800,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -2810,7 +2815,8 @@ __webpack_require__.r(__webpack_exports__);
       singleFood: [],
       quantityFood: 1,
       cart: [],
-      cartVoid: true
+      cartVoid: true,
+      totalPrice: 0
     };
   },
   methods: {
@@ -2850,7 +2856,8 @@ __webpack_require__.r(__webpack_exports__);
       if (this.cartVoid) {
         this.cart.push({
           food: this.singleFood,
-          quantity: this.quantityFood
+          quantity: this.quantityFood,
+          total: this.quantityFood * this.singleFood.price
         });
         this.cartVoid = false;
       } else {
@@ -2859,6 +2866,7 @@ __webpack_require__.r(__webpack_exports__);
         for (var i = 0; i < this.cart.length; i++) {
           if (this.cart[i].food.id == this.singleFood.id) {
             this.cart[i].quantity += this.quantityFood;
+            this.cart[i].total = this.cart[i].quantity * this.singleFood.price;
             found = true;
             break;
           }
@@ -2867,19 +2875,25 @@ __webpack_require__.r(__webpack_exports__);
         if (!found) {
           this.cart.push({
             food: this.singleFood,
-            quantity: this.quantityFood
+            quantity: this.quantityFood,
+            total: this.quantityFood * this.singleFood.price
           });
         }
       }
 
-      console.log(this.cart);
       document.getElementById('closed').click();
       localStorage.setItem('myCart', JSON.stringify(this.cart));
-      this.getLocal();
+      this.getTotal();
     },
     removeToCart: function removeToCart(index) {
       this.cart.splice(index, 1);
       localStorage.setItem('myCart', JSON.stringify(this.cart));
+
+      if (this.cart.length == 0) {
+        this.cartVoid = true;
+      }
+
+      this.getTotal();
     },
     getLocal: function getLocal() {
       this.cart = localStorage.getItem('myCart');
@@ -2888,12 +2902,20 @@ __webpack_require__.r(__webpack_exports__);
       if (this.cart.length != 0) {
         this.cartVoid = false;
       }
+    },
+    getTotal: function getTotal() {
+      this.totalPrice = 0;
+
+      for (var i = 0; i <= this.cart.length; i++) {
+        this.totalPrice += this.cart[i].total;
+      }
     }
   },
   mounted: function mounted() {
     this.getRestaurant();
     this.getFoods();
     this.getLocal();
+    this.getTotal();
   }
 });
 
@@ -6033,7 +6055,12 @@ var render = function () {
                           "div",
                           { staticClass: "pay-section w-100" },
                           [
-                            _vm._m(1),
+                            _c("p", [
+                              _c("strong", [_vm._v("Totale: ")]),
+                              _vm._v(
+                                " " + _vm._s(_vm.totalPrice.toFixed(2)) + "€"
+                              ),
+                            ]),
                             _vm._v(" "),
                             _c(
                               "router-link",
@@ -6079,12 +6106,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [_c("strong", [_vm._v("Totale")])])
   },
 ]
 render._withStripped = true

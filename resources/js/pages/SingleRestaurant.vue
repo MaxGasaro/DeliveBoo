@@ -79,12 +79,17 @@
                                  
                                 <span>{{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;</span>  
                                 <span  @click="removeToCart(index)"> <i class="fa-solid fa-trash-can"></i></span>
+
+                               <!--  <i class="fa-solid fa-circle-minus my-color-text" ></i>
+                                <span class="px-4 h3">{{el.quantity}}</span>
+                                <i class="fa-solid fa-circle-plus my-color-text" ></i>
+                                 -->
                                 
 
                             </div>
 
                             <div class="pay-section w-100">
-                                <p><strong>Totale</strong> </p>
+                                <p><strong>Totale: </strong> {{(totalPrice).toFixed(2)}}&euro;</p>
                                 <router-link :to="{name: 'order', params: {name: restaurant.name}}" class="btn w-100" :class="(cartVoid)? 'disabled  btn-secondary':'ms-btn-cart'" >Vai al pagamento</router-link>
                             </div>
 
@@ -114,6 +119,7 @@ export default {
             quantityFood: 1,
             cart: [],
             cartVoid: true,
+            totalPrice:0
         }
     },
     methods:{
@@ -143,7 +149,6 @@ export default {
             this.quantityFood = 1;
             this.singleFood = food;
 
-  
         },
 
         addToCart(){
@@ -151,7 +156,8 @@ export default {
             if(this.cartVoid){
                this.cart.push({
                     food: this.singleFood,
-                    quantity : this.quantityFood
+                    quantity : this.quantityFood,
+                    total: this.quantityFood*this.singleFood.price
                 })
                 this.cartVoid = false; 
             
@@ -162,6 +168,7 @@ export default {
                     
                     if(this.cart[i].food.id == this.singleFood.id ){
                         this.cart[i].quantity += this.quantityFood;
+                        this.cart[i].total = this.cart[i].quantity *this.singleFood.price
                         found = true;
                         break;
                     }
@@ -170,20 +177,24 @@ export default {
                 if(!found){
                     this.cart.push({
                         food: this.singleFood,
-                        quantity : this.quantityFood
+                        quantity : this.quantityFood,
+                        total: this.quantityFood*this.singleFood.price
                     })
                 }  
                
             }
-            console.log(this.cart);
             document.getElementById('closed').click();
             localStorage.setItem('myCart', JSON.stringify(this.cart));
-            this.getLocal();
-            
+            this.getTotal();
         },
         removeToCart(index){
             this.cart.splice(index,1);
             localStorage.setItem('myCart', JSON.stringify(this.cart));
+
+            if(this.cart.length == 0){
+                this.cartVoid = true;
+            }
+            this.getTotal();
         },
         getLocal(){
             this.cart =  localStorage.getItem('myCart'); 
@@ -192,12 +203,23 @@ export default {
                 this.cartVoid = false;
             }
             
+        },
+        getTotal(){
+            this.totalPrice = 0;
+
+            for(let i = 0; i <= this.cart.length; i++){
+                this.totalPrice += this.cart[i].total;
+            }
+        
+            
         }
+
     },
     mounted(){
         this.getRestaurant();
         this.getFoods();
         this.getLocal();
+        this.getTotal();
     }
 }
 </script>
