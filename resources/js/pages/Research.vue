@@ -33,7 +33,7 @@
             </form>
         </div>
     </div>
-    <div class="px-md-5">
+    <div class="px-md-4">
         <div class="row justify-content-center">
             <!-- Part left -->
             <div class="d-none d-md-block col-2 p-left">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <h2></h2>
+                <h3 class="my-2">Ristoranti per le tipologie selezionate</h3>
                 <div class="container-restaurants">
                     <div class="row">
                         <div class="col-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">

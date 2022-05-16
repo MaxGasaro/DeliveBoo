@@ -5352,7 +5352,7 @@ var render = function () {
       ),
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "px-md-5" }, [
+    _c("div", { staticClass: "px-md-4" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
         _c("div", { staticClass: "d-none d-md-block col-2 p-left" }, [
           _vm._m(2),
@@ -5461,7 +5461,9 @@ var render = function () {
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
-          _c("h2"),
+          _c("h3", { staticClass: "my-2" }, [
+            _vm._v("Ristoranti per le tipologie selezionate"),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "container-restaurants" }, [
             _c(
