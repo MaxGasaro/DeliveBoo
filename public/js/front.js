@@ -5562,7 +5562,11 @@ var staticRenderFns = [
       [
         _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
           _c("img", {
-            attrs: { id: "logo", src: "img/logo-deliveroo.png", alt: "" },
+            attrs: {
+              id: "logo",
+              src: "img/logo-deliveroo.png",
+              alt: "logo deliveroo",
+            },
           }),
         ]),
         _vm._v(" "),
