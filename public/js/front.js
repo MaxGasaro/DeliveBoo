@@ -2628,6 +2628,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Research',
@@ -3043,7 +3046,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100vh;\n}\n.list-category{\noverflow-y: scroll;\nheight: 500px;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\nform i {\n    color: lightgray;\n}\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n\n\n\n", ""]);
+exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100vh;\n}\n.list-category{\noverflow-y: scroll;\nheight: 500px;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\nform i {\n    color: lightgray;\n}\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#logo {\n    width: 20%;\n}\n#rider {\n    width: 250%;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -5458,6 +5461,8 @@ var render = function () {
           _vm._v(" "),
           _vm._m(5),
           _vm._v(" "),
+          _c("h2"),
+          _vm._v(" "),
           _c("div", { staticClass: "container-restaurants" }, [
             _c(
               "div",
@@ -5491,7 +5496,9 @@ var staticRenderFns = [
       { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
       [
         _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
-          _vm._v("Deliveboo"),
+          _c("img", {
+            attrs: { id: "logo", src: "img/logo-deliveroo.png", alt: "" },
+          }),
         ]),
         _vm._v(" "),
         _c(
@@ -5564,9 +5571,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
+    return _c("div", { staticClass: "row my-3" }, [
       _c("div", { staticClass: "col-3" }, [
-        _c("img", { attrs: { src: "#", alt: "" } }),
+        _c("img", {
+          attrs: { id: "rider", src: "img/rider-deliveroo.png", alt: "" },
+        }),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
@@ -5627,7 +5636,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
+    return _c("div", { staticClass: "row d-none" }, [
       _c("div", { staticClass: "col-12" }, [
         _c(
           "div",

@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand pl-4" href="#">Deliveboo</a>
+        <a class="navbar-brand pl-4" href="#">
+            <img id="logo" src="img/logo-deliveroo.png" alt="">
+        </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="ml-auto row">
@@ -35,9 +37,9 @@
         <div class="row justify-content-center">
             <!-- Part left -->
             <div class="d-none d-md-block col-2 p-left">
-                <div class="row">
+                <div class="row my-3">
                     <div class="col-3">
-                        <img src="#" alt="">
+                        <img id="rider" src="img/rider-deliveroo.png" alt="">
                     </div>
                     <div class="col-6">
                         <p class="font-weight-bold">Indirizzo</p>
@@ -86,7 +88,7 @@
                         <!-- qui andranno le categorie selezionate -->
                     </div>
                 </div>
-                <div class="row">
+                <div class="row d-none">
                     <div class="col-12">
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
@@ -114,6 +116,7 @@
                         </div>
                     </div>
                 </div>
+                <h2></h2>
                 <div class="container-restaurants">
                     <div class="row">
                         <div class="col-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
@@ -230,6 +233,14 @@ export default {
         width: 10px;
         height: 10px;
     } */
+
+    #logo {
+        width: 20%;
+    }
+
+    #rider {
+        width: 250%;
+    }
 
    
 
