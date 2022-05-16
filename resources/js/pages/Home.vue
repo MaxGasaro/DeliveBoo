@@ -15,8 +15,8 @@
               Collabora con noi
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" @click="link_admin" href="#">Area ristorante</a>
-              <a class="dropdown-item" href="#">Lavora con noi</a>
+              <a class="dropdown-item" href="http://127.0.0.1:8000/login">Area ristorante</a>
+              <a class="dropdown-item" href="http://127.0.0.1:8000/register">Lavora con noi</a>
               <a class="dropdown-item" href="#">Unisciti a noi</a>
             </div>
           </div>
@@ -121,10 +121,10 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
     },
     methods:{ 
-      link_admin(){
+      /* link_admin(){
         this.$router.push('/admin');
         this.$router.go();
-      },
+      }, */
       link_research(){
         this.$router.push('/research');
       },

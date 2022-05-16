@@ -200,12 +200,12 @@ export default {
     }
 
     .p-left{
-    height: 100vh;
+    height: 100%;
     }
 
     .list-category{
-    overflow-y: scroll;
-    height: 500px;
+    overflow-y: auto;
+    height: 100%;
     }
 
     .container-restaurants{
