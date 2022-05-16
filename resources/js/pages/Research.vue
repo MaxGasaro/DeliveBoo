@@ -239,7 +239,8 @@ export default {
     }
 
     #rider {
-        width: 250%;
+        width: 30px;
+        height: 30px;
     }
 
    
