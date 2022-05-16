@@ -3032,7 +3032,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#logo[data-v-e4ea8dce] {\n  width: 20%;\n}\nform i[data-v-e4ea8dce] {\n  color: lightgray;\n}", ""]);
+exports.push([module.i, "#logo[data-v-e4ea8dce] {\n  width: 20%;\n}\ndiv i[data-v-e4ea8dce] {\n  color: #efefef;\n}", ""]);
 
 // exports
 
@@ -4661,8 +4661,8 @@ var render = function () {
                 "svg",
                 {
                   attrs: {
-                    width: "22",
-                    height: "22",
+                    width: "20",
+                    height: "20",
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 512 512",
                   },
@@ -4671,6 +4671,7 @@ var render = function () {
                   _c("path", {
                     attrs: {
                       d: "M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z",
+                      fill: "#efefef",
                     },
                   }),
                 ]
@@ -4691,7 +4692,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "nav",
-      { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
+      {
+        staticClass:
+          "navbar navbar-expand-lg navbar-light bg-none border-bottom",
+      },
       [
         _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
           _c("img", {
@@ -4710,12 +4714,12 @@ var staticRenderFns = [
             attrs: { id: "navbarSupportedContent" },
           },
           [
-            _c("div", { staticClass: "ml-auto row" }, [
+            _c("div", { staticClass: "w-100 row" }, [
               _c(
-                "form",
+                "div",
                 {
                   staticClass:
-                    "form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1",
+                    "d-flex align-items-center bg-white rounded border border-2 pl-1 w-75",
                 },
                 [
                   _c("i", { staticClass: "fa-solid fa-magnifying-glass ml-2" }),
