@@ -2274,6 +2274,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   created: function created() {
@@ -3058,7 +3078,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar{\n  z-index: 100;\n}\n.bg-yellow{\n  background-color: #d0eb99;\n  padding-bottom: 100px;\n  height: 500px;\n}\n.bg-yellow::before{\n  content: \"\";\n  width: 100%;\n  height: 400px;\n  position: absolute;\n  background-color: #00ccbc;\n  transform: skewY(-4deg);\n  transform-origin: left;\n  padding-bottom: 200px;\n}\n.bg-right{\n  width: 50%;\n  height: 500%;\n  position: absolute;\n  left: 25%;\n  background-image: url(https://cwa.roocdn.com/_next/static/media/campaign.df58721f.svg);\n  background-repeat: no-repeat;\n}\nhtml{\n  scroll-behavior: smooth;\n}\n", ""]);
+exports.push([module.i, "\n* {\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n    list-style-type: none;\n    text-decoration: none !important;\n}\n.navbar{\n  z-index: 100;\n}\n.bg-yellow{\n  background-color: #d0eb99;\n  padding-bottom: 100px;\n  height: 500px;\n}\n.bg-yellow::before{\n  content: \"\";\n  width: 100%;\n  height: 400px;\n  position: absolute;\n  background-color: #00ccbc;\n  transform: skewY(-4deg);\n  transform-origin: left;\n  padding-bottom: 200px;\n}\n.bg-right{\n  width: 50%;\n  height: 500%;\n  position: absolute;\n  left: 25%;\n  background-image: url(https://cwa.roocdn.com/_next/static/media/campaign.df58721f.svg);\n  background-repeat: no-repeat;\n}\nhtml{\n  scroll-behavior: smooth;\n}\n", ""]);
 
 // exports
 
@@ -4613,13 +4633,15 @@ var render = function () {
       _vm._v(" "),
       _c("div", { staticClass: "container pt-5" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6 text-center" }, [
-            _c("h1", [_vm._v("I piatti che ami, a domicilio.")]),
+          _c("div", { staticClass: "col-12 mb-4 col-sm-6 text-center" }, [
+            _c("h1", { staticClass: "font-weight-bold mb-5" }, [
+              _vm._v("I piatti che ami, a domicilio."),
+            ]),
             _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "row px-5 bg-white py-3",
+                staticClass: "px-5 bg-white py-3 rounded rounded-5 ml-3 mr-4",
                 staticStyle: { "z-index": "500", position: "absolute" },
               },
               [
@@ -4629,17 +4651,20 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-3" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-success mx-1 my-2 my-sm-0",
-                      on: { click: _vm.link_research },
-                    },
-                    [_vm._v("Cerca")]
-                  ),
+                _c("div", { staticClass: "row pt-1" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-3" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-outline-success mx-1 my-2 my-sm-0",
+                        on: { click: _vm.link_research },
+                      },
+                      [_vm._v("Cerca")]
+                    ),
+                  ]),
                 ]),
               ]
             ),
@@ -4652,29 +4677,53 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "pt-5" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h1", [_vm._v("La selezione di Delivero")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
-            _vm._m(3),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
-            _vm._m(4),
-          ]),
+        _c("h1", { staticClass: "font-weight-bold mb-4 mx-2" }, [
+          _vm._v("La selezione di Deliboo"),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
-            _vm._m(5),
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "col-12 mb-4 col-sm-6",
+              on: { click: _vm.click_card },
+            },
+            [_vm._m(3)]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-6", on: { click: _vm.click_card } }, [
-            _vm._m(6),
-          ]),
+          _c(
+            "div",
+            {
+              staticClass: "col-12 mb-4 col-sm-6",
+              on: { click: _vm.click_card },
+            },
+            [_vm._m(4)]
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-12 mb-4 col-sm-6",
+              on: { click: _vm.click_card },
+            },
+            [_vm._m(5)]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "col-12 mb-4 col-sm-6",
+              on: { click: _vm.click_card },
+            },
+            [_vm._m(6)]
+          ),
         ]),
       ]),
     ]),
+    _vm._v(" "),
+    _vm._m(7),
     _vm._v(" "),
     _c("div", { attrs: { id: "click_card2" } }, [
       _c("div", {
@@ -4693,9 +4742,20 @@ var staticRenderFns = [
       "nav",
       { staticClass: "container navbar navbar-expand-lg navbar-light" },
       [
-        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-          _vm._v("Deliveboo"),
-        ]),
+        _c(
+          "a",
+          {
+            staticClass: "navbar-brand",
+            staticStyle: { width: "70%" },
+            attrs: { href: "" },
+          },
+          [
+            _c("img", {
+              staticStyle: { width: "80px" },
+              attrs: { src: "img/Logo-delivero.png", alt: "logo-deliveroo" },
+            }),
+          ]
+        ),
         _vm._v(" "),
         _c(
           "button",
@@ -4720,7 +4780,7 @@ var staticRenderFns = [
             attrs: { id: "navbarSupportedContent" },
           },
           [
-            _c("form", { staticClass: "form-inline my-2 my-lg-0 ml-auto" }, [
+            _c("form", { staticClass: "form-inline my-2 my-lg-0 " }, [
               _c("div", { staticClass: "dropdown" }, [
                 _c(
                   "button",
@@ -4803,7 +4863,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-6" }, [
+    return _c("div", { staticClass: "col-12 mb-4 col-sm-6" }, [
       _c("div", { staticClass: "bg-right" }),
     ])
   },
@@ -4815,7 +4875,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "row px-2 m-1",
+          staticClass: "row mx-2 m-1 py-auto",
           staticStyle: {
             height: "15vh",
             "background-origin": "content-box",
@@ -4829,21 +4889,35 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-12 text-center my-auto p-5 text-white  m-1" },
-            [_c("h3", [_vm._v("Compfort food")])]
+            {
+              staticClass: "col-12 text-center text-white ",
+              staticStyle: {
+                heigth: "100%",
+                "background-color": "rgba(0, 0, 0, 0.2)",
+              },
+            },
+            [
+              _c("h3", { staticClass: "font-weight-bold mt-4" }, [
+                _vm._v("Compfort food"),
+              ]),
+            ]
           ),
         ]
       ),
       _vm._v(" "),
-      _c("div", [
-        _c("span", [
-          _vm._v(
-            "I grandi classici che scaldano il cuore, perfetti in ogni momento."
-          ),
+      _c("div", { staticClass: "mx-2" }, [
+        _c("div", { staticClass: "text-dark" }, [
+          _c("span", [
+            _vm._v(
+              "I grandi classici che scaldano il cuore, perfetti in ogni momento."
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticStyle: { color: "#00ccbc" } }, [
+          _vm._v("Scopri Comfort food"),
         ]),
       ]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Scopri Comfort food")]),
     ])
   },
   function () {
@@ -4854,7 +4928,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "row px-2 m-1",
+          staticClass: "row mx-2 m-1 py-auto",
           staticStyle: {
             height: "15vh",
             "background-origin": "content-box",
@@ -4868,19 +4942,33 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-12 text-center my-auto p-5 text-white m-1" },
-            [_c("h3", [_vm._v("Dolci e dessert")])]
+            {
+              staticClass: "col-12 text-center text-white ",
+              staticStyle: {
+                heigth: "100%",
+                "background-color": "rgba(0, 0, 0, 0.2)",
+              },
+            },
+            [
+              _c("h3", { staticClass: "font-weight-bold mt-4" }, [
+                _vm._v("Dolci e dessert"),
+              ]),
+            ]
           ),
         ]
       ),
       _vm._v(" "),
-      _c("div", [
-        _c("span", [
-          _vm._v("Dolci piaceri per rendere la giornata ancora più gustosa."),
+      _c("div", { staticClass: "mx-2" }, [
+        _c("div", { staticClass: "text-dark" }, [
+          _c("span", [
+            _vm._v("Dolci piaceri per rendere la giornata ancora più gustosa."),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticStyle: { color: "#00ccbc" } }, [
+          _vm._v("Scopri Dolci e dessert"),
         ]),
       ]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Scopri Dolci e dessert")]),
     ])
   },
   function () {
@@ -4891,7 +4979,7 @@ var staticRenderFns = [
       _c(
         "div",
         {
-          staticClass: "row px-2 m-1",
+          staticClass: "row mx-2 m-1 py-auto",
           staticStyle: {
             height: "15vh",
             "background-origin": "content-box",
@@ -4905,21 +4993,35 @@ var staticRenderFns = [
         [
           _c(
             "div",
-            { staticClass: "col-12 text-center my-auto p-5 text-white  m-1" },
-            [_c("h3", [_vm._v("Perfetti da condividere")])]
+            {
+              staticClass: "col-12 text-center text-white ",
+              staticStyle: {
+                heigth: "100%",
+                "background-color": "rgba(0, 0, 0, 0.2)",
+              },
+            },
+            [
+              _c("h3", { staticClass: "font-weight-bold mt-4" }, [
+                _vm._v("Perfetti da condividere"),
+              ]),
+            ]
           ),
         ]
       ),
       _vm._v(" "),
-      _c("div", [
-        _c("span", [
-          _vm._v(
-            "Serve una scusa per stare insieme? Ordina dai ristoranti che trasformeranno la tua serata in un vera festa."
-          ),
+      _c("div", { staticClass: "mx-2" }, [
+        _c("div", { staticClass: "text-dark" }, [
+          _c("span", [
+            _vm._v(
+              "Serve una scusa per stare insieme? Ordina dai ristoranti che trasformeranno la tua serata in un vera festa."
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticStyle: { color: "#00ccbc" } }, [
+          _vm._v("Scopri Perfetti da condividere"),
         ]),
       ]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Scopri Perfetti da condividere")]),
     ])
   },
   function () {
@@ -4960,15 +5062,27 @@ var staticRenderFns = [
         ]
       ),
       _vm._v(" "),
-      _c("div", [
-        _c("span", [
-          _vm._v(
-            "I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo."
-          ),
+      _c("div", { staticClass: "mx-2" }, [
+        _c("div", { staticClass: "text-dark" }, [
+          _c("span", [
+            _vm._v(
+              "I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo."
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("a", { staticStyle: { color: "#00ccbc" } }, [
+          _vm._v("Scopri Esclusiva Deliberoo"),
         ]),
       ]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Scopri Esclusiva Deliberoo")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [_c("div", { staticClass: "col-4" })]),
     ])
   },
 ]
@@ -22466,7 +22580,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
