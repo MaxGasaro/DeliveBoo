@@ -14,7 +14,7 @@
                         
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
-                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" maxlength="50" placeholder="inserisci il tuo nome">
+                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
 
                             <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="customer_address" class="col-form-label col-4">Indirizzo<strong>*</strong></label>
-                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" maxlength="100" placeholder="inserisci il tuo indirizzo">
+                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
                         
                             <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                                 {{error}}
@@ -32,7 +32,7 @@
 
                         <div class="form-group">
                             <label for="customer_phone" class="col-form-label col-4">Numero di cellulare<strong>*</strong></label>
-                            <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required  pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
+                            <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                         
                             <p v-for="(error, index) in errors.customer_phone" :key="'error_phone' + index" class="invalid-feedback">
                                 {{error}}

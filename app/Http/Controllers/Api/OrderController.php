@@ -34,30 +34,29 @@ class OrderController extends Controller
             ]);
         }else{
 
-            //Se la validazione passa, allora creo un nuovo oggetto Order nel DB
+            //Se la validazione passa, allora creo un nuovo oggetto Order nel DB, e faccio la sync della tabella pivot
 
             $order = new Order();
             $order->fill($data);
-            /* dd($order); */
 
-            
             $order->save();
 
-            /* foreach ($data['cart'] as $el) {
-                $foods = $el->food->id;
-                /* $amounts = $el->quantity;
-                $pivotData = ['amount' => $order->foods()->withPivot('amount')];
-                $bho[$foods] = $pivotData;
+            $pivotData = []; //array che conterrà le informazioni da inserire nella tabella pivot
+
+
+            foreach ($data['cart'] as $el) { 
+
+                //per ogni elemento del carrello, pusho l'id del cibo, e aggiungo la colonna amount con la quantità del singolo elemento
+                $pivotData[$el['food']['id']] = ['amount' => $el['quantity']];
+
             }
 
+            $order->foods()->sync($pivotData);
 
-            $order->foods()->sync($bho); */
             
             return response()->json([
                 'success' => true
             ]);
-
-            //INSERIRE GESTIONE QUANTITA'
 
             //INSERIRE EVENTUALMENTE CONFERMA DELL'ORDINE TRAMITE MAIL
             
