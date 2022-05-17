@@ -2995,7 +2995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card .card-img-top[data-v-9077dca2] {\n  height: 150px;\n}\n.card .card-body[data-v-9077dca2] {\n  color: #000;\n}\n.card .card-body span[data-v-9077dca2], .card .card-body p[data-v-9077dca2] {\n  font-size: 14px;\n}", ""]);
+exports.push([module.i, ".card[data-v-9077dca2] {\n  /*  border: none; */\n}\n.card .card-body[data-v-9077dca2] {\n  color: #000;\n}\n.card .card-body span[data-v-9077dca2], .card .card-body p[data-v-9077dca2] {\n  font-size: 14px;\n}", ""]);
 
 // exports
 
@@ -22481,7 +22481,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
