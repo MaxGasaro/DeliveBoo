@@ -17,7 +17,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="http://127.0.0.1:8000/login">Area ristorante</a>
               <a class="dropdown-item" href="http://127.0.0.1:8000/register">Lavora con noi</a>
-              <a class="dropdown-item" href="#">Unisciti a noi</a>
+              <a class="dropdown-item" href="">Unisciti a noi</a>
             </div>
           </div>
           <button class="btn btn-outline-dark mx-1 my-2 my-sm-0" type="submit">Menu</button>
@@ -118,9 +118,16 @@
     <!-- fine sezione "La selezione di Deliboo" -->
     <!-- inizio sezione "Lavora con Deliveboo" -->
     <div class="container">
-      <div class="row">
-        <div class="col-4">
-          
+      <div class="row mx-2">
+        <div class="col-12 mb-4 col-sm-4">
+          <div>
+            <img src="https://cwa.roocdn.com/_next/static/riders.90e61988.jpg" alt="" style="width: 100%;">
+          </div>
+          <div class="p-4" style="background-color: #FF483B; color: white;">
+            <h1>Rider</h1>
+            <div><span>Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te.</span></div>
+            <a href=""><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Unisciti a noi</button></a>
+          </div>
         </div>
       </div>
     </div>

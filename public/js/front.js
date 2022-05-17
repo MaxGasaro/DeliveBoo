@@ -2294,6 +2294,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   created: function created() {
@@ -4823,7 +4830,7 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c(
                       "a",
-                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      { staticClass: "dropdown-item", attrs: { href: "" } },
                       [_vm._v("Unisciti a noi")]
                     ),
                   ]
@@ -5082,7 +5089,49 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [_c("div", { staticClass: "col-4" })]),
+      _c("div", { staticClass: "row mx-2" }, [
+        _c("div", { staticClass: "col-12 mb-4 col-sm-4" }, [
+          _c("div", [
+            _c("img", {
+              staticStyle: { width: "100%" },
+              attrs: {
+                src: "https://cwa.roocdn.com/_next/static/riders.90e61988.jpg",
+                alt: "",
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "p-4",
+              staticStyle: { "background-color": "#FF483B", color: "white" },
+            },
+            [
+              _c("h1", [_vm._v("Rider")]),
+              _vm._v(" "),
+              _c("div", [
+                _c("span", [
+                  _vm._v(
+                    "Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te."
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "" } }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success my-2 my-sm-0",
+                    staticStyle: { "background-color": "#00ccbc" },
+                  },
+                  [_vm._v("Unisciti a noi")]
+                ),
+              ]),
+            ]
+          ),
+        ]),
+      ]),
     ])
   },
 ]
