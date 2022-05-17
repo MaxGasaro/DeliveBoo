@@ -4,14 +4,14 @@
     <div class="bg-yellow">
     <nav class="container navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand"  style="width: 70%;" href=""><img src="img/Logo-delivero.png" alt="logo-deliveroo" style="width: 80px;"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
+        <span class="navbar-toggler-icon" style="color: #00CCBC;"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
         <form class="form-inline my-2 my-lg-0 ">
           <div class="dropdown">
-            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"  style="background-color: white; color: black;">
               Collabora con noi
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -20,7 +20,7 @@
               <a class="dropdown-item" href="">Unisciti a noi</a>
             </div>
           </div>
-          <button class="btn btn-outline-dark mx-1 my-2 my-sm-0" type="submit">Menu</button>
+          <button class="btn mx-1 my-2 my-sm-0" type="submit"  style="background-color: white; color: black;">Menu</button>
         </form>
       </div>
     </nav>
@@ -31,18 +31,16 @@
           <div class="col-12 mb-4 col-sm-6 text-center">
             <h1 class="font-weight-bold mb-5">I piatti che ami, a domicilio.</h1>
             <div class="px-5 bg-white py-3 rounded rounded-5 ml-3 mr-4" style="z-index: 500; position: absolute;">
-              
                 <span>Inserisci il tuo indirizzo per trovare ristoranti nei dintorni</span>
               <div class="row pt-1">  
                 <div class="col-9">
                   <input class="form-control mr-sm-2" type="search" placeholder="Dove ?..." aria-label="Search">
                 </div>
                 <div class="col-3">
-                  <button class="btn btn-outline-success mx-1 my-2 my-sm-0" @click="link_research">Cerca</button>  
+                  <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research">Cerca</button>  
                 </div>
               </div>
             </div>
-
           </div>
           <div class="col-12 mb-4 col-sm-6">
             <div class="bg-right">
@@ -56,13 +54,13 @@
     <!-- inizio sezione "La selezione di Deliveboo" -->
     <div class="pt-5">
       <div class="container">
-        <h1 class="font-weight-bold mb-4 mx-2">La selezione di Deliboo</h1>
+        <h1 class="font-weight-bold mb-4 mx-2">La selezione di Deliveboo</h1>
         <div class="row">     
-          <div class="col-12 mb-4 col-sm-6" @click="click_card"> 
+          <div class="col-12 mb-4 col-sm-6 col-lg-5" @click="click_card"> 
             <a  href="#top">
-              <div class="row mx-2 m-1 py-auto" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://img.freepik.com/free-photo/big-hamburger-with-double-beef-french-fries_252907-8.jpg?w=2000');">
-                <div class="col-12 text-center text-white " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);">
-                  <h3 class="font-weight-bold mt-4">Compfort food</h3>
+              <div class="row mx-2 m-1 py-auto" style="overflow: hidden; height: 120px; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://img.freepik.com/free-photo/big-hamburger-with-double-beef-french-fries_252907-8.jpg?w=2000');">
+                <div class="col-12 text-center text-white d-flex justify-content-center align-items-center " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);  overflow: hidden;">
+                  <h3 class="font-weight-bold">Comfort food</h3>
                 </div>
               </div>
               <div class="mx-2">
@@ -71,11 +69,11 @@
               </div>
             </a>
           </div>
-          <div class="col-12 mb-4 col-sm-6" @click="click_card">
+          <div class="col-12 mb-4 col-sm-6 col-lg-7" @click="click_card">
             <a  href="#top">
-              <div class="row mx-2 m-1 py-auto" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://insanelygoodrecipes.com/wp-content/uploads/2021/02/Homemade-Key-Lime-Fruit-Tart-with-Berries-800x530.png');">
-                <div class="col-12 text-center text-white " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);">
-                  <h3 class="font-weight-bold mt-4">Dolci e dessert</h3>
+              <div class="row mx-2 m-1 py-auto" style="overflow: hidden; height: 120px; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://insanelygoodrecipes.com/wp-content/uploads/2021/02/Homemade-Key-Lime-Fruit-Tart-with-Berries-800x530.png');">
+                <div class="col-12 text-center text-white d-flex justify-content-center align-items-center " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);  overflow: hidden;">
+                  <h3 class="font-weight-bold">Dolci e dessert</h3>
                 </div>
               </div>
               <div class="mx-2">
@@ -86,11 +84,11 @@
           </div>
         </div>
         <div class="row">     
-          <div class="col-12 mb-4 col-sm-6" @click="click_card"> 
+          <div class="col-12 mb-4 col-sm-6 col-lg-7" @click="click_card"> 
             <a  href="#top">
-              <div class="row mx-2 m-1 py-auto" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://media.timeout.com/images/105634384/image.jpg');">
-                <div class="col-12 text-center text-white " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);">
-                  <h3 class="font-weight-bold mt-4">Perfetti da condividere</h3>
+              <div class="row mx-2 m-1 py-auto" style="overflow: hidden; height: 120px; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://media.timeout.com/images/105634384/image.jpg');">
+                <div class="col-12 text-center text-white d-flex justify-content-center align-items-center " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);  overflow: hidden;">
+                  <h3 class="font-weight-bold">Perfetti da condividere</h3>
                 </div>
               </div>
               <div class="mx-2">
@@ -99,11 +97,11 @@
               </div>
             </a>
           </div>
-          <div class="col-12 mb-4 col-sm-6" @click="click_card">
+          <div class="col-12 mb-4 col-sm-6 col-lg-5" @click="click_card">
             <a  href="#top">
-              <div class="row mx-2 m-1 py-auto" style="height: 15vh; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://www.foodsafetynews.com/files/2020/03/dreamstime_food-delivery-online-food-sales.jpg');">
-                <div class="col-12 text-center text-white " style="heigth:100%; background-color:rgba(0, 0, 0, 0.2);">
-                  <h3 class="font-weight-bold mt-4">Esclusiva Deliberoo</h3>
+              <div class="row mx-2 m-1 py-auto" style="overflow: hidden; height: 120px; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://www.foodsafetynews.com/files/2020/03/dreamstime_food-delivery-online-food-sales.jpg');">
+                <div class="col-12 text-center text-white d-flex justify-content-center align-items-center" style="heigth:100%; background-color:rgba(0, 0, 0, 0.2); overflow: hidden;">
+                  <h3 class="font-weight-bold">Esclusiva Deliberoo</h3>
                 </div>
               </div>
               <div class="mx-2">
@@ -192,7 +190,7 @@ export default {
 
 </script>
   
-<style>
+<style lang="scss">
   * {
       padding: 0;
       margin: 0;
@@ -200,15 +198,18 @@ export default {
       list-style-type: none;
       text-decoration: none !important; 
   }
+
   .navbar{
     z-index: 100;
   }
+
   .bg-yellow{
     background-color: #d0eb99;
     padding-bottom: 100px;
     height: 500px;
   
   }
+
   .bg-yellow::before{
     content: "";
     width: 100%;
@@ -219,6 +220,7 @@ export default {
     transform-origin: left;
     padding-bottom: 200px;
   }
+
   .bg-right{
     width: 50%;
     height: 500%;
@@ -226,6 +228,21 @@ export default {
     left: 25%;
     background-image: url(https://cwa.roocdn.com/_next/static/media/campaign.df58721f.svg);
     background-repeat: no-repeat;
+  }
+
+  .my-btn-home{
+    color: #00ccbc;
+        background-color: white;
+        border-color: #00ccbc;
+
+      &:hover{
+        background-color: #00ccbc;
+        color: white;   
+      }
+  }
+
+  .card-style{
+
   }
   
   html{
