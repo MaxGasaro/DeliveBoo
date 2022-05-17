@@ -13,9 +13,10 @@ class OrderController extends Controller
     //funzione store richimata quando il cliente compila i dati per un nuovo ordine
     public function store(Request $request){
         $data = $request->all();
+
         $data['date'] = Carbon::now();
 
-        $data['price'] = 12.50; //valore di default da rimuovere in seguito
+        /* dd($data['cart']); */
 
         //validazione backend dei dati inseriti
         $validator = Validator::make($data, [
@@ -33,18 +34,29 @@ class OrderController extends Controller
             ]);
         }else{
 
-            //Se la validazione passa, allora creo un nuovo oggetto Order nel DB
+            //Se la validazione passa, allora creo un nuovo oggetto Order nel DB, e faccio la sync della tabella pivot
 
             $order = new Order();
             $order->fill($data);
-            /* dd($order); */
+
             $order->save();
+
+            $pivotData = []; //array che conterrà le informazioni da inserire nella tabella pivot
+
+
+            foreach ($data['cart'] as $el) { 
+
+                //per ogni elemento del carrello, pusho l'id del cibo, e aggiungo la colonna amount con la quantità del singolo elemento
+                $pivotData[$el['food']['id']] = ['amount' => $el['quantity']];
+
+            }
+
+            $order->foods()->sync($pivotData);
+
             
             return response()->json([
                 'success' => true
             ]);
-
-            //INSERIRE GESTIONE QUANTITA'
 
             //INSERIRE EVENTUALMENTE CONFERMA DELL'ORDINE TRAMITE MAIL
             

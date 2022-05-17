@@ -2436,6 +2436,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   data: function data() {
@@ -2448,7 +2450,8 @@ __webpack_require__.r(__webpack_exports__);
       errors: {},
       orderSent: false,
       //booleano che mostra la conferma di ordine inviato
-      cart: null
+      cart: null,
+      totalPrice: 0
     };
   },
   methods: {
@@ -2459,7 +2462,9 @@ __webpack_require__.r(__webpack_exports__);
         "customer_name": this.customer_name,
         "customer_address": this.customer_address,
         "customer_phone": this.customer_phone,
-        "customer_note": this.customer_note
+        "customer_note": this.customer_note,
+        "cart": this.cart,
+        "price": this.totalPrice
       }).then(function (response) {
         console.log(response);
 
@@ -2479,10 +2484,18 @@ __webpack_require__.r(__webpack_exports__);
       this.cart = localStorage.getItem('myCart');
       this.cart = JSON.parse(this.cart);
       console.log(this.cart);
+    },
+    getTotal: function getTotal() {
+      this.totalPrice = 0;
+
+      for (var i = 0; i <= this.cart.length; i++) {
+        this.totalPrice += this.cart[i].total;
+      }
     }
   },
   mounted: function mounted() {
     this.getLocal();
+    this.getTotal();
   }
 });
 
@@ -5070,8 +5083,8 @@ var render = function () {
                       type: "text",
                       name: "customer_name",
                       id: "customer_name",
-                      maxlength: "50",
                       required: "",
+                      maxlength: "50",
                       placeholder: "inserisci il tuo nome",
                     },
                     domProps: { value: _vm.customer_name },
@@ -5126,8 +5139,8 @@ var render = function () {
                       type: "text",
                       name: "customer_address",
                       id: "customer_address",
-                      maxlength: "100",
                       required: "",
+                      maxlength: "100",
                       placeholder: "inserisci il tuo indirizzo",
                     },
                     domProps: { value: _vm.customer_address },
@@ -5315,6 +5328,8 @@ var render = function () {
             }),
             0
           ),
+          _vm._v(" "),
+          _c("h2", [_vm._v("Totale: " + _vm._s(_vm.totalPrice))]),
         ]),
       ]),
     ]),
@@ -22466,7 +22481,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
