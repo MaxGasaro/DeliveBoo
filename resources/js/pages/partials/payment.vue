@@ -1,21 +1,19 @@
 <template>
   <div>
-      Payment Component
       <div v-if="tokenGenerate">
         <v-braintree 
             :authorization="authorization"
             locale="it_IT"
             @success="onSuccess"
             @error="onError"
-        ></v-braintree>
-
+        >
+        </v-braintree>
+      </div>
          <div>
             <p v-if="error" class="text-red mt-4">
                 {{ error }}
             </p>
         </div>
-
-      </div>
   </div>
 </template>
 

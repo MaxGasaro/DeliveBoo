@@ -49,7 +49,6 @@
                             </p>
                         </div>
 
-                        {{form}}
                         <payment
                          @onSuccess="paymentOnSuccess"
                          @onError="paymentOnError"

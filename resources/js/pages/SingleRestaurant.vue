@@ -283,7 +283,5 @@ export default {
     .my-color-text{
         color: #00ccbc;
     }
-
-    
     
 </style>

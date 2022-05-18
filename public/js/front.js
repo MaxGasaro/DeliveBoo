@@ -2448,7 +2448,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
@@ -2987,8 +2986,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -30142,11 +30139,7 @@ var render = function () {
                 ],
                 2
               ),
-              _vm._v(
-                "\n\n                    " +
-                  _vm._s(_vm.form) +
-                  "\n                    "
-              ),
+              _vm._v(" "),
               _c("payment", {
                 on: {
                   onSuccess: _vm.paymentOnSuccess,
@@ -31033,7 +31026,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n    Payment Component\n    "),
     _vm.tokenGenerate
       ? _c(
           "div",
@@ -31042,20 +31034,18 @@ var render = function () {
               attrs: { authorization: _vm.authorization, locale: "it_IT" },
               on: { success: _vm.onSuccess, error: _vm.onError },
             }),
-            _vm._v(" "),
-            _c("div", [
-              _vm.error
-                ? _c("p", { staticClass: "text-red mt-4" }, [
-                    _vm._v(
-                      "\n              " + _vm._s(_vm.error) + "\n          "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
           ],
           1
         )
       : _vm._e(),
+    _vm._v(" "),
+    _c("div", [
+      _vm.error
+        ? _c("p", { staticClass: "text-red mt-4" }, [
+            _vm._v("\n              " + _vm._s(_vm.error) + "\n          "),
+          ])
+        : _vm._e(),
+    ]),
   ])
 }
 var staticRenderFns = []
