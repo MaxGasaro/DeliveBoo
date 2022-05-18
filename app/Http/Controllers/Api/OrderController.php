@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Orders\OrderRequest;
 use App\Order;
+use Braintree\Gateway;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -61,5 +63,41 @@ class OrderController extends Controller
             //INSERIRE EVENTUALMENTE CONFERMA DELL'ORDINE TRAMITE MAIL
             
         }
+    }
+
+    public function generate(Request $request, Gateway $gateway){
+        $token = $gateway->clientToken()->generate();
+        $data = [
+            'success' => true,
+            'token' => $token
+        ];
+        return response()->json($data,200);
+    }
+
+    public function makePayment(OrderRequest $request,  Gateway $gateway){
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $request->amount,
+            'paymentMethodNonce' => $request->token,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+        
+        if($result->success){
+            $data = [
+                'success' => true,
+                'message' => "Transazione eseguita con Successo!"
+            ];
+            return response()->json($data,200);
+        }else{
+            $data = [
+                'success' => false,
+                'message' => "Transazione Fallita!!"
+            ];
+            return response()->json($data,401);
+        }
+
+        return 'makePayment';
     }
 }

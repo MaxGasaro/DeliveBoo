@@ -30,3 +30,7 @@ Route::get('/foods/{slug}/{slug_food}', 'Api\FoodController@show');
 
 // /api/order
 Route::post('/order', 'Api\OrderController@store');
+
+//for braintree
+Route::get('orders/generate', 'Api\OrderController@generate');
+Route::post('orders/make/payment', 'Api\OrderController@makePayment');

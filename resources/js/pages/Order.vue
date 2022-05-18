@@ -49,7 +49,21 @@
                             </p>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Ordina</button>
+                        {{form}}
+                        <payment
+                         @onSuccess="paymentOnSuccess"
+                         @onError="paymentOnError"
+                        />
+
+                        <button type="submit" class="btn btn-primary"
+                         v-if="!disableBuyButton"
+                        >
+                         Procedi con il pagamento
+                        </button>
+
+                        <button type="submit" class="btn btn-primary" v-else >
+                         {{(loadingPayment)? 'Loading...' : 'Procedi con l\'acquisto'}}
+                        </button>
                     </form>
                 </div>
 
@@ -61,13 +75,8 @@
                         </li>
                     </ul>
 
-                    <h2>Totale: {{totalPrice}}</h2>
+                    <h2>Totale: {{totalPrice}} &euro;</h2>
                 </div>
-                    
-
-                    
-                
-
                 
             </div> 
         </div>
@@ -75,9 +84,14 @@
     
 </template>
 
+
 <script>
+import payment from './partials/payment.vue';
     export default {
         name: 'Order',
+        components:{
+            payment,
+        },
         data(){
             return{
                 name: this.$route.params.name,
@@ -88,8 +102,14 @@
                 errors: {},
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
                 cart: null,
-                totalPrice: 0
-
+                totalPrice: 0,
+                disableBuyButton : false,
+                loadingPayment: true,
+                form: {
+                    token: '',
+                    amount: ''
+                }
+                
             }
         },
         methods: {
@@ -127,13 +147,45 @@
                 for(let i = 0; i <= this.cart.length; i++){
                     this.totalPrice += this.cart[i].total;
                 }
-            
+
                 
+                
+            },
+            paymentOnSuccess (nonce) {
+            // alert(nonce);
+                this.form.token = nonce
+                this.buy()
+            },
+            // eslint-disable-next-line node/handle-callback-err
+            paymentOnError (error) {
+            },
+            buy () {
+                this.disableBuyButton = true
+                this.loadingPayment = true
+
+                try {
+                    axios.post('/api/orders/make/payment', this.form )
+                    .then(response =>{
+                    console.log(response);
+                    });
+                    //modale per ringraziare
+                } catch (error) {
+                    this.disableBuyButton = false
+                    this.loadingPayment = false
+                }
             }
+
+                    
+
         },
-        mounted() {
+        created() {
+            
             this.getLocal();
             this.getTotal();
+            
+        },
+        mounted(){
+            this.form.amount = this.totalPrice;
         }
     }
 </script>
