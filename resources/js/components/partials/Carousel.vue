@@ -1,21 +1,26 @@
 <template>
-
-    <div class="row">
-        <div v-for="category in categories" :key="category.id" class="col position-relative">
-            <img :src="category.img" alt="#">
-            <span>{{category.name}}</span>
-        </div>
-        <button class="control-prev" type="button"></button>
-    </div>
-
+  <Carousel>
+    <Slide v-for="category in categories" :key="category.id" class="col-2 position-relative">
+       
+        <img :src="category.img" alt="#">
+        <span>{{category.name}}</span>
+        
+    </Slide>
+</Carousel>
 </template>
-
+    
 <script>
+import { Carousel, Slide } from 'vue-carousel';
+
 export default {
-    name: 'Carousel',
+    name: 'CarouselCopyCopy',
+        components: {
+            Carousel,
+            Slide
+        },
     data() {
         return {
-            categories: []
+            categories: [],
         }
     },
     methods: {

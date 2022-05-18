@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <CarouselCopyCopy></CarouselCopyCopy>
+                    <Carousel></Carousel>
                 </div>
                 <h4 class="my-2">Ristoranti per le tipologie selezionate:
                     <span v-if="nameType">
@@ -84,7 +84,7 @@
 <script>
 import CardRestaurant from "./../components/partials/CardRestaurant";
 import Searchbar from "./../components/partials/Searchbar";
-import CarouselCopyCopy from "./../components/partials/CarouselCopyCopy";
+import Carousel from "./../components/partials/Carousel";
 export default {
     name: 'Research',
     
@@ -100,7 +100,7 @@ export default {
     components: {
         CardRestaurant,
         Searchbar,
-        CarouselCopyCopy
+        Carousel
     },
     computed: {
         getTipologiesFilter() {
