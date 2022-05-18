@@ -4875,7 +4875,10 @@ var render = function () {
         "Slide",
         { key: category.id, staticClass: "col-2 position-relative" },
         [
-          _c("img", { attrs: { src: category.img, alt: "#" } }),
+          _c("img", {
+            staticClass: "rounded",
+            attrs: { src: category.img, alt: "#" },
+          }),
           _vm._v(" "),
           _c("span", [_vm._v(_vm._s(category.name))]),
         ]
@@ -6460,7 +6463,7 @@ var render = function () {
           _c("div", { staticClass: "col-12 col-md-10 px-5 p-right" }, [
             _vm._m(2),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [_c("Carousel")], 1),
+            _c("div", { staticClass: "row my-3" }, [_c("Carousel")], 1),
             _vm._v(" "),
             _c("h4", { staticClass: "my-2" }, [
               _vm._v(

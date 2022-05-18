@@ -56,7 +56,7 @@
                         <!-- qui andranno le categorie selezionate -->
                     </div>
                 </div>
-                <div class="row">
+                <div class="row my-3">
                     <Carousel></Carousel>
                 </div>
                 <h4 class="my-2">Ristoranti per le tipologie selezionate:

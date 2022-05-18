@@ -2,7 +2,7 @@
   <Carousel>
     <Slide v-for="category in categories" :key="category.id" class="col-2 position-relative">
        
-        <img :src="category.img" alt="#">
+        <img :src="category.img" alt="#" class="rounded">
         <span>{{category.name}}</span>
         
     </Slide>
