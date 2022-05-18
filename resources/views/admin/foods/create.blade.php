@@ -45,7 +45,7 @@
                         <textarea  class="form-control" name="description" id="description" cols="30" rows="10" required>{{old('description')}}</textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Crea</button>
               </form>
             </div>
         </div>

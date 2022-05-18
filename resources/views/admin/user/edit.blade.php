@@ -44,7 +44,7 @@
 
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Restaurant Name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus >
@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="typology_list" class="col-md-4 col-form-label text-md-right">Typologies</label>
+                            <label for="typology_list" class="col-md-4 col-form-label text-md-right">Tipologie</label>
 
                             <div class="col-md-6 pl-5">
                                 <div class="row row-cols-2 flex-wrap">
@@ -144,12 +144,12 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <button class="btn btn-primary w-100" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                            Change Password
+                                            Cambia password
                                         </button>
                                     </div>
                                     <div class="col-6">
                                         <button id="register" type="submit" class="btn btn-primary w-100">
-                                            Save Changes
+                                            Salva cambiamenti
                                         </button>
                                     </div>
                                 </div>
