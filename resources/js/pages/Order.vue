@@ -1,13 +1,13 @@
 <template>
-    <div class="container-fluid">
-            <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
+    <div class="container-fluid pb-5">
+        <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
 
             <div class="row">
 
                 
                 <div class="col-8">
-                    <form @submit.prevent="makeOrder" class="w-100">
+                    <form @submit.prevent="makeOrder" class="w-100 pb-5">
                         <div v-if="orderSent" class="alert alert-success">
                             ordine inviato con successo
                         </div>
@@ -49,20 +49,26 @@
                             </p>
                         </div>
 
-                        <payment
-                         @onSuccess="paymentOnSuccess"
-                         @onError="paymentOnError"
-                        />
+                        
 
-                        <button type="submit" class="btn btn-primary"
+                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
                          v-if="!disableBuyButton"
                         >
                          Procedi con il pagamento
                         </button>
 
-                        <button type="submit" class="btn btn-primary" v-else >
+                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" v-else >
                          {{(loadingPayment)? 'Loading...' : 'Procedi con l\'acquisto'}}
                         </button>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                               <payment
+                                @onSuccess="paymentOnSuccess"
+                                @onError="paymentOnError"
+                                />
+                            </div>
+                        </div>
                     </form>
                 </div>
 
@@ -191,10 +197,14 @@ import payment from './partials/payment.vue';
 
 <style scoped lang="scss">
     .container-fluid{
-        background-color: #00ccbc;
+        height: 100vh;
+        background: rgb(0,204,188);
+        background: linear-gradient(160deg, rgba(0,204,188,1) 0%, rgba(0,204,188,1) 45%, rgba(255,255,255,1) 45%);
+        
 
         input{
             display: inline-block;
         }
     }
+
 </style>

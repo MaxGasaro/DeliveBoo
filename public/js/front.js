@@ -2448,6 +2448,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
@@ -27576,7 +27582,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-fluid[data-v-eae40ed6] {\n  background-color: #00ccbc;\n}\n.container-fluid input[data-v-eae40ed6] {\n  display: inline-block;\n}", ""]);
+exports.push([module.i, ".container-fluid[data-v-eae40ed6] {\n  height: 100vh;\n  background: rgb(0, 204, 188);\n  background: linear-gradient(160deg, rgb(0, 204, 188) 0%, rgb(0, 204, 188) 45%, rgb(255, 255, 255) 45%);\n}\n.container-fluid input[data-v-eae40ed6] {\n  display: inline-block;\n}", ""]);
 
 // exports
 
@@ -29873,7 +29879,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "container-fluid pb-5" }, [
     _c("h1", { staticClass: "text-center" }, [
       _vm._v(
         "Per completare il tuo ordine presso " +
@@ -29888,7 +29894,7 @@ var render = function () {
           _c(
             "form",
             {
-              staticClass: "w-100",
+              staticClass: "w-100 pb-5",
               on: {
                 submit: function ($event) {
                   $event.preventDefault()
@@ -30140,19 +30146,17 @@ var render = function () {
                 2
               ),
               _vm._v(" "),
-              _c("payment", {
-                on: {
-                  onSuccess: _vm.paymentOnSuccess,
-                  onError: _vm.paymentOnError,
-                },
-              }),
-              _vm._v(" "),
               !_vm.disableBuyButton
                 ? _c(
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
+                      attrs: {
+                        type: "submit",
+                        "data-toggle": "collapse",
+                        href: "#collapseExample",
+                        role: "button",
+                      },
                     },
                     [
                       _vm._v(
@@ -30164,7 +30168,12 @@ var render = function () {
                     "button",
                     {
                       staticClass: "btn btn-primary",
-                      attrs: { type: "submit" },
+                      attrs: {
+                        type: "submit",
+                        "data-toggle": "collapse",
+                        href: "#collapseExample",
+                        role: "button",
+                      },
                     },
                     [
                       _vm._v(
@@ -30178,8 +30187,27 @@ var render = function () {
                       ),
                     ]
                   ),
-            ],
-            1
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "collapse", attrs: { id: "collapseExample" } },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "card card-body" },
+                    [
+                      _c("payment", {
+                        on: {
+                          onSuccess: _vm.paymentOnSuccess,
+                          onError: _vm.paymentOnError,
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ]
+              ),
+            ]
           ),
         ]),
         _vm._v(" "),
