@@ -2299,6 +2299,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   created: function created() {
@@ -4834,25 +4864,9 @@ var staticRenderFns = [
                       },
                       [_vm._v("Lavora con noi")]
                     ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      { staticClass: "dropdown-item", attrs: { href: "" } },
-                      [_vm._v("Unisciti a noi")]
-                    ),
                   ]
                 ),
               ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn mx-1 my-2 my-sm-0",
-                  staticStyle: { "background-color": "white", color: "black" },
-                  attrs: { type: "submit" },
-                },
-                [_vm._v("Menu")]
-              ),
             ]),
           ]
         ),
@@ -5109,11 +5123,15 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row mx-2" }, [
+      _c("h1", { staticClass: "mx-1 mb-4 font-weight-bold" }, [
+        _vm._v("Lavora con Deliveroo"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mx-1" }, [
         _c("div", { staticClass: "col-12 mb-4 col-sm-4" }, [
           _c("div", [
             _c("img", {
-              staticStyle: { width: "100%" },
+              staticStyle: { width: "100%", "max-height": "260px" },
               attrs: {
                 src: "https://cwa.roocdn.com/_next/static/riders.90e61988.jpg",
                 alt: "",
@@ -5125,12 +5143,16 @@ var staticRenderFns = [
             "div",
             {
               staticClass: "p-4",
-              staticStyle: { "background-color": "#FF483B", color: "white" },
+              staticStyle: {
+                "background-color": "#FF483B",
+                color: "white",
+                "min-height": "278px",
+              },
             },
             [
-              _c("h1", [_vm._v("Rider")]),
+              _c("h1", { staticClass: "font-weight-bold" }, [_vm._v("Rider")]),
               _vm._v(" "),
-              _c("div", [
+              _c("div", { staticClass: "mb-3" }, [
                 _c("span", [
                   _vm._v(
                     "Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te."
@@ -5138,19 +5160,143 @@ var staticRenderFns = [
                 ]),
               ]),
               _vm._v(" "),
-              _c("a", { attrs: { href: "" } }, [
+              _c("div", { staticClass: "dropdown" }, [
                 _c(
-                  "button",
+                  "a",
                   {
                     staticClass: "btn btn-success my-2 my-sm-0",
                     staticStyle: { "background-color": "#00ccbc" },
+                    attrs: {
+                      href: "#",
+                      role: "button",
+                      id: "dropdownMenuLink",
+                      "data-toggle": "dropdown",
+                      "aria-expanded": "false",
+                    },
                   },
-                  [_vm._v("Unisciti a noi")]
+                  [_vm._v("\n              Unisciti a noi\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-menu",
+                    attrs: { "aria-labelledby": "dropdownMenuLink" },
+                  },
+                  [
+                    _c(
+                      "a",
+                      { staticClass: "dropdown-item", attrs: { href: "#" } },
+                      [_vm._v("Scusateci, per ora non cerchiamo rider.")]
+                    ),
+                  ]
                 ),
               ]),
             ]
           ),
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-12 mb-4 col-sm-4",
+            staticStyle: { heigth: "100%" },
+          },
+          [
+            _c("div", [
+              _c("img", {
+                staticStyle: { width: "100%", "max-height": "260px" },
+                attrs: {
+                  src: "https://cwa.roocdn.com/_next/static/restaurants.3db91a35.jpg",
+                  alt: "",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "p-4",
+                staticStyle: { "background-color": "#FF8100", color: "white" },
+              },
+              [
+                _c("h1", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Ristoranti"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c("span", [
+                    _vm._v(
+                      "Diventa partner di Deliveboo e raggiungi sempre più clienti. Ci occupiamo noi della consegna, così che la tua unica preoccupazione sia continuare a preparare il miglior cibo."
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "http://127.0.0.1:8000/register" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success my-2 my-sm-0",
+                      staticStyle: { "background-color": "#00ccbc" },
+                    },
+                    [_vm._v("Diventa nostro partner")]
+                  ),
+                ]),
+              ]
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "col-12 mb-4 col-sm-4",
+            staticStyle: { heigth: "100%" },
+          },
+          [
+            _c("div", [
+              _c("img", {
+                staticStyle: { width: "100%", "max-height": "260px" },
+                attrs: {
+                  src: "https://cwa.roocdn.com/_next/static/team.d18fbb67.jpg",
+                  alt: "",
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "p-4",
+                staticStyle: { "background-color": "#BAC3C3", color: "white" },
+              },
+              [
+                _c("h1", { staticClass: "font-weight-bold" }, [
+                  _vm._v("Lavora con noi"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mb-3" }, [
+                  _c("span", [
+                    _vm._v(
+                      "La nostra missione è trasformare il modo in cui le persone mangiano. È un obiettivo ambizioso, come noi, e ci servono persone che ci aiutino a raggiungerlo."
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "http://127.0.0.1:8000/register" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success my-2 my-sm-0",
+                      staticStyle: { "background-color": "#00ccbc" },
+                    },
+                    [_vm._v("Lavora con noi")]
+                  ),
+                ]),
+              ]
+            ),
+          ]
+        ),
       ]),
     ])
   },

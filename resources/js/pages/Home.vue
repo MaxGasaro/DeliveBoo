@@ -17,10 +17,8 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="http://127.0.0.1:8000/login">Area ristorante</a>
               <a class="dropdown-item" href="http://127.0.0.1:8000/register">Lavora con noi</a>
-              <a class="dropdown-item" href="">Unisciti a noi</a>
             </div>
           </div>
-          <button class="btn mx-1 my-2 my-sm-0" type="submit"  style="background-color: white; color: black;">Menu</button>
         </form>
       </div>
     </nav>
@@ -116,19 +114,51 @@
     <!-- fine sezione "La selezione di Deliboo" -->
     <!-- inizio sezione "Lavora con Deliveboo" -->
     <div class="container">
-      <div class="row mx-2">
+      <h1 class="mx-1 mb-4 font-weight-bold">Lavora con Deliveroo</h1>
+      <div class="row mx-1">
         <div class="col-12 mb-4 col-sm-4">
           <div>
-            <img src="https://cwa.roocdn.com/_next/static/riders.90e61988.jpg" alt="" style="width: 100%;">
+            <img src="https://cwa.roocdn.com/_next/static/riders.90e61988.jpg" alt="" style="width: 100%; max-height: 260px;">
           </div>
-          <div class="p-4" style="background-color: #FF483B; color: white;">
-            <h1>Rider</h1>
-            <div><span>Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te.</span></div>
-            <a href=""><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Unisciti a noi</button></a>
+          <div class="p-4" style="background-color: #FF483B; color: white; min-height: 278px;">
+            <h1 class="font-weight-bold">Rider</h1>
+            <div class="mb-3"><span>Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te.</span></div>
+            <div class="dropdown">
+              <a class="btn btn-success my-2 my-sm-0"  style="background-color:#00ccbc;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                Unisciti a noi
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Scusateci, per ora non cerchiamo rider.</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        
+        <div class="col-12 mb-4 col-sm-4" style="heigth: 100%;">
+          <div>
+            <img src="https://cwa.roocdn.com/_next/static/restaurants.3db91a35.jpg" alt="" style="width: 100%; max-height: 260px;">
+          </div>
+          <div class="p-4" style="background-color: #FF8100; color: white;">
+            <h1 class="font-weight-bold">Ristoranti</h1>
+            <div class="mb-3"><span>Diventa partner di Deliveboo e raggiungi sempre più clienti. Ci occupiamo noi della consegna, così che la tua unica preoccupazione sia continuare a preparare il miglior cibo.</span></div>
+            <a href="http://127.0.0.1:8000/register"><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Diventa nostro partner</button></a>
+          </div>
+        </div>
+
+        <div class="col-12 mb-4 col-sm-4" style="heigth: 100%;">
+          <div>
+            <img src="https://cwa.roocdn.com/_next/static/team.d18fbb67.jpg" alt="" style="width: 100%; max-height: 260px;">
+          </div>
+          <div class="p-4" style="background-color: #BAC3C3; color: white;">
+            <h1 class="font-weight-bold">Lavora con noi</h1>
+            <div class="mb-3"><span>La nostra missione è trasformare il modo in cui le persone mangiano. È un obiettivo ambizioso, come noi, e ci servono persone che ci aiutino a raggiungerlo.</span></div>
+            <a href="http://127.0.0.1:8000/register" ><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Lavora con noi</button></a>
+          </div>
+        </div>
+      </div>     
     </div>
+    <!-- fine sezione "Lavora con Deliveboo" -->
     <div id="click_card2">
       <div id="click_card" @click="disclick_card"></div>  
     </div>
@@ -142,22 +172,28 @@ export default {
     created() {
     window.addEventListener("scroll", this.handleScroll);
     },
+
     destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
     },
+
     methods:{ 
+
       /* link_admin(){
         this.$router.push('/admin');
         this.$router.go();
       }, */
+
       link_research(){
         this.$router.push('/research');
       },
+
       click_card() {
         document.getElementById('click_card').style.cssText = 
           'width: 100%; min-height: 500%; opacity: 2;top: 0; z-index: 101; background: rgba(0,0,0,.3); position: absolute;'
         this.waitOnScrollTerminated(() => this.waitOnScrollMoved(this.disclick_card))
       },
+
       waitOnScrollTerminated(fn){
         let reExecute = () => setTimeout(() => {
             if (window.scrollY == 0){
@@ -168,6 +204,7 @@ export default {
           }, 200);
           reExecute();
       },
+
       waitOnScrollMoved(fn){
         let reExecute = () => setTimeout(() => {
             if (window.scrollY != 0){
@@ -178,9 +215,11 @@ export default {
           }, 200);
           reExecute();
       },
+
       disclick_card(){
         document.getElementById('click_card').style.cssText ='' 
       },
+
       handleScroll(){
         console.log(window.scrollY)
       }
@@ -241,10 +280,6 @@ export default {
       }
   }
 
-  .card-style{
-
-  }
-  
   html{
     scroll-behavior: smooth;
   }
