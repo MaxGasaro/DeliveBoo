@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Lead;
 use App\Mail\customerMail;
 use App\Mail\restaurantMail;
 use App\Order;
@@ -20,7 +19,6 @@ class OrderController extends Controller
 
         $data['date'] = Carbon::now();
 
-        /* dd($data['cart']); */
 
         //validazione backend dei dati inseriti
         $validator = Validator::make($data, [
@@ -45,10 +43,10 @@ class OrderController extends Controller
 
             $order->save();
             
-
             $pivotData = []; //array che conterrà le informazioni da inserire nella tabella pivot
 
-            $sent = false;
+            
+            $sent = false; //booleano per indicare se l'email al ristoratore è stata mandata
 
             foreach ($data['cart'] as $el) { 
                 /* dd($el); */
@@ -56,7 +54,7 @@ class OrderController extends Controller
                 //per ogni elemento del carrello, pusho l'id del cibo, e aggiungo la colonna amount con la quantità del singolo elemento
                 $pivotData[$el['food']['id']] = ['amount' => $el['quantity']];
                 
-                if($sent == false){
+                if($sent == false){ //evito che la mail venga mandata più volte
                     $sent = true;
                     Mail::to($el['food']['user']['email'])->send(new restaurantMail($order));
                 }
@@ -65,6 +63,7 @@ class OrderController extends Controller
 
             $order->foods()->sync($pivotData);
 
+            //mando una mail di conferma ordine anche al cliente
             Mail::to($data["customer_email"])->send(new customerMail($order));
 
             
