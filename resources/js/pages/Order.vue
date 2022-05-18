@@ -31,6 +31,15 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="customer_email" class="col-form-label col-4">Email<strong>*</strong></label>
+                            <input v-model="customer_email" class="col-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
+
+                            <p v-for="(error, index) in errors.customer_email" :key="'error_name' + index" class="invalid-feedback">
+                                {{error}}
+                            </p>
+                        </div>
+
+                        <div class="form-group">
                             <label for="customer_phone" class="col-form-label col-4">Numero di cellulare<strong>*</strong></label>
                             <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                         
@@ -49,7 +58,7 @@
                             </p>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Ordina</button>
+                        <button :disabled='orderSending' type="submit" class="btn btn-primary">{{orderSending ? 'Ordinazione in corso' : 'Ordina'}}</button>
                     </form>
                 </div>
 
@@ -83,25 +92,33 @@
                 name: this.$route.params.name,
                 customer_name: '',
                 customer_address: '',
+                customer_email: '',
                 customer_phone: '',
                 comment: '',
                 errors: {},
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
                 cart: null,
-                totalPrice: 0
+                totalPrice: 0,
+                orderSending: false
 
             }
         },
         methods: {
             makeOrder(){
+
+                this.orderSending = true;
+
                 axios.post("/api/order", {
                     "customer_name" : this.customer_name,
                     "customer_address" : this.customer_address,
+                    "customer_email" : this.customer_email,
                     "customer_phone" : this.customer_phone,
                     "customer_note" : this.customer_note,
                     "cart" : this.cart,
                     "price" : this.totalPrice
                 }).then(response =>{
+
+                    this.orderSending = false;
                     console.log(response);
 
                     if(response.data.errors){
