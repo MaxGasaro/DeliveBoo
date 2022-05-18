@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Searchbar></Searchbar>
+    <Searchbar @goSearch="doSearch"></Searchbar>
     <div class="px-md-4">
         <div class="row justify-content-center">
             <!-- Part left -->
@@ -56,35 +56,17 @@
                         <!-- qui andranno le categorie selezionate -->
                     </div>
                 </div>
-                <div class="row d-none">
-                    <div class="col-12">
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <p>tipologia 1</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                                <div class="carousel-item">
-                                    <p>tipologia 2</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                                <div class="carousel-item">
-                                    <p>tipologia 3</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </button>
-                        </div>
-                    </div>
+                <div class="row">
+                    <CarouselCopyCopy></CarouselCopyCopy>
                 </div>
-                <h3 class="my-2">Ristoranti per le tipologie selezionate</h3>
+                <h4 class="my-2">Ristoranti per le tipologie selezionate:
+                    <span v-if="nameType">
+                        {{getTipologiesFilter}}
+                    </span> 
+                    <span v-else>
+                        Nessuna categoria selezionata
+                    </span>
+                </h4>
                 <div class="container-restaurants">
                     <div class="row">
                         <div class="col-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
@@ -102,6 +84,7 @@
 <script>
 import CardRestaurant from "./../components/partials/CardRestaurant";
 import Searchbar from "./../components/partials/Searchbar";
+import CarouselCopyCopy from "./../components/partials/CarouselCopyCopy";
 export default {
     name: 'Research',
     
@@ -111,13 +94,28 @@ export default {
             restaurants: [],
             selected:[],
             expandedCategory: true,
+            nameType: false
         }
     },
     components: {
         CardRestaurant,
-        Searchbar
+        Searchbar,
+        CarouselCopyCopy
     },
-
+    computed: {
+        getTipologiesFilter() {
+            for(let i=0; i<this.selected.length; i++) {
+                console.log(this.selected[i]);
+                for(let e=0; e<this.typologies.length; e++) {
+                    if(this.typologies[e].id.includes(this.selected[i])) { //sistemare la funzione dentro if 
+                        console.log(this.nameType);
+                        this.nameType = true;
+                        return this.typologies[e].name;
+                    }
+                }
+            }
+        }
+    },
     methods:{   
         GetTipologies(){
             axios.get("/api/typologies")
@@ -150,6 +148,17 @@ export default {
                 }else{
                     this.GetRestaurants();
                 }
+        },
+        doSearch(keyword) {
+            let f = []
+            if(keyword !== '') {
+                f = this.restaurants.filter(e => {
+                    e.name.toLowerCase().includes(keyword.toLowerCase());
+                })
+            } else {
+                f = this.restaurants;
+            }
+            return f;
         }
     },
 
