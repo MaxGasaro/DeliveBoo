@@ -7,8 +7,11 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
         <span class="navbar-toggler-icon" style="color: #00CCBC;"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+      <div v-if="cartVoid" class="text-center cart">
+                                
+      </div>
+      <div v-else v-for="(el, index) in cart " :key="index"><router-link :to="{name:'restaurant',params:{slug:el.food.user.slug}}"><button class="btn mx-2" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(el.quantity * el.food.price).toFixed(2)}} &euro;</span></button></router-link></div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">     
         <form class="form-inline my-2 my-lg-0 ">
           <div class="dropdown">
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"  style="background-color: white; color: black;">
@@ -30,14 +33,17 @@
             <h1 class="font-weight-bold mb-5">I piatti che ami, a domicilio.</h1>
             <div class="px-5 bg-white py-3 rounded rounded-5 ml-3 mr-4" style="z-index: 500; position: absolute;">
                 <span>Inserisci il tuo indirizzo per trovare ristoranti nei dintorni</span>
-              <div class="row pt-1">  
-                <div class="col-9">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Dove ?..." aria-label="Search">
+              <form action="">
+                <div class="row pt-1">
+                    
+                  <div class="col-9">
+                    <input class="form-control mr-sm-2" type="search" required placeholder="Dove ?..." aria-label="Search">
+                  </div>
+                  <div class="col-3">
+                    <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research" required>Cerca</button>  
+                  </div>
                 </div>
-                <div class="col-3">
-                  <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research">Cerca</button>  
-                </div>
-              </div>
+              </form>
             </div>
           </div>
           <div class="col-12 mb-4 col-sm-6">
@@ -168,6 +174,13 @@
 <script>
 export default {
     name: 'Home',
+    data(){
+        return{
+            quantityFood: 1,
+            cart: [],
+            totalPrice:0
+      }
+    },
 
     created() {
     window.addEventListener("scroll", this.handleScroll);
@@ -176,11 +189,12 @@ export default {
     destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
     },
+    
 
     methods:{ 
 
       /* link_admin(){
-        this.$router.push('/admin');
+        this.$router.push('/admin/');
         this.$router.go();
       }, */
 
@@ -222,7 +236,27 @@ export default {
 
       handleScroll(){
         console.log(window.scrollY)
-      }
+      },
+
+      getLocal(){
+            this.cart =  localStorage.getItem('myCart'); 
+            this.cart = JSON.parse(this.cart);
+            if(this.cart.length != 0 ){
+                this.cartVoid = false;
+            }
+            
+        },
+        getTotal(){
+            this.totalPrice = 0;
+
+            for(let i = 0; i <= this.cart.length; i++){
+                this.totalPrice += this.cart[i].total;
+            }       
+        }
+    },
+    mounted(){
+        this.getLocal();
+        this.getTotal();
     },
 }
 

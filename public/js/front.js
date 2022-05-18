@@ -2329,8 +2329,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
+  data: function data() {
+    return {
+      quantityFood: 1,
+      cart: [],
+      totalPrice: 0
+    };
+  },
   created: function created() {
     window.addEventListener("scroll", this.handleScroll);
   },
@@ -2339,7 +2352,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     /* link_admin(){
-      this.$router.push('/admin');
+      this.$router.push('/admin/');
       this.$router.go();
     }, */
     link_research: function link_research() {
@@ -2380,7 +2393,26 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleScroll: function handleScroll() {
       console.log(window.scrollY);
+    },
+    getLocal: function getLocal() {
+      this.cart = localStorage.getItem('myCart');
+      this.cart = JSON.parse(this.cart);
+
+      if (this.cart.length != 0) {
+        this.cartVoid = false;
+      }
+    },
+    getTotal: function getTotal() {
+      this.totalPrice = 0;
+
+      for (var i = 0; i <= this.cart.length; i++) {
+        this.totalPrice += this.cart[i].total;
+      }
     }
+  },
+  mounted: function mounted() {
+    this.getLocal();
+    this.getTotal();
   }
 });
 
@@ -4664,7 +4696,66 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "bg-yellow" }, [
-      _vm._m(0),
+      _c(
+        "nav",
+        { staticClass: "container navbar navbar-expand-lg navbar-light" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm.cartVoid
+            ? _c("div", { staticClass: "text-center cart" })
+            : _vm._l(_vm.cart, function (el, index) {
+                return _c(
+                  "div",
+                  { key: index },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "restaurant",
+                            params: { slug: el.food.user.slug },
+                          },
+                        },
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn mx-2",
+                            staticStyle: {
+                              "background-color": "white",
+                              color: "black",
+                            },
+                            attrs: { type: "button" },
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa-solid fa-basket-shopping mr-1",
+                            }),
+                            _c("span", [
+                              _vm._v(
+                                _vm._s(
+                                  (el.quantity * el.food.price).toFixed(2)
+                                ) + " €"
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ],
+                  1
+                )
+              }),
+          _vm._v(" "),
+          _vm._m(2),
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "container pt-5" }, [
         _c("div", { staticClass: "row" }, [
@@ -4686,25 +4777,28 @@ var render = function () {
                   ),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row pt-1" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn my-btn-home mx-1 my-2 my-sm-0",
-                        on: { click: _vm.link_research },
-                      },
-                      [_vm._v("Cerca")]
-                    ),
+                _c("form", { attrs: { action: "" } }, [
+                  _c("div", { staticClass: "row pt-1" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn my-btn-home mx-1 my-2 my-sm-0",
+                          attrs: { required: "" },
+                          on: { click: _vm.link_research },
+                        },
+                        [_vm._v("Cerca")]
+                      ),
+                    ]),
                   ]),
                 ]),
               ]
             ),
           ]),
           _vm._v(" "),
-          _vm._m(2),
+          _vm._m(4),
         ]),
       ]),
     ]),
@@ -4722,7 +4816,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(3)]
+            [_vm._m(5)]
           ),
           _vm._v(" "),
           _c(
@@ -4731,7 +4825,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(4)]
+            [_vm._m(6)]
           ),
         ]),
         _vm._v(" "),
@@ -4742,7 +4836,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(5)]
+            [_vm._m(7)]
           ),
           _vm._v(" "),
           _c(
@@ -4751,13 +4845,13 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(6)]
+            [_vm._m(8)]
           ),
         ]),
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(7),
+    _vm._m(9),
     _vm._v(" "),
     _c("div", { attrs: { id: "click_card2" } }, [
       _c("div", {
@@ -4773,103 +4867,102 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "nav",
-      { staticClass: "container navbar navbar-expand-lg navbar-light" },
+      "a",
+      {
+        staticClass: "navbar-brand",
+        staticStyle: { width: "70%" },
+        attrs: { href: "" },
+      },
       [
-        _c(
-          "a",
-          {
-            staticClass: "navbar-brand",
-            staticStyle: { width: "70%" },
-            attrs: { href: "" },
-          },
-          [
-            _c("img", {
-              staticStyle: { width: "80px" },
-              attrs: { src: "img/Logo-delivero.png", alt: "logo-deliveroo" },
-            }),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "navbar-toggler",
-            staticStyle: { "background-color": "white" },
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#navbarSupportedContent",
-              "aria-controls": "navbarSupportedContent",
-              "aria-expanded": "false",
-              "aria-label": "Toggle navigation",
-            },
-          },
-          [
-            _c("span", {
-              staticClass: "navbar-toggler-icon",
-              staticStyle: { color: "#00CCBC" },
-            }),
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "collapse navbar-collapse",
-            attrs: { id: "navbarSupportedContent" },
-          },
-          [
-            _c("form", { staticClass: "form-inline my-2 my-lg-0 " }, [
-              _c("div", { staticClass: "dropdown" }, [
+        _c("img", {
+          staticStyle: { width: "80px" },
+          attrs: { src: "img/Logo-delivero.png", alt: "logo-deliveroo" },
+        }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        staticStyle: { "background-color": "white" },
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation",
+        },
+      },
+      [
+        _c("span", {
+          staticClass: "navbar-toggler-icon",
+          staticStyle: { color: "#00CCBC" },
+        }),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "collapse navbar-collapse",
+        attrs: { id: "navbarSupportedContent" },
+      },
+      [
+        _c("form", { staticClass: "form-inline my-2 my-lg-0 " }, [
+          _c("div", { staticClass: "dropdown" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn dropdown-toggle",
+                staticStyle: { "background-color": "white", color: "black" },
+                attrs: {
+                  type: "button",
+                  id: "dropdownMenuButton",
+                  "data-toggle": "dropdown",
+                  "aria-expanded": "false",
+                },
+              },
+              [_vm._v("\n            Collabora con noi\n          ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu",
+                attrs: { "aria-labelledby": "dropdownMenuButton" },
+              },
+              [
                 _c(
-                  "button",
+                  "a",
                   {
-                    staticClass: "btn dropdown-toggle",
-                    staticStyle: {
-                      "background-color": "white",
-                      color: "black",
-                    },
-                    attrs: {
-                      type: "button",
-                      id: "dropdownMenuButton",
-                      "data-toggle": "dropdown",
-                      "aria-expanded": "false",
-                    },
+                    staticClass: "dropdown-item",
+                    attrs: { href: "http://127.0.0.1:8000/login" },
                   },
-                  [_vm._v("\n            Collabora con noi\n          ")]
+                  [_vm._v("Area ristorante")]
                 ),
                 _vm._v(" "),
                 _c(
-                  "div",
+                  "a",
                   {
-                    staticClass: "dropdown-menu",
-                    attrs: { "aria-labelledby": "dropdownMenuButton" },
+                    staticClass: "dropdown-item",
+                    attrs: { href: "http://127.0.0.1:8000/register" },
                   },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item",
-                        attrs: { href: "http://127.0.0.1:8000/login" },
-                      },
-                      [_vm._v("Area ristorante")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-item",
-                        attrs: { href: "http://127.0.0.1:8000/register" },
-                      },
-                      [_vm._v("Lavora con noi")]
-                    ),
-                  ]
+                  [_vm._v("Lavora con noi")]
                 ),
-              ]),
-            ]),
-          ]
-        ),
+              ]
+            ),
+          ]),
+        ]),
       ]
     )
   },
@@ -4882,6 +4975,7 @@ var staticRenderFns = [
         staticClass: "form-control mr-sm-2",
         attrs: {
           type: "search",
+          required: "",
           placeholder: "Dove ?...",
           "aria-label": "Search",
         },
