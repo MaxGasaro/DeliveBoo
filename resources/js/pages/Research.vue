@@ -1,38 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand pl-4" href="#">
-            <img id="logo" src="img/logo-deliveroo.png" alt="logo deliveroo">
-        </a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="ml-auto row">
-                <form class="form-inline my-2 my-lg-0 bg-white rounded border border-2 pl-1">
-                    <i class="fa-solid fa-magnifying-glass ml-2"></i>
-                    <input class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie..." >
-                </form>
-            </div>
-        </div>
-        <div class="px-4">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <button class="btn btn-outline-success my-sm-0" type="submit">Menu</button>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="row m-2 d-block d-lg-none">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-4 d-flex align-items-center border rounded">
-            <div class="img-search">
-                <span class="img-search-span">
-                    <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
-                </span>
-            </div>
-            <form class="form-inline my-2 my-lg-0 bg-white pl-1 w-100">
-                <input id="ms_input" class="form-control border-0 w-100" type="search" placeholder="Ristoranti, tipologie..." >
-            </form>
-        </div>
-    </div>
+    <Searchbar @goSearch="doSearch"></Searchbar>
     <div class="px-md-4">
         <div class="row justify-content-center">
             <!-- Part left -->
@@ -88,35 +56,17 @@
                         <!-- qui andranno le categorie selezionate -->
                     </div>
                 </div>
-                <div class="row d-none">
-                    <div class="col-12">
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <p>tipologia 1</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                                <div class="carousel-item">
-                                    <p>tipologia 2</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                                <div class="carousel-item">
-                                    <p>tipologia 3</p>
-                                    <img src="#" class="d-block w-100" alt="#">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </button>
-                        </div>
-                    </div>
+                <div class="row">
+                    <CarouselCopyCopy></CarouselCopyCopy>
                 </div>
-                <h3 class="my-2">Ristoranti per le tipologie selezionate</h3>
+                <h4 class="my-2">Ristoranti per le tipologie selezionate:
+                    <span v-if="nameType">
+                        {{getTipologiesFilter}}
+                    </span> 
+                    <span v-else>
+                        Nessuna categoria selezionata
+                    </span>
+                </h4>
                 <div class="container-restaurants">
                     <div class="row">
                         <div class="col-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
@@ -133,6 +83,8 @@
 
 <script>
 import CardRestaurant from "./../components/partials/CardRestaurant";
+import Searchbar from "./../components/partials/Searchbar";
+import CarouselCopyCopy from "./../components/partials/CarouselCopyCopy";
 export default {
     name: 'Research',
     
@@ -142,12 +94,28 @@ export default {
             restaurants: [],
             selected:[],
             expandedCategory: true,
+            nameType: false
         }
     },
     components: {
-        CardRestaurant
+        CardRestaurant,
+        Searchbar,
+        CarouselCopyCopy
     },
-
+    computed: {
+        getTipologiesFilter() {
+            for(let i=0; i<this.selected.length; i++) {
+                console.log(this.selected[i]);
+                for(let e=0; e<this.typologies.length; e++) {
+                    if(this.typologies[e].id.includes(this.selected[i])) { //sistemare la funzione dentro if 
+                        console.log(this.nameType);
+                        this.nameType = true;
+                        return this.typologies[e].name;
+                    }
+                }
+            }
+        }
+    },
     methods:{   
         GetTipologies(){
             axios.get("/api/typologies")
@@ -180,6 +148,17 @@ export default {
                 }else{
                     this.GetRestaurants();
                 }
+        },
+        doSearch(keyword) {
+            let f = []
+            if(keyword !== '') {
+                f = this.restaurants.filter(e => {
+                    e.name.toLowerCase().includes(keyword.toLowerCase());
+                })
+            } else {
+                f = this.restaurants;
+            }
+            return f;
         }
     },
 
@@ -224,9 +203,7 @@ export default {
         font-size: 14px;
     }
 
-    form i {
-        color: lightgray;
-    }
+    
 
     /* #ms_input::before {
         content: 'f002';
@@ -234,9 +211,7 @@ export default {
         height: 10px;
     } */
 
-    #logo {
-        width: 20%;
-    }
+   
 
     #rider {
         width: 30px;

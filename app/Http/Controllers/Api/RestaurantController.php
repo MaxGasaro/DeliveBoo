@@ -61,7 +61,8 @@ class RestaurantController extends Controller
 
 
     public function filter($filter) {
-
+        
+        
         $filter = explode(",", $filter);
         $restaurantArray = [];
 
