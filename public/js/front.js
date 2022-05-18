@@ -2438,6 +2438,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   data: function data() {
@@ -2445,27 +2454,32 @@ __webpack_require__.r(__webpack_exports__);
       name: this.$route.params.name,
       customer_name: '',
       customer_address: '',
+      customer_email: '',
       customer_phone: '',
       comment: '',
       errors: {},
       orderSent: false,
       //booleano che mostra la conferma di ordine inviato
       cart: null,
-      totalPrice: 0
+      totalPrice: 0,
+      orderSending: false
     };
   },
   methods: {
     makeOrder: function makeOrder() {
       var _this = this;
 
+      this.orderSending = true;
       axios.post("/api/order", {
         "customer_name": this.customer_name,
         "customer_address": this.customer_address,
+        "customer_email": this.customer_email,
         "customer_phone": this.customer_phone,
         "customer_note": this.customer_note,
         "cart": this.cart,
         "price": this.totalPrice
       }).then(function (response) {
+        _this.orderSending = false;
         console.log(response);
 
         if (response.data.errors) {
@@ -5185,6 +5199,62 @@ var render = function () {
                       {
                         name: "model",
                         rawName: "v-model",
+                        value: _vm.customer_email,
+                        expression: "customer_email",
+                      },
+                    ],
+                    staticClass: "col-7 form-control",
+                    class: { "is-invalid": _vm.errors.customer_email },
+                    attrs: {
+                      type: "email",
+                      name: "customer_email",
+                      id: "customer_email",
+                      required: "",
+                      maxlength: "100",
+                      placeholder: "inserisci la tua email",
+                    },
+                    domProps: { value: _vm.customer_email },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.customer_email = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.errors.customer_email, function (error, index) {
+                    return _c(
+                      "p",
+                      {
+                        key: "error_name" + index,
+                        staticClass: "invalid-feedback",
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(error) +
+                            "\n                        "
+                        ),
+                      ]
+                    )
+                  }),
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
                         value: _vm.customer_phone,
                         expression: "customer_phone",
                       },
@@ -5299,8 +5369,15 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Ordina")]
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { disabled: _vm.orderSending, type: "submit" },
+                },
+                [
+                  _vm._v(
+                    _vm._s(_vm.orderSending ? "Ordinazione in corso" : "Ordina")
+                  ),
+                ]
               ),
             ]
           ),
@@ -5357,6 +5434,16 @@ var staticRenderFns = [
         attrs: { for: "customer_address" },
       },
       [_vm._v("Indirizzo"), _c("strong", [_vm._v("*")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "col-form-label col-4", attrs: { for: "customer_email" } },
+      [_vm._v("Email"), _c("strong", [_vm._v("*")])]
     )
   },
   function () {
