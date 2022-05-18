@@ -37,6 +37,6 @@
            
         </div>
 
-        <a href="{{route('admin.foods.index')}}" class="btn btn-primary mt-2">Go Back</a>
+        <a href="{{route('admin.foods.index')}}" class="btn btn-primary mt-2">Torna indietro</a>
     </div>
 @endsection

@@ -22,16 +22,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.card {
-    .card-img-top {
-        height: 150px;
-    }
-    .card-body {
-        color: #000;
-        span, p {
-            font-size: 14px;
+    .card {
+
+       /*  border: none; */
+        .card-body {
+            color: #000;
+
+            
+            span, p {
+                font-size: 14px;
+            }
+
         }
     }
-}
 </style>
 

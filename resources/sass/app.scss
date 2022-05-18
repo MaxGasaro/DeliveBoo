@@ -9,3 +9,16 @@
 
 // Partials
 @import './partials/register';
+
+html {
+    scroll-behavior: smooth;
+}
+
+.logo {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+.my-mt {
+    margin-top: 61px;
+}

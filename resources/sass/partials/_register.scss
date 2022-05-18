@@ -1,28 +1,44 @@
 .navbar_container {
+    color: black;
+    font-size: 1.3rem;
     .logo {
+        font-size: 1.3rem;
+        font-weight: 900;
         img {
-            width: 2.8rem;
-            height: 2.8rem;
+            align-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
             vertical-align: middle;
+        }
+    }
+    .btn_green {
+        width: fit-content;
+        padding: 0.8rem;
+        font-weight: 900;
+        background-color: #00ccbc;
+    
+        &:hover {
+            background-color: rgba(0,184,168,1);
         }
     }
 }
 
 .background_top_container1 {
-    overflow: hidden;
+    margin-top: 61px;
+    // overflow: hidden;
     width: 100%;
-    height: 130vh;
+    // height: calc(100vh - 75px);
     background: rgb(0,204,188);
     background: linear-gradient(256deg, rgba(0,204,188,1) 0%, rgba(0,204,188,1) 16%, rgba(255,255,255,1) 16%, rgba(255,255,255,1) 100%);
     .background_top_container2 {
         width: 100%;
-        height: 100%;
+        // height: 100%;
         background: rgb(0,204,188);
         background: linear-gradient(339deg, rgba(0,204,188,1) 0%, rgba(0,204,188,1) 20%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 100%);
 
         .form_container {
-            height: 40%;
-            overflow-y: auto;
+            // height: 40%;
+            // overflow-y: auto;
             border: none;
             background-color: rgba(0,0,0,0);
         }
@@ -30,17 +46,19 @@
             font-size: 3rem;
             font-weight: 900;
         }
-        .btn_green {
-            text-decoration-color: blac;
-            background-color: #00ccbc;
-
-            &:hover {
-                background-color: rgba(0,184,168,1);
-            }
-        }
         .terms_and_conditions {
             color: #7a7d7d;
             font-size: 0.8rem;
         }
+    }
+}
+// COMMONS
+.btn_green {
+    font-weight: 900;
+    background-color: #00ccbc;
+    border-color: #fff;
+
+    &:hover {
+        background-color: rgba(0,184,168,1);
     }
 }

@@ -14,7 +14,7 @@
                         
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
-                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" maxlength="50" required placeholder="inserisci il tuo nome">
+                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
 
                             <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="customer_address" class="col-form-label col-4">Indirizzo<strong>*</strong></label>
-                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" maxlength="100" required placeholder="inserisci il tuo indirizzo">
+                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
                         
                             <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                                 {{error}}
@@ -31,8 +31,17 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="customer_email" class="col-form-label col-4">Email<strong>*</strong></label>
+                            <input v-model="customer_email" class="col-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
+
+                            <p v-for="(error, index) in errors.customer_email" :key="'error_name' + index" class="invalid-feedback">
+                                {{error}}
+                            </p>
+                        </div>
+
+                        <div class="form-group">
                             <label for="customer_phone" class="col-form-label col-4">Numero di cellulare<strong>*</strong></label>
-                            <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required  pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
+                            <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                         
                             <p v-for="(error, index) in errors.customer_phone" :key="'error_phone' + index" class="invalid-feedback">
                                 {{error}}
@@ -49,7 +58,7 @@
                             </p>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Ordina</button>
+                        <button :disabled='orderSending' type="submit" class="btn btn-primary">{{orderSending ? 'Ordinazione in corso' : 'Ordina'}}</button>
                     </form>
                 </div>
 
@@ -60,6 +69,8 @@
                             {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
                         </li>
                     </ul>
+
+                    <h2>Totale: {{totalPrice}}</h2>
                 </div>
                     
 
@@ -81,22 +92,33 @@
                 name: this.$route.params.name,
                 customer_name: '',
                 customer_address: '',
+                customer_email: '',
                 customer_phone: '',
                 comment: '',
                 errors: {},
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
-                cart: null
+                cart: null,
+                totalPrice: 0,
+                orderSending: false
 
             }
         },
         methods: {
             makeOrder(){
+
+                this.orderSending = true;
+
                 axios.post("/api/order", {
                     "customer_name" : this.customer_name,
                     "customer_address" : this.customer_address,
+                    "customer_email" : this.customer_email,
                     "customer_phone" : this.customer_phone,
-                    "customer_note" : this.customer_note
+                    "customer_note" : this.customer_note,
+                    "cart" : this.cart,
+                    "price" : this.totalPrice
                 }).then(response =>{
+
+                    this.orderSending = false;
                     console.log(response);
 
                     if(response.data.errors){
@@ -115,10 +137,20 @@
                this.cart =  localStorage.getItem('myCart');
                this.cart = JSON.parse(this.cart);
                console.log(this.cart);
+            },
+            getTotal(){
+                this.totalPrice = 0;
+
+                for(let i = 0; i <= this.cart.length; i++){
+                    this.totalPrice += this.cart[i].total;
+                }
+            
+                
             }
         },
         mounted() {
             this.getLocal();
+            this.getTotal();
         }
     }
 </script>

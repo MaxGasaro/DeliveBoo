@@ -53,7 +53,7 @@
                         <textarea  class="form-control" name="description" id="description" cols="30" rows="10" required>{{old('description', $food->description)}}</textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Modifica</button>
               </form>
             </div>
         </div>

@@ -11,14 +11,14 @@
                     <thead>
                         <tr>
                             <th scope="col text-uppercase">#</th>
-                            <th scope="col text-uppercase">Customer Name</th>
-                            <th scope="col text-uppercase">Address</th>
-                            <th scope="col text-uppercase">comment</th>
-                            <th scope="col text-uppercase">price</th>
-                            <th scope="col text-uppercase">phone</th>
-                            <th scope="col text-uppercase">date</th>
-                            <th scope="col text-uppercase">status order</th>
-                            <th scope="col text-uppercase">azioni</th>
+                            <th scope="col text-uppercase">Nome cliente</th>
+                            <th scope="col text-uppercase">Indirizzo</th>
+                            <th scope="col text-uppercase">Commento</th>
+                            <th scope="col text-uppercase">Prezzo</th>
+                            <th scope="col text-uppercase">Telefono</th>
+                            <th scope="col text-uppercase">Data</th>
+                            <th scope="col text-uppercase">Stato ordine</th>
+                            <th scope="col text-uppercase">Azioni</th>
                         </tr>
                     </thead>
 
@@ -34,7 +34,7 @@
                                 <td>{{$order->date}}</td>
                                 <td>{{$order->status_order}}</td>
                                 <td >
-                                    <a href="{{route('admin.orders.show', $order->id)}}" class="btn btn-primary">Show</a>
+                                    <a href="{{route('admin.orders.show', $order->id)}}" class="btn btn-primary">Mostra</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -11,13 +11,13 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col text-uppercase">image</th>
-                            <th scope="col text-uppercase">name</th>
-                            <th scope="col text-uppercase">description</th>
-                            <th scope="col text-uppercase">price</th>
-                            <th scope="col text-uppercase">visible</th>
-                            <th scope="col text-uppercase">category</th>
-                            <th scope="col text-uppercase">azioni</th>
+                            <th scope="col text-uppercase">Immagine</th>
+                            <th scope="col text-uppercase">Nome</th>
+                            <th scope="col text-uppercase">Descrizione</th>
+                            <th scope="col text-uppercase">Prezzo</th>
+                            <th scope="col text-uppercase">Visibile</th>
+                            <th scope="col text-uppercase">Categoria</th>
+                            <th scope="col text-uppercase">Azioni</th>
                         </tr>
                     </thead>
 
@@ -43,13 +43,13 @@
                                 </td>
                                 <td>{{isset($food->category)? $food->category->name : '-' }}</td>
                                 <td class="d-flex">
-                                    <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Show</a>
-                                    <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning mx-2">Edit</a>
+                                    <a href="{{route('admin.foods.show', $food->id)}}" class="btn btn-primary">Mostra</a>
+                                    <a href="{{route('admin.foods.edit', $food->id)}}" class="btn btn-warning mx-2">Modifica</a>
 
                                         <!-- Button trigger modal -->
                                     <!--nella onclick passare prima l'id e poi il nome della rotta-->
                                     <button type="button" class="btn btn-danger" onclick="btnDelete('{{$food->id}}', 'foods');" data-toggle="modal" data-target="#cancel" >
-                                        Remove
+                                        Rimuovi
                                     </button>
                                     
                                     <!-- Modal -->
@@ -69,12 +69,12 @@
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                                                     <form action="" method="POST" name="myForm" id='myForm'>
                                                         @csrf
                                                         @method('DELETE') 
                                                         
-                                                        <button type="submit"  class="btn btn-danger">Remove</button>
+                                                        <button type="submit"  class="btn btn-danger">Rimuovi</button>
                                                     </form>
                                                 </div>
                                             </div>
