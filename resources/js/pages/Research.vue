@@ -52,7 +52,7 @@
             <!-- Part right -->
             <div class="col-12 col-md-10 px-5 p-right">
                 <div class="row flex-wrap justify-content-start">
-                    <div class="type" v-for="(type, index) in selected" :key="index">
+                    <div class="type" v-for="(type, index) in nameSelected" :key="index">
                         {{type.name}}
                         <i @click="removeType(type.id)" class="fa-solid fa-xmark"></i>
                     </div>
@@ -65,7 +65,7 @@
                         Nessuna categoria selezionata
                     </span> 
                     <span v-else v-for=" (name, index) in nameSelected" :key="index">
-                        {{name}} 
+                        {{name.name}} &#183;
 
                     </span>
                 </h4>
@@ -111,6 +111,7 @@ export default {
             axios.get("/api/typologies")
             .then(response =>{
                 this.typologies = response.data.response;
+                console.log(this.nameSelected);
             });
         },
 
@@ -156,7 +157,7 @@ export default {
             let array=[];
             this.typologies.forEach(element => {
                 if(this.selected.includes(element.id)){
-                    array.push(element.name);
+                    array.push(element);
                 }
 
                 this.nameSelected = array.filter(function(item, pos) {
@@ -166,11 +167,13 @@ export default {
         },
         removeType(id){
         console.log(this.selected,id);
-        for(let i=0; i<this.selected.length; i++){
-          if(this.selected[i].id == id)
-            this.selected.splice(i,1);
+        for(let i=0; i<this.nameSelected.length; i++){
+          if(this.nameSelected[i].id == id) {
+              this.nameSelected.splice(i,1);
+              this.selected.splice(i,1);
+            }
         }
-        this.GetRestaurants();
+        this.getFilterRestaurants();
       }
     },
 
