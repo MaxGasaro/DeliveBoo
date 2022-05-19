@@ -6,6 +6,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import VueCarousel from 'vue-carousel';
 
 Vue.use(VueCarousel);
+require("./braintree");
 
 import Vue from 'vue';
 import App from './views/App';

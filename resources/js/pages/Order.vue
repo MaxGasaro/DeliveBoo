@@ -1,13 +1,13 @@
 <template>
-    <div class="container-fluid">
-            <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
+    <div class="container-fluid pb-5">
+        <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
 
             <div class="row">
 
                 
                 <div class="col-8">
-                    <form @submit.prevent="makeOrder" class="w-100">
+                    <form @submit.prevent="makeOrder" class="w-100 pb-5">
                         <div v-if="orderSent" class="alert alert-success">
                             ordine inviato con successo
                         </div>
@@ -58,7 +58,26 @@
                             </p>
                         </div>
 
-                        <button :disabled='orderSending' type="submit" class="btn btn-primary">{{orderSending ? 'Ordinazione in corso' : 'Ordina'}}</button>
+                        
+
+                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                         v-if="!disableBuyButton"
+                        >
+                         Procedi con il pagamento
+                        </button>
+
+                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" v-else >
+                         {{(loadingPayment)? 'Loading...' : 'Procedi con l\'acquisto'}}
+                        </button>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                               <payment
+                                @onSuccess="paymentOnSuccess"
+                                @onError="paymentOnError"
+                                />
+                            </div>
+                        </div>
                     </form>
                 </div>
 
@@ -70,13 +89,8 @@
                         </li>
                     </ul>
 
-                    <h2>Totale: {{totalPrice}}</h2>
+                    <h2>Totale: {{totalPrice}} &euro;</h2>
                 </div>
-                    
-
-                    
-                
-
                 
             </div> 
         </div>
@@ -84,9 +98,14 @@
     
 </template>
 
+
 <script>
+import payment from './partials/payment.vue';
     export default {
         name: 'Order',
+        components:{
+            payment,
+        },
         data(){
             return{
                 name: this.$route.params.name,
@@ -99,8 +118,18 @@
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
                 cart: null,
                 totalPrice: 0,
+<<<<<<< HEAD
                 orderSending: false
 
+=======
+                disableBuyButton : false,
+                loadingPayment: true,
+                form: {
+                    token: '',
+                    amount: ''
+                }
+                
+>>>>>>> feat-braintree
             }
         },
         methods: {
@@ -144,23 +173,59 @@
                 for(let i = 0; i <= this.cart.length; i++){
                     this.totalPrice += this.cart[i].total;
                 }
-            
+
                 
+                
+            },
+            paymentOnSuccess (nonce) {
+            // alert(nonce);
+                this.form.token = nonce
+                this.buy()
+            },
+            // eslint-disable-next-line node/handle-callback-err
+            paymentOnError (error) {
+            },
+            buy () {
+                this.disableBuyButton = true
+                this.loadingPayment = true
+
+                try {
+                    axios.post('/api/orders/make/payment', this.form )
+                    .then(response =>{
+                    console.log(response);
+                    });
+                    //modale per ringraziare
+                } catch (error) {
+                    this.disableBuyButton = false
+                    this.loadingPayment = false
+                }
             }
+
+                    
+
         },
-        mounted() {
+        created() {
+            
             this.getLocal();
             this.getTotal();
+            
+        },
+        mounted(){
+            this.form.amount = this.totalPrice;
         }
     }
 </script>
 
 <style scoped lang="scss">
     .container-fluid{
-        background-color: #00ccbc;
+        height: 100vh;
+        background: rgb(0,204,188);
+        background: linear-gradient(160deg, rgba(0,204,188,1) 0%, rgba(0,204,188,1) 45%, rgba(255,255,255,1) 45%);
+        
 
         input{
             display: inline-block;
         }
     }
+
 </style>
