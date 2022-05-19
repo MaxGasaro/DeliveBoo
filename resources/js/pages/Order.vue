@@ -202,6 +202,7 @@ import payment from './partials/payment.vue';
                     console.log(response);
                     });
                     $("#thx").modal();
+                    localStorage.removeItem('myCart');
                 } catch (error) {
                     this.disableBuyButton = false
                     this.loadingPayment = false
