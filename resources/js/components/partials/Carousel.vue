@@ -13,7 +13,7 @@
 import { Carousel, Slide } from 'vue-carousel';
 
 export default {
-    name: 'CarouselCopyCopy',
+    name: 'Carousel',
         components: {
             Carousel,
             Slide

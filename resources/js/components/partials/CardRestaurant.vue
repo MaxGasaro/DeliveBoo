@@ -1,6 +1,6 @@
 <template>
     <div class="card h-100">
-        <router-link :to="{name: 'restaurant', params: {slug: restaurant.slug}}">
+        <router-link :to="{name: 'restaurant', params: {slug: restaurant.slug}}" class="text-decoration-none">
             <img class="card-img-top" :src="restaurant.image" :alt="restaurant.name">
             <div class="card-body">
                 <h5 class="card-title font-weight-semibold mb-1">{{restaurant.name}}</h5>
