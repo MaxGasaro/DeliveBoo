@@ -18,7 +18,7 @@
                             <p>Grazie per aver ordinato da noi. Riceverai presto un'email di conferma dell'avvenuto ordine. Speriamo di rivederla presto👍</p>
                         </div>
                         <div class="modal-footer px-2">
-                            <router-link @click.native="leave()" id="leave" class="btn btn-primary w-100" :to="{name: 'home'}">Torna alla home</router-link>
+                            <router-link id="leave" class="btn btn-primary w-100" :to="{name: 'home'}">Torna alla home</router-link>
                         </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
 
 
 <script>
-import func from '../../../vue-temp/vue-editor-bridge';
+
 import payment from './partials/payment.vue';
     export default {
         name: 'Order',

@@ -7,13 +7,14 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
         <span class="navbar-toggler-icon" style="color: #00CCBC;"></span>
       </button>
-      <div v-if="cartVoid" class="text-center cart">
-                                
-      </div>
-      <div v-else v-for="(el, index) in cart " :key="index"><router-link :to="{name:'restaurant',params:{slug:el.food.user.slug}}"><button class="btn mx-2" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(el.quantity * el.food.price).toFixed(2)}} &euro;</span></button></router-link></div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">     
-        <form class="form-inline my-2 my-lg-0 ">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div v-if="cartVoid" class="text-center cart"></div>
+        <div v-else><router-link :to="{name:'restaurant',params:{slug:restaurant}}"><button class="btn mr-2" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(totalPrice).toFixed(2)}}&euro;</span></button></router-link></div>
+        <form class=" my-2 my-lg-0 ">
+          
           <div class="dropdown">
+            <div class="row">
+            </div>
             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"  style="background-color: white; color: black;">
               Collabora con noi
             </button>
@@ -178,17 +179,14 @@ export default {
         return{
             quantityFood: 1,
             cart: [],
-            totalPrice:0
+            totalPrice:0,
+            cartVoid: true,
+            restaurant: null,
       }
     },
 
     created() {
-      window.addEventListener("scroll", this.handleScroll);
-      let modal = document.getElementsByClassName('modal-breakdown');
-      console.log(modal);
-      if(modal){
-        modal.classList.add("d-none");
-      }
+    window.addEventListener("scroll", this.handleScroll);
     },
 
     destroyed() {
@@ -253,8 +251,7 @@ export default {
         },
         getTotal(){
             this.totalPrice = 0;
-
-            for(let i = 0; i <= this.cart.length; i++){
+            for(let i = 0; i < this.cart.length; i++){
                 this.totalPrice += this.cart[i].total;
             }       
         }
@@ -262,6 +259,8 @@ export default {
     mounted(){
         this.getLocal();
         this.getTotal();
+        if(!this.cartVoid) 
+          this.restaurant= this.cart[0].food.user.slug
     },
 }
 

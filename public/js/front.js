@@ -2443,23 +2443,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   data: function data() {
     return {
       quantityFood: 1,
       cart: [],
-      totalPrice: 0
+      totalPrice: 0,
+      cartVoid: true,
+      restaurant: null
     };
   },
   created: function created() {
     window.addEventListener("scroll", this.handleScroll);
-    var modal = document.getElementsByClassName('modal-breakdown');
-    console.log(modal);
-
-    if (modal) {
-      modal.classList.add("d-none");
-    }
   },
   destroyed: function destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -2519,7 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
     getTotal: function getTotal() {
       this.totalPrice = 0;
 
-      for (var i = 0; i <= this.cart.length; i++) {
+      for (var i = 0; i < this.cart.length; i++) {
         this.totalPrice += this.cart[i].total;
       }
     }
@@ -2527,6 +2524,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getLocal();
     this.getTotal();
+    if (!this.cartVoid) this.restaurant = this.cart[0].food.user.slug;
   }
 });
 
@@ -2562,8 +2560,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../vue-temp/vue-editor-bridge'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _partials_payment_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/payment.vue */ "./resources/js/pages/partials/payment.vue");
+/* harmony import */ var _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/payment.vue */ "./resources/js/pages/partials/payment.vue");
 //
 //
 //
@@ -2675,12 +2672,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   components: {
-    payment: _partials_payment_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    payment: _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -30058,57 +30054,58 @@ var render = function () {
           _vm._v(" "),
           _vm._m(1),
           _vm._v(" "),
-          _vm.cartVoid
-            ? _c("div", { staticClass: "text-center cart" })
-            : _vm._l(_vm.cart, function (el, index) {
-                return _c(
-                  "div",
-                  { key: index },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        attrs: {
-                          to: {
-                            name: "restaurant",
-                            params: { slug: el.food.user.slug },
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarSupportedContent" },
+            },
+            [
+              _vm.cartVoid
+                ? _c("div", { staticClass: "text-center cart" })
+                : _c(
+                    "div",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "restaurant",
+                              params: { slug: _vm.restaurant },
+                            },
                           },
                         },
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn mx-2",
-                            staticStyle: {
-                              "background-color": "white",
-                              color: "black",
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn mr-2",
+                              staticStyle: {
+                                "background-color": "white",
+                                color: "black",
+                              },
+                              attrs: { type: "button" },
                             },
-                            attrs: { type: "button" },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa-solid fa-basket-shopping mr-1",
-                            }),
-                            _c("span", [
-                              _vm._v(
-                                _vm._s(
-                                  (el.quantity * el.food.price).toFixed(2)
-                                ) + " €"
-                              ),
-                            ]),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ],
-                  1
-                )
-              }),
-          _vm._v(" "),
-          _vm._m(2),
-        ],
-        2
+                            [
+                              _c("i", {
+                                staticClass: "fa-solid fa-basket-shopping mr-1",
+                              }),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.totalPrice.toFixed(2)) + "€"),
+                              ]),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
+              _vm._v(" "),
+              _vm._m(2),
+            ]
+          ),
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container pt-5" }, [
@@ -30265,60 +30262,53 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "collapse navbar-collapse",
-        attrs: { id: "navbarSupportedContent" },
-      },
-      [
-        _c("form", { staticClass: "form-inline my-2 my-lg-0 " }, [
-          _c("div", { staticClass: "dropdown" }, [
+    return _c("form", { staticClass: " my-2 my-lg-0 " }, [
+      _c("div", { staticClass: "dropdown" }, [
+        _c("div", { staticClass: "row" }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn dropdown-toggle",
+            staticStyle: { "background-color": "white", color: "black" },
+            attrs: {
+              type: "button",
+              id: "dropdownMenuButton",
+              "data-toggle": "dropdown",
+              "aria-expanded": "false",
+            },
+          },
+          [_vm._v("\n            Collabora con noi\n          ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "dropdown-menu",
+            attrs: { "aria-labelledby": "dropdownMenuButton" },
+          },
+          [
             _c(
-              "button",
+              "a",
               {
-                staticClass: "btn dropdown-toggle",
-                staticStyle: { "background-color": "white", color: "black" },
-                attrs: {
-                  type: "button",
-                  id: "dropdownMenuButton",
-                  "data-toggle": "dropdown",
-                  "aria-expanded": "false",
-                },
+                staticClass: "dropdown-item",
+                attrs: { href: "http://127.0.0.1:8000/login" },
               },
-              [_vm._v("\n            Collabora con noi\n          ")]
+              [_vm._v("Area ristorante")]
             ),
             _vm._v(" "),
             _c(
-              "div",
+              "a",
               {
-                staticClass: "dropdown-menu",
-                attrs: { "aria-labelledby": "dropdownMenuButton" },
+                staticClass: "dropdown-item",
+                attrs: { href: "http://127.0.0.1:8000/register" },
               },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "http://127.0.0.1:8000/login" },
-                  },
-                  [_vm._v("Area ristorante")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: { href: "http://127.0.0.1:8000/register" },
-                  },
-                  [_vm._v("Lavora con noi")]
-                ),
-              ]
+              [_vm._v("Lavora con noi")]
             ),
-          ]),
-        ]),
-      ]
-    )
+          ]
+        ),
+      ]),
+    ])
   },
   function () {
     var _vm = this
@@ -30824,11 +30814,6 @@ var render = function () {
                       {
                         staticClass: "btn btn-primary w-100",
                         attrs: { id: "leave", to: { name: "home" } },
-                        nativeOn: {
-                          click: function ($event) {
-                            return _vm.leave()
-                          },
-                        },
                       },
                       [_vm._v("Torna alla home")]
                     ),
@@ -48545,7 +48530,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
