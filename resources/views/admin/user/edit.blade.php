@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo e-mail') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $user->email }}" required autocomplete="email" disabled>
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $user->address) }}" required autocomplete="address">
@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('owner') }}</label>
+                            <label for="owner" class="col-md-4 col-form-label text-md-right">{{ __('Proprietario') }}</label>
 
                             <div class="col-md-6">
                                 <input id="owner" type="text" class="form-control @error('owner') is-invalid @enderror" name="owner" value="{{ old('owner',$user->owner ) }}"  autocomplete="owner">

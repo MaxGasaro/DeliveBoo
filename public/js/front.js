@@ -2907,6 +2907,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -27957,7 +27962,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100%;\n}\n.list-category{\noverflow-y: auto;\nheight: 100%;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\n\n\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#rider {\n    width: 30px;\n    height: 30px;\n}\n.category a {\n    color:#00b8a9;\n}\n.type {\n    padding: 4px 8px 4px 12px;\n    background-color: #00b8a9;\n    color: white;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.fa-xmark{\n    font-size: 1.2em;\n}\n.fa-xmark:hover{\n    cursor: pointer;\n    transform: scale(1.1);\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -31418,12 +31423,13 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "research" },
     [
       _c("Searchbar", { on: { goSearch: _vm.doSearch } }),
       _vm._v(" "),
-      _c("div", { staticClass: "px-md-4" }, [
+      _c("div", { staticClass: "px-4" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
-          _c("div", { staticClass: "d-none d-md-block col-2 p-left" }, [
+          _c("div", { staticClass: "col-4 col-md-2 p-left" }, [
             _vm._m(0),
             _vm._v(" "),
             _vm._m(1),
@@ -31527,7 +31533,7 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-10 px-5 p-right" }, [
+          _c("div", { staticClass: "col-8 col-md-10 px-5 p-right" }, [
             _c(
               "div",
               { staticClass: "row flex-wrap justify-content-start" },
@@ -31582,6 +31588,23 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "container-restaurants" }, [
+              _vm.restaurants.length == 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "row h-100 justify-content-center align-items-center",
+                    },
+                    [
+                      _c("span", { staticClass: "no-types" }, [
+                        _vm._v(
+                          "\n                          Ci dispiace ma non sono presenti ristoranti per queste categorie\n                      "
+                        ),
+                      ]),
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "row" },
@@ -31590,7 +31613,7 @@ var render = function () {
                     "div",
                     {
                       key: restaurant.id,
-                      staticClass: "col-6 col-lg-4 col-xl-3",
+                      staticClass: "col-12 col-md-6 col-lg-4 col-xl-3",
                     },
                     [
                       _c("CardRestaurant", {
@@ -31624,12 +31647,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "col-6" }, [
         _c("p", { staticClass: "font-weight-bold" }, [_vm._v("Indirizzo")]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-3 ms_green" }, [
-        _c("a", { staticClass: "font-weight-light", attrs: { href: "#" } }, [
-          _vm._v("Cambia"),
-        ]),
       ]),
     ])
   },
@@ -48680,7 +48697,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Mirko\Boolean Careers\Classe #53\08 - Progetto finale\Progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
