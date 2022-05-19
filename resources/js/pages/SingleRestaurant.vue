@@ -50,11 +50,34 @@
                     </div>
                 </div>
 
+                <div class="modal" tabindex="-1" id="empty-cart">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title w-100">Attenzione!</h5>
+                            <button type="button" class="close" data-dismiss="modal" id="empty">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Questo piatto appartiene a un altro ristorante, per poterlo aggiungere devi prima svuotare il carrello. Vuoi procedere?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="d-flex justify-content-center align-items-ceter">
+
+                                <button class=" btn btn-secondary m-2 " data-dismiss="modal">chiudi</button>
+                                <button class="btn btn-danger m-2 " @click="svuotaCarrello()">Svuota carrello </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row my-3">
                     <div class=" col-12 col-md-8">
                        <div class="row ">
                             <div class="col-12 col-lg-6 mb-lg-2" v-for="food in foods" :key="food.id">
-                               <div id="card-product" class="card  h-100  food-card"  @click="getSingleFood(food)">
+                               <div v-if="food.visible" id="card-product" class="card  h-100  food-card"  @click="getSingleFood(food)">
                                     <div class="row">
                                         <div class="col">
                                             <div class="card-body">
@@ -150,11 +173,42 @@ export default {
             })
         },
         getSingleFood(food){
-            $("#card-product").modal(); 
-            this.singleFood = [];
-            this.quantityFood = 1;
-            this.singleFood = food;
+      
+            /* if(this.cart[0].food.user_id != food.user_id){
+                $("#empty-cart").modal();
+            }else{
+                $("#card-product").modal(); 
+                this.singleFood = [];
+                this.quantityFood = 1;
+                this.singleFood = food;
+            } */
 
+            if(this.cart.length > 0){
+                if(this.cart[0].food.user_id != food.user_id){
+                    $("#empty-cart").modal();
+                }else{
+                    $("#card-product").modal(); 
+                    this.singleFood = [];
+                    this.quantityFood = 1;
+                    this.singleFood = food;
+
+                }
+            }else{
+
+                $("#card-product").modal(); 
+                this.singleFood = [];
+                this.quantityFood = 1;
+                this.singleFood = food;
+            }
+            
+        },
+        svuotaCarrello(){
+            localStorage.removeItem("myCart");
+            this.cart = [];
+            this.singleFood = [];
+            document.getElementById('empty').click();
+            this.cartVoid= true;
+            this.getTotal();
         },
 
         addToCart(){
