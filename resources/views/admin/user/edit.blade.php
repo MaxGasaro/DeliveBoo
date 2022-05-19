@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Modifica Profilo</div>
+                <div class="card-header">Modifica Profilo - <strong>I campi contrassegnati(*) sono obbligatori</strong></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype="multipart/form-data">
@@ -44,7 +44,7 @@
 
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome ristorante <strong>*</strong></label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus >
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo e-mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo e-mail') }} <strong>*</strong></label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{  $user->email }}" required autocomplete="email" disabled>
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }} <strong>*</strong></label>
 
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $user->address) }}" required autocomplete="address">
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">P.IVA</label>
+                            <label for="p_iva" class="col-md-4 col-form-label text-md-right">P.IVA <strong>*</strong></label>
 
                             <div class="col-md-6">
                                 <input id="p_iva" type="text" pattern="[0-9]+" maxlength="11" minlength="11" class="form-control @error('p_iva') is-invalid @enderror" name="p_iva" value="{{ $user->p_iva }}" required autocomplete="p_iva" disabled>
@@ -114,7 +114,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="typology_list" class="col-md-4 col-form-label text-md-right">Tipologie</label>
+                            <label for="typology_list" class="col-md-4 col-form-label text-md-right">Tipologie <strong>*</strong>
+                                <small class="d-block">Selezionare almeno 1</small>
+                            </label>
+                            
 
                             <div class="col-md-6 pl-5">
                                 <div class="row row-cols-2 flex-wrap">
@@ -135,7 +138,8 @@
                                     @endforeach
                                 </div>
                             </div>
-                            
+
+                
                         </div>
 
 
