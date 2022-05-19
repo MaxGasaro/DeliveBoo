@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="research">
     <Searchbar @goSearch="doSearch"></Searchbar>
-    <div class="px-md-4">
+    <div class="px-4">
         <div class="row justify-content-center">
             <!-- Part left -->
-            <div class="d-none d-md-block col-2 p-left">
+            <div class="col-4 col-md-2 p-left">
                 <div class="row my-3">
                     <div class="col-3">
                         <img id="rider" src="img/rider-deliveroo.png" alt="">
@@ -12,9 +12,9 @@
                     <div class="col-6">
                         <p class="font-weight-bold">Indirizzo</p>
                     </div>
-                    <div class="col-3 ms_green">
+                    <!-- <div class="col-3 ms_green">
                         <a class="font-weight-light" href="#">Cambia</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
                     <div class="input-group">
@@ -50,7 +50,7 @@
                 </div>        
             </div>
             <!-- Part right -->
-            <div class="col-12 col-md-10 px-5 p-right">
+            <div class="col-8 col-md-10 px-5 p-right">
                 <div class="row flex-wrap justify-content-start">
                     <div class="type rounded mr-2 my-2" v-for="(type, index) in nameSelected" :key="index">
                         {{type.name}}
@@ -70,8 +70,13 @@
                     </span>
                 </h4>
                 <div class="container-restaurants">
+                    <div v-if="restaurants.length == 0" class="row h-100 justify-content-center align-items-center">
+                        <span class="no-types">
+                            Ci dispiace ma non sono presenti ristoranti per queste categorie
+                        </span>
+                    </div>
                     <div class="row">
-                        <div class="col-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
                             <CardRestaurant :restaurant ="restaurant"/>           
                         </div>
                     </div>
@@ -185,6 +190,9 @@ export default {
 </script>
 
 <style>
+/* .research {
+    height: 100vh;
+} */
     * {
     padding: 0;
     margin: 0;
@@ -251,6 +259,11 @@ export default {
     .fa-xmark:hover{
         cursor: pointer;
         transform: scale(1.1);
+    }
+
+    .no-types {
+        color: #00b8a9;
+        font-size: 2rem;
     }
 
 </style>
