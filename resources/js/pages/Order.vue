@@ -152,6 +152,7 @@ import payment from './partials/payment.vue';
                     }else{
                         this.customer_name= '';
                         this.customer_address= '';
+                        this.customer_email= '';
                         this.customer_phone= '';
                         this.comment= '';
                     }

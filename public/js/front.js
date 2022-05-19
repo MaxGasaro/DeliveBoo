@@ -2709,6 +2709,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this.customer_name = '';
           _this.customer_address = '';
+          _this.customer_email = '';
           _this.customer_phone = '';
           _this.comment = '';
         }
@@ -48492,7 +48493,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
