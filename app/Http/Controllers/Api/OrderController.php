@@ -18,8 +18,8 @@ class OrderController extends Controller
     //funzione store richimata quando il cliente compila i dati per un nuovo ordine
     public function store(Request $request){
         $data = $request->all();
-
-        $data['date'] = Carbon::now();
+        
+        $data['date'] = Carbon::now(); /* ->format('d-m-Y') */
 
 
         //validazione backend dei dati inseriti
