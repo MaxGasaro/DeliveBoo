@@ -2229,12 +2229,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Searchbar',
   data: function data() {
     return {
-      search: ''
+      search: '',
+      quantityFood: 1,
+      cart: [],
+      totalPrice: 0,
+      cartVoid: true,
+      restaurant: null
     };
+  },
+  methods: {
+    getLocal: function getLocal() {
+      this.cart = localStorage.getItem('myCart');
+      this.cart = JSON.parse(this.cart);
+
+      if (this.cart.length != 0) {
+        this.cartVoid = false;
+      }
+    },
+    getTotal: function getTotal() {
+      this.totalPrice = 0;
+
+      for (var i = 0; i < this.cart.length; i++) {
+        this.totalPrice += this.cart[i].total;
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.getLocal();
+    this.getTotal();
+    if (!this.cartVoid) this.restaurant = this.cart[0].food.user.slug;
   }
 });
 
@@ -27908,7 +27936,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100%;\n}\n.list-category{\noverflow-y: auto;\nheight: 100%;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\n\n\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#rider {\n    width: 30px;\n    height: 30px;\n}\n.category a {\n    color:#00b8a9;\n}\n.type {\n    padding: 4px 8px 4px 12px;\n    background-color: #00b8a9;\n    color: white;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n}\n.fa-xmark{\n    font-size: 1.2em;\n}\n.fa-xmark:hover{\n    cursor: pointer;\n    transform: scale(1.1);\n}\n\n", ""]);
+exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100%;\n}\n.list-category{\noverflow-y: auto;\nheight: 100%;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\n\n\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#rider {\n    width: 30px;\n    height: 30px;\n}\n.category a {\n    color:#00b8a9;\n}\n.type {\n    padding: 4px 8px 4px 12px;\n    background-color: #00b8a9;\n    color: white;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n}\n.fa-xmark{\n    font-size: 1.2em;\n}\n.fa-xmark:hover{\n    cursor: pointer;\n    transform: scale(1.1);\n}\n\n", ""]);
 
 // exports
 
@@ -29904,7 +29932,52 @@ var render = function () {
           ]
         ),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "px-4" }, [
+          _c("ul", { staticClass: "navbar-nav" }, [
+            _c("li", { staticClass: "nav-item active" }, [
+              _vm.cartVoid
+                ? _c("div")
+                : _c(
+                    "div",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              name: "restaurant",
+                              params: { slug: _vm.restaurant },
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn mr-2",
+                              staticStyle: {
+                                "background-color": "white",
+                                color: "black",
+                              },
+                              attrs: { type: "button" },
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa-solid fa-basket-shopping mr-1",
+                              }),
+                              _c("span", [
+                                _vm._v(_vm._s(_vm.totalPrice.toFixed(2)) + "€"),
+                              ]),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
+            ]),
+          ]),
+        ]),
       ]
     ),
     _vm._v(" "),
@@ -29989,25 +30062,6 @@ var staticRenderFns = [
           alt: "logo deliveroo",
         },
       }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "px-4" }, [
-      _c("ul", { staticClass: "navbar-nav" }, [
-        _c("li", { staticClass: "nav-item active" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-success my-sm-0",
-              attrs: { type: "submit" },
-            },
-            [_vm._v("Menù")]
-          ),
-        ]),
-      ]),
     ])
   },
 ]
@@ -31426,21 +31480,25 @@ var render = function () {
               "div",
               { staticClass: "row flex-wrap justify-content-start" },
               _vm._l(_vm.nameSelected, function (type, index) {
-                return _c("div", { key: index, staticClass: "type" }, [
-                  _vm._v(
-                    "\n                      " +
-                      _vm._s(type.name) +
-                      "\n                      "
-                  ),
-                  _c("i", {
-                    staticClass: "fa-solid fa-xmark",
-                    on: {
-                      click: function ($event) {
-                        return _vm.removeType(type.id)
+                return _c(
+                  "div",
+                  { key: index, staticClass: "type rounded mr-2 my-2" },
+                  [
+                    _vm._v(
+                      "\n                      " +
+                        _vm._s(type.name) +
+                        "\n                      "
+                    ),
+                    _c("i", {
+                      staticClass: "fa-solid fa-xmark",
+                      on: {
+                        click: function ($event) {
+                          return _vm.removeType(type.id)
+                        },
                       },
-                    },
-                  }),
-                ])
+                    }),
+                  ]
+                )
               }),
               0
             ),

@@ -52,7 +52,7 @@
             <!-- Part right -->
             <div class="col-12 col-md-10 px-5 p-right">
                 <div class="row flex-wrap justify-content-start">
-                    <div class="type" v-for="(type, index) in nameSelected" :key="index">
+                    <div class="type rounded mr-2 my-2" v-for="(type, index) in nameSelected" :key="index">
                         {{type.name}}
                         <i @click="removeType(type.id)" class="fa-solid fa-xmark"></i>
                     </div>
@@ -244,6 +244,7 @@ export default {
         font-weight: bold;
         display: flex;
         align-items: center;
+        justify-content: space-between;
     }
     .fa-xmark{
         font-size: 1.2em;

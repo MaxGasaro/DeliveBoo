@@ -16,7 +16,8 @@
         <div class="px-4">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <button class="btn btn-outline-success my-sm-0" type="submit">Menù</button>
+                    <div v-if="cartVoid"></div>
+                    <div v-else><router-link :to="{name:'restaurant',params:{slug:restaurant}}"><button class="btn mr-2" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(totalPrice).toFixed(2)}}&euro;</span></button></router-link></div>
                 </li>
             </ul>
         </div>
@@ -42,8 +43,35 @@ export default {
     data() {
         return {
             search: '',
+            quantityFood: 1,
+            cart: [],
+            totalPrice:0,
+            cartVoid: true,
+            restaurant: null,
         }
-    }
+    },
+    methods: {
+        getLocal(){
+            this.cart = localStorage.getItem('myCart'); 
+            this.cart = JSON.parse(this.cart);
+            if(this.cart.length != 0 ){
+                this.cartVoid = false;
+            }
+            
+        },
+        getTotal(){
+            this.totalPrice = 0;
+            for(let i = 0; i < this.cart.length; i++){
+                this.totalPrice += this.cart[i].total;
+            }       
+        }
+    },
+    mounted(){
+        this.getLocal();
+        this.getTotal();
+        if(!this.cartVoid) 
+          this.restaurant= this.cart[0].food.user.slug
+    },
 }
 </script>
 
