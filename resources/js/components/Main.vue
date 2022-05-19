@@ -12,4 +12,7 @@ export default {
 
 <style>
 
+  main{
+    height: 100%;
+  }
 </style>
