@@ -10,7 +10,7 @@
                         <img id="rider" src="img/rider-deliveroo.png" alt="">
                     </div>
                     <div class="col-6">
-                        <p class="font-weight-bold">Indirizzo</p>
+                        <p class="font-weight-bold">{{address}}</p>
                     </div>
                     <!-- <div class="col-3 ms_green">
                         <a class="font-weight-light" href="#">Cambia</a>
@@ -105,6 +105,7 @@ export default {
             search: '',
             urlTypes : '/api/searcht/',
             urlUsers : '/api/searchu/',
+            address: ''
         }
     },
     components: {
@@ -215,11 +216,16 @@ export default {
                 console.log(error);
             });
         },
+        getLocalAddress(){
+          this.address =  localStorage.getItem('myAddress'); 
+          this.address = JSON.parse(this.address);
+        },
     },
 
     mounted(){
         this.GetTipologies();
         this.GetRestaurants();
+        this.getLocalAddress();
     }
 
 }

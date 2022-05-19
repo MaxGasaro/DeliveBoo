@@ -2504,6 +2504,7 @@ __webpack_require__.r(__webpack_exports__);
     }, */
     link_research: function link_research() {
       this.$router.push('/research');
+      localStorage.setItem('myAddress', JSON.stringify(this.address));
     },
     click_card: function click_card() {
       var _this = this;
@@ -2948,7 +2949,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       nameSelected: [],
       search: '',
       urlTypes: '/api/searcht/',
-      urlUsers: '/api/searchu/'
+      urlUsers: '/api/searchu/',
+      address: ''
     };
   },
   components: {
@@ -3066,11 +3068,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         // handle error
         console.log(error);
       });
+    },
+    getLocalAddress: function getLocalAddress() {
+      this.address = localStorage.getItem('myAddress');
+      this.address = JSON.parse(this.address);
     }
   },
   mounted: function mounted() {
     this.GetTipologies();
     this.GetRestaurants();
+    this.getLocalAddress();
   }
 });
 
@@ -27934,7 +27941,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".card[data-v-9077dca2] {\n  /*  border: none; */\n}\n.card .card-body[data-v-9077dca2] {\n  color: #000;\n}\n.card .card-body span[data-v-9077dca2], .card .card-body p[data-v-9077dca2] {\n  font-size: 14px;\n}", ""]);
+exports.push([module.i, ".card[data-v-9077dca2] {\n  /*  border: none; */\n  cursor: pointer;\n  box-shadow: 3px 6px 18px #ebebeb;\n}\n.card .card-body[data-v-9077dca2] {\n  color: #000;\n}\n.card .card-body span[data-v-9077dca2], .card .card-body p[data-v-9077dca2] {\n  font-size: 14px;\n}\n.card[data-v-9077dca2]:hover {\n  box-shadow: 7px 23px 18px #ebebeb;\n}", ""]);
 
 // exports
 
@@ -28086,7 +28093,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -29885,7 +29892,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card h-100" },
+    { staticClass: "card h-100 mb-2" },
     [
       _c(
         "router-link",
@@ -30375,15 +30382,45 @@ var render = function () {
                 _vm._v(" "),
                 _c("form", { attrs: { action: "" } }, [
                   _c("div", { staticClass: "row pt-1" }, [
-                    _vm._m(3),
+                    _c("div", { staticClass: "col-9" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.address,
+                            expression: "address",
+                          },
+                        ],
+                        staticClass: "form-control mr-sm-2",
+                        attrs: {
+                          type: "search",
+                          required: "",
+                          placeholder: "Dove ?...",
+                          "aria-label": "Search",
+                        },
+                        domProps: { value: _vm.address },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.address = $event.target.value
+                          },
+                        },
+                      }),
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-3" }, [
                       _c(
                         "button",
                         {
                           staticClass: "btn my-btn-home mx-1 my-2 my-sm-0",
-                          attrs: { required: "" },
-                          on: { click: _vm.link_research },
+                          on: {
+                            click: function ($event) {
+                              return _vm.link_research()
+                            },
+                          },
                         },
                         [_vm._v("Cerca")]
                       ),
@@ -30394,7 +30431,7 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _vm._m(4),
+          _vm._m(3),
         ]),
       ]),
     ]),
@@ -30412,7 +30449,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(5)]
+            [_vm._m(4)]
           ),
           _vm._v(" "),
           _c(
@@ -30421,7 +30458,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(6)]
+            [_vm._m(5)]
           ),
         ]),
         _vm._v(" "),
@@ -30432,7 +30469,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(7)]
+            [_vm._m(6)]
           ),
           _vm._v(" "),
           _c(
@@ -30441,13 +30478,13 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(8)]
+            [_vm._m(7)]
           ),
         ]),
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(9),
+    _vm._m(8),
     _vm._v(" "),
     _c("div", { attrs: { id: "click_card2" } }, [
       _c("div", {
@@ -30553,22 +30590,6 @@ var staticRenderFns = [
           ]
         ),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-9" }, [
-      _c("input", {
-        staticClass: "form-control mr-sm-2",
-        attrs: {
-          type: "search",
-          required: "",
-          placeholder: "Dove ?...",
-          "aria-label": "Search",
-        },
-      }),
     ])
   },
   function () {
@@ -31553,7 +31574,15 @@ var render = function () {
       _c("div", { staticClass: "px-4" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
           _c("div", { staticClass: "col-4 col-md-2 p-left" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "row my-3" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6" }, [
+                _c("p", { staticClass: "font-weight-bold" }, [
+                  _vm._v(_vm._s(_vm.address)),
+                ]),
+              ]),
+            ]),
             _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
@@ -31761,16 +31790,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-3" }, [
-      _c("div", { staticClass: "col-3" }, [
-        _c("img", {
-          attrs: { id: "rider", src: "img/rider-deliveroo.png", alt: "" },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-6" }, [
-        _c("p", { staticClass: "font-weight-bold" }, [_vm._v("Indirizzo")]),
-      ]),
+    return _c("div", { staticClass: "col-3" }, [
+      _c("img", {
+        attrs: { id: "rider", src: "img/rider-deliveroo.png", alt: "" },
+      }),
     ])
   },
   function () {
@@ -48948,7 +48971,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

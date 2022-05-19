@@ -38,10 +38,10 @@
                 <div class="row pt-1">
                     
                   <div class="col-9">
-                    <input class="form-control mr-sm-2" type="search" required placeholder="Dove ?..." aria-label="Search">
+                    <input class="form-control mr-sm-2" v-model="address" type="search" required placeholder="Dove ?..." aria-label="Search">
                   </div>
                   <div class="col-3">
-                    <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research" required>Cerca</button>  
+                    <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research()">Cerca</button>  
                   </div>
                 </div>
               </form>
@@ -204,6 +204,7 @@ export default {
 
       link_research(){
         this.$router.push('/research');
+        localStorage.setItem('myAddress', JSON.stringify(this.address));
       },
 
       click_card() {
@@ -250,6 +251,7 @@ export default {
             }
             
         },
+      
         getTotal(){
             this.totalPrice = 0;
             for(let i = 0; i < this.cart.length; i++){

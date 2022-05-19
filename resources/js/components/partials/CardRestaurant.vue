@@ -1,5 +1,5 @@
 <template>
-    <div class="card h-100">
+    <div class="card h-100 mb-2">
         <router-link :to="{name: 'restaurant', params: {slug: restaurant.slug}}" class="text-decoration-none">
             <img class="card-img-top" :src="restaurant.image" :alt="restaurant.name">
             <div class="card-body">
@@ -33,6 +33,12 @@ export default {
                 font-size: 14px;
             }
 
+        }
+        cursor: pointer;
+        box-shadow: 3px 6px 18px #ebebeb ;
+
+        &:hover{
+            box-shadow: 7px 23px 18px #ebebeb;
         }
     }
 </style>
