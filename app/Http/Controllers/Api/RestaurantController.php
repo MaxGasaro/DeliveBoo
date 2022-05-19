@@ -101,4 +101,29 @@ class RestaurantController extends Controller
 
     }
 
+    public function searchTypes($input = null){
+        if($input != null){
+            $new_str = preg_replace("/\s+/", "*", $input);
+            $input = $new_str;
+            $types = Typology::whereRaw("REPLACE(name, ' ' ,'') LIKE ?", $input.'%')->get();
+            foreach($types as $type){
+                $type['users'] = $type->users;
+            }
+        }
+        return response()->json($types);
+    }
+
+    public function searchUsers($input = null) {
+        if($input != null){
+            $new_str = preg_replace("/\s+/", "*", $input);
+            $input = $new_str;
+            $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", '%'.$input.'%')->get();
+            foreach($users as $user){
+                $user->plates;
+                $user->types;
+            }
+        }
+        return response()->json($users);
+    }
+
 }

@@ -170,15 +170,63 @@ export default {
             });
         },
         removeType(id){
-        console.log(this.selected,id);
-        for(let i=0; i<this.nameSelected.length; i++){
-          if(this.nameSelected[i].id == id) {
-              this.nameSelected.splice(i,1);
-              this.selected.splice(i,1);
+            console.log(this.selected,id);
+            for(let i=0; i<this.nameSelected.length; i++){
+            if(this.nameSelected[i].id == id) {
+                this.nameSelected.splice(i,1);
+                this.selected.splice(i,1);
+                }
             }
-        }
-        this.getFilterRestaurants();
-      }
+            this.getFilterRestaurants();
+        },
+        clear(){
+            this.usersArr = [],
+            this.inputText = "";
+            },
+        search(){
+            if(this.inputText.length <= 0)
+                this.clear();
+            if(this.inputText.length < 2)
+                return;
+
+            this.searchT();
+            this.searchU();
+        },
+        searchT(){
+            let adaptText = this.inputText.replace(/\s+/g, '');
+            adaptText = adaptText.toLowerCase();
+            if(adaptText == ''){
+                return 0;
+            }
+            axios.get(this.urlTypes+adaptText)
+                .then((response) => {
+            // handle success
+                this.usersArr = [];
+                this.typesArr.push (...response.data);
+                this.load = true;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+        },
+        searchU(){
+            let adaptText = this.inputText.replace(/\s+/g, '');
+            adaptText = adaptText.toLowerCase();
+            if(adaptText == ''){
+                return 0;
+            }
+            axios.get(this.urlUsers+adaptText)
+                .then((response) => {
+            // handle success
+                this.usersArr.push (...response.data);
+                console.log(this.usersArr);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+        },
     },
 
     mounted(){

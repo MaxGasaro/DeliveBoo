@@ -37,3 +37,6 @@ Route::post('/order', 'Api\OrderController@store');
 //for braintree
 Route::get('orders/generate', 'Api\OrderController@generate');
 Route::post('orders/make/payment', 'Api\OrderController@makePayment');
+
+Route::get("/searcht/{name}","Api\PlatesController@searchTypes");
+Route::get("/searchu/{id}","Api\PlatesController@searchUsers");
