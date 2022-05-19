@@ -49,6 +49,27 @@
                     </div>
                 </div>
 
+                <div class="modal" tabindex="-1" id="empty-cart">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title w-100">Attenzione!</h5>
+                            <button type="button" class="close" data-dismiss="modal" id="empty">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Questo piatto appartiene a un altro ristorante, per poterlo aggiungere devi prima svuotare il carrello. Vuoi procedere?</p>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button class="w-50 btn ms-btn-cart m-2 " data-dismiss="modal">chiudi</button>
+                            <button class="w-50 btn ms-btn-cart m-2 " @click="svuotaCarrello()">Svuota carrello e aggiungi prodotto</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row my-3">
                     <div class=" col-12 col-md-8">
                        <div class="row ">
@@ -144,17 +165,33 @@ export default {
             })
         },
         getSingleFood(food){
-            $("#card-product").modal(); 
-            this.singleFood = [];
-            this.quantityFood = 1;
-            this.singleFood = food;
+            console.log(food.id);
+            if(this.cart.length != 0){
 
+                console.log(this.cart);
+                if(this.cart[0].food.id != food.id){
+                    $("#empty-cart").modal();
+    
+                }
+            }else{
+                $("#card-product").modal(); 
+                this.singleFood = [];
+                this.quantityFood = 1;
+                this.singleFood = food;
+            }
+
+        },
+        svuotaCarrello(){
+            localStorage.removeItem("myCart");
+            this.cart = [];
+            this.singleFood = [];
+            document.getElementById('empty').click();
         },
 
         addToCart(){
 
             if(this.cartVoid){
-               this.cart.push({
+                this.cart.push({
                     food: this.singleFood,
                     quantity : this.quantityFood,
                     total: this.quantityFood*this.singleFood.price
@@ -181,7 +218,7 @@ export default {
                         total: this.quantityFood*this.singleFood.price
                     })
                 }  
-               
+                
             }
             document.getElementById('closed').click();
             localStorage.setItem('myCart', JSON.stringify(this.cart));

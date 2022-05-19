@@ -3133,6 +3133,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SingleRestaurant',
   data: function data() {
@@ -3175,10 +3196,26 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getSingleFood: function getSingleFood(food) {
-      $("#card-product").modal();
+      console.log(food.id);
+
+      if (this.cart.length != 0) {
+        console.log(this.cart);
+
+        if (this.cart[0].food.id != food.id) {
+          $("#empty-cart").modal();
+        }
+      } else {
+        $("#card-product").modal();
+        this.singleFood = [];
+        this.quantityFood = 1;
+        this.singleFood = food;
+      }
+    },
+    svuotaCarrello: function svuotaCarrello() {
+      localStorage.removeItem("myCart");
+      this.cart = [];
       this.singleFood = [];
-      this.quantityFood = 1;
-      this.singleFood = food;
+      document.getElementById('empty').click();
     },
     addToCart: function addToCart() {
       if (this.cartVoid) {
@@ -31843,6 +31880,47 @@ var render = function () {
                   ]
                 ),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal",
+                    attrs: { tabindex: "-1", id: "empty-cart" },
+                  },
+                  [
+                    _c("div", { staticClass: "modal-dialog" }, [
+                      _c("div", { staticClass: "modal-content text-center" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "w-50 btn ms-btn-cart m-2 ",
+                              attrs: { "data-dismiss": "modal" },
+                            },
+                            [_vm._v("chiudi")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "w-50 btn ms-btn-cart m-2 ",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.svuotaCarrello()
+                                },
+                              },
+                            },
+                            [_vm._v("Svuota carrello e aggiungi prodotto")]
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
                 _c("div", { staticClass: "row my-3" }, [
                   _c("div", { staticClass: " col-12 col-md-8" }, [
                     _c(
@@ -32010,6 +32088,35 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title w-100" }, [_vm._v("Attenzione!")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal", id: "empty" },
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", [
+        _vm._v(
+          "Questo piatto appartiene a un altro ristorante, per poterlo aggiungere devi prima svuotare il carrello. Vuoi procedere?"
+        ),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
@@ -48697,7 +48804,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Mirko\Boolean Careers\Classe #53\08 - Progetto finale\Progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
