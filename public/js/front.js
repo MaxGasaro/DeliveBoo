@@ -30006,7 +30006,15 @@ var render = function () {
           "navbar navbar-expand-lg navbar-light bg-none border-bottom",
       },
       [
-        _vm._m(0),
+        _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
+          _c("img", {
+            attrs: {
+              id: "logo",
+              src: __webpack_require__(/*! ../../../../public/img/deliveroo-logo-tumb.png */ "./public/img/deliveroo-logo-tumb.png"),
+              alt: "logo deliveroo",
+            },
+          }),
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -30187,22 +30195,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand pl-4", attrs: { href: "#" } }, [
-      _c("img", {
-        attrs: {
-          id: "logo",
-          src: "img/deliveroo-logo-tumb.png",
-          alt: "logo deliveroo",
-        },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -47528,6 +47521,17 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./public/img/deliveroo-logo-tumb.png":
+/*!********************************************!*\
+  !*** ./public/img/deliveroo-logo-tumb.png ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/deliveroo-logo-tumb.png?8a93a6203d10c5acd1d983313f271195";
+
+/***/ }),
+
 /***/ "./resources/js/braintree.js":
 /*!***********************************!*\
   !*** ./resources/js/braintree.js ***!
@@ -48795,11 +48799,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
->>>>>>> 7143d5abcb4f3e85c1a4edc6b0f1c60f33838da7
 
 
 /***/ })
