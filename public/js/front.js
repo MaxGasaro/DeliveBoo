@@ -2480,7 +2480,8 @@ __webpack_require__.r(__webpack_exports__);
       cart: [],
       totalPrice: 0,
       cartVoid: true,
-      restaurant: null
+      restaurant: null,
+      address: ''
     };
   },
   created: function created() {
@@ -27860,7 +27861,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "#logo[data-v-e4ea8dce] {\n  width: 20%;\n}\ndiv i[data-v-e4ea8dce] {\n  color: #efefef;\n}", ""]);
+exports.push([module.i, "#logo[data-v-e4ea8dce] {\n  width: 50%;\n}\ndiv i[data-v-e4ea8dce] {\n  color: #efefef;\n}", ""]);
 
 // exports
 
@@ -30058,7 +30059,7 @@ var staticRenderFns = [
       _c("img", {
         attrs: {
           id: "logo",
-          src: "img/logo-deliveroo.png",
+          src: "img/deliveroo-logo-tumb.png",
           alt: "logo deliveroo",
         },
       }),
@@ -31382,6 +31383,8 @@ var render = function () {
                 _c(
                   "a",
                   {
+                    staticClass:
+                      "d-flex justify-content-between align-items-center",
                     attrs: {
                       "data-toggle": "collapse",
                       href: "#collapseExample",
@@ -31392,9 +31395,8 @@ var render = function () {
                     on: { click: _vm.changeArrow },
                   },
                   [
-                    _vm._v(
-                      "\n                          Categoria\n                          "
-                    ),
+                    _c("span", [_vm._v("Categorie")]),
+                    _vm._v(" "),
                     _vm.expandedCategory
                       ? _c("i", { staticClass: "fa fa-arrow-right" })
                       : _c("i", { staticClass: "fa fa-arrow-down" }),

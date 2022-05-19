@@ -182,7 +182,8 @@ export default {
             totalPrice:0,
             cartVoid: true,
             restaurant: null,
-      }
+            address: ''
+          }
     },
 
     created() {

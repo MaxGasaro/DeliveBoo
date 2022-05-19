@@ -29,8 +29,8 @@
                 <!-- Category -->
                 <div class="category">
                     <p>  
-                        <a @click="changeArrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Categoria
+                        <a class="d-flex justify-content-between align-items-center" @click="changeArrow" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <span>Categorie</span>
                             <i v-if="expandedCategory" class="fa fa-arrow-right"></i>
                             <i v-else class="fa fa-arrow-down"></i>
                         </a>
@@ -89,7 +89,6 @@ import Searchbar from "./../components/partials/Searchbar";
 import Carousel from "./../components/partials/Carousel";
 export default {
     name: 'Research',
-    
     data(){
         return{
             typologies: [],
