@@ -1,6 +1,7 @@
 <template>
 <div>
   <div class="container-fluid">
+      <Searchbar/>
       <div class="row">
           <div class="col">
             <div v-if="restaurant">
@@ -75,6 +76,7 @@
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
                             </div>
+                            
                             <div v-else v-for="(el, index) in cart " :key="index" class="d-flex justify-content-between w-100 py-1 cart-foods"> 
                                  
                                 <span>{{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;</span>  
@@ -108,8 +110,12 @@
 </template>
 
 <script>
+import Searchbar from './../components/partials/Searchbar.vue';
 export default {
     name:'SingleRestaurant',
+    components:{
+            Searchbar
+        },
     data(){
         return{
             restaurant : [],
@@ -198,23 +204,25 @@ export default {
         },
         getLocal(){
             
+            
             if (localStorage.getItem('myCart') != null){
                 let carrello = localStorage.getItem('myCart');
                 carrello = JSON.parse(localStorage.getItem('myCart'));
                 this.cart=carrello;
-                this.cartVoid = false;
+                if(this.cart.length != 0 ){
+                    this.cartVoid = false;
+                }
                 this.getTotal();
             }
-            
-            
+     
         },
         getTotal(){
-            console.log(this.cart.length)
             this.totalPrice = 0;
-            if(this.cart.length != 0){
-               for(let i = 0; i <= this.cart.length; i++){
-                this.totalPrice += this.cart[i].total;
-            } 
+                if(this.cart.length != 0){
+                for(let i = 0; i <= this.cart.length; i++){
+                    this.totalPrice += this.cart[i].total;
+                } 
+                
             }
             
         
