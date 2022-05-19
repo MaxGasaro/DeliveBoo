@@ -84,7 +84,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-7 text-secondary">
+                <div class="col-md-8text-secondary">
                     <div class="my-3">
                         <h1><font color="black">Diventa un partner di Deliveboo</font></h1>
                         <p>Insieme possiamo aiutarti a raggiungere sempre più clienti</p>
@@ -199,7 +199,7 @@
         
                                 <div class="form-group row">
                                     <label for="typology_list" class="col-md-3 col-form-label">Tipologie<strong>*</strong>
-                                        <small class="d-block">Flaggare almeno 1</small>
+                                        <small class="d-block">Selezionare almeno 1</small>
                                     </label>
                                     
                                     
