@@ -31,7 +31,7 @@
                                 <td>{{substr($order->comment,0,30)}}</td>
                                 <td>{{$order->price}}</td>
                                 <td>{{$order->customer_phone}}</td>
-                                <td>{{$order->date}}</td>
+                                <td>{{Carbon\Carbon::parse($order->date)->format('d-m-Y')}}</td>
                                 <td>{{$order->status_order}}</td>
                                 <td >
                                     <a href="{{route('admin.orders.show', $order->id)}}" class="btn btn-primary">Mostra</a>

@@ -17,7 +17,7 @@
                         <p class="card-text"> <strong>Indirizzo:</strong>  {{$order->customer_address}}</p>
                         <p class="card-text"> <strong>Telefono:</strong>  {{$order->customer_phone}}</p>
                         <p><strong>Prezzo totale:</strong> {{$order->price}} &euro;</p>
-                        <p><strong>Data acquisto:</strong> {{$order->date}}</p>
+                        <p><strong>Data acquisto:</strong> {{Carbon\Carbon::parse($order->date)->format('d-m-Y')}}</p>
                         
                         @if (isset($order->comment))
                             <h3>Commento cliente: </h3>
