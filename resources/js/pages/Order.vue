@@ -146,7 +146,7 @@ import payment from './partials/payment.vue';
                     "customer_address" : this.customer_address,
                     "customer_email" : this.customer_email,
                     "customer_phone" : this.customer_phone,
-                    "customer_note" : this.customer_note,
+                    "comment" : this.comment,
                     "cart" : this.cart,
                     "price" : this.totalPrice
                 }).then(response =>{
