@@ -183,7 +183,12 @@ export default {
     },
 
     created() {
-    window.addEventListener("scroll", this.handleScroll);
+      window.addEventListener("scroll", this.handleScroll);
+      let modal = document.getElementsByClassName('modal-breakdown');
+      console.log(modal);
+      if(modal){
+        modal.classList.add("d-none");
+      }
     },
 
     destroyed() {

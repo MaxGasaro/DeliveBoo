@@ -5,13 +5,32 @@
 
             <div class="row">
 
+                <div class="modal" tabindex="-1" id="thx">
+                    <div class="modal-dialog">
+                        <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title w-100">Grazie per aver ordinato🎉</h5>
+                            <button type="button" class="close" data-dismiss="modal" id="closed">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Grazie per aver ordinato da noi. Riceverai presto un'email di conferma dell'avvenuto ordine. Speriamo di rivederla presto👍</p>
+                        </div>
+                        <div class="modal-footer px-2">
+                            <router-link @click="leave()" id="leave" class="btn btn-primary w-100" :to="{name: 'home'}">Torna alla home</router-link>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 
                 <div class="col-12 col-md-8">
                     <form @submit.prevent="makeOrder" class="w-100 p-5 card">
                         
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-12 col-md-4">Nome e cognome<strong>*</strong></label>
-                            <input v-model="customer_name" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
+                            <input :disabled="inputBlock" v-model="customer_name" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
 
                             <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -20,7 +39,7 @@
 
                         <div class="form-group">
                             <label for="customer_address" class="col-form-label col-12 col-md-4">Indirizzo<strong>*</strong></label>
-                            <input v-model="customer_address" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
+                            <input :disabled="inputBlock" v-model="customer_address" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
                         
                             <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                                 {{error}}
@@ -29,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="customer_email" class="col-form-label col-12 col-md-4">Email<strong>*</strong></label>
-                            <input v-model="customer_email" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
+                            <input :disabled="inputBlock" v-model="customer_email" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
 
                             <p v-for="(error, index) in errors.customer_email" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -38,7 +57,7 @@
 
                         <div class="form-group">
                             <label for="customer_phone" class="col-form-label col-12 col-md-4">Numero di cellulare<strong>*</strong></label>
-                            <input v-model="customer_phone" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
+                            <input :disabled="inputBlock" v-model="customer_phone" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                         
                             <p v-for="(error, index) in errors.customer_phone" :key="'error_phone' + index" class="invalid-feedback">
                                 {{error}}
@@ -57,17 +76,7 @@
 
                         <button :disabled='orderSending' type="submit" class="btn btn-primary">{{orderSending ? 'Ordinazione in corso' : 'Ordina'}}</button>
 
-                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                         v-if="!disableBuyButton"
-                        >
-                         Procedi con il pagamento
-                        </button>
-
-                        <button type="submit" class="btn btn-primary" data-toggle="collapse " href="#collapseExample" role="button" v-else >
-                         {{(loadingPayment)? 'Loading...' : 'Procedi con l\'acquisto'}}
-                        </button>
-
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse">
                             <div class="card card-body">
                                <payment
                                 @onSuccess="paymentOnSuccess"
@@ -101,6 +110,7 @@
 
 
 <script>
+import func from '../../../vue-temp/vue-editor-bridge';
 import payment from './partials/payment.vue';
     export default {
         name: 'Order',
@@ -121,6 +131,7 @@ import payment from './partials/payment.vue';
                 totalPrice: 0,
                 disableBuyButton : false,
                 loadingPayment: true,
+                inputBlock: false,
                 form: {
                     token: '',
                     amount: ''
@@ -142,19 +153,22 @@ import payment from './partials/payment.vue';
                     "cart" : this.cart,
                     "price" : this.totalPrice
                 }).then(response =>{
-
-                    this.orderSending = false;
+                    
+                    /* this.orderSending = false; */
                     console.log(response);
 
                     if(response.data.errors){
                         this.errors = response.data.errors;
                         console.log(this.errors);
+                        this.orderSending = true;
                     }else{
-                        this.customer_name= '';
+                        this.inputBlock = true;
+                        $(".collapse").collapse('show');
+                        /* this.customer_name= '';
                         this.customer_address= '';
                         this.customer_email= '';
                         this.customer_phone= '';
-                        this.comment= '';
+                        this.comment= ''; */
                     }
                 });
             },
@@ -190,11 +204,17 @@ import payment from './partials/payment.vue';
                     .then(response =>{
                     console.log(response);
                     });
-                    //modale per ringraziare
+                    $("#thx").modal();
                 } catch (error) {
                     this.disableBuyButton = false
                     this.loadingPayment = false
                 }
+            },
+            leave(){
+                $("#leave").click(function (e){
+                    e.preventDefault();
+                    document.getElementById('closed').click();
+                })
             }
 
                     

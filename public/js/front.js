@@ -2454,6 +2454,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     window.addEventListener("scroll", this.handleScroll);
+    var modal = document.getElementsByClassName('modal-breakdown');
+    console.log(modal);
+
+    if (modal) {
+      modal.classList.add("d-none");
+    }
   },
   destroyed: function destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -2556,7 +2562,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/payment.vue */ "./resources/js/pages/partials/payment.vue");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../vue-temp/vue-editor-bridge'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _partials_payment_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./partials/payment.vue */ "./resources/js/pages/partials/payment.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2660,10 +2676,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
   components: {
-    payment: _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    payment: _partials_payment_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -2680,6 +2697,7 @@ __webpack_require__.r(__webpack_exports__);
       totalPrice: 0,
       disableBuyButton: false,
       loadingPayment: true,
+      inputBlock: false,
       form: {
         token: '',
         amount: ''
@@ -2700,18 +2718,21 @@ __webpack_require__.r(__webpack_exports__);
         "cart": this.cart,
         "price": this.totalPrice
       }).then(function (response) {
-        _this.orderSending = false;
+        /* this.orderSending = false; */
         console.log(response);
 
         if (response.data.errors) {
           _this.errors = response.data.errors;
           console.log(_this.errors);
+          _this.orderSending = true;
         } else {
-          _this.customer_name = '';
-          _this.customer_address = '';
-          _this.customer_email = '';
-          _this.customer_phone = '';
-          _this.comment = '';
+          _this.inputBlock = true;
+          $(".collapse").collapse('show');
+          /* this.customer_name= '';
+          this.customer_address= '';
+          this.customer_email= '';
+          this.customer_phone= '';
+          this.comment= ''; */
         }
       });
     },
@@ -2741,11 +2762,18 @@ __webpack_require__.r(__webpack_exports__);
       try {
         axios.post('/api/orders/make/payment', this.form).then(function (response) {
           console.log(response);
-        }); //modale per ringraziare
+        });
+        $("#thx").modal();
       } catch (error) {
         this.disableBuyButton = false;
         this.loadingPayment = false;
       }
+    },
+    leave: function leave() {
+      $("#leave").click(function (e) {
+        e.preventDefault();
+        document.getElementById('closed').click();
+      });
     }
   },
   created: function created() {
@@ -30777,6 +30805,41 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "modal", attrs: { tabindex: "-1", id: "thx" } },
+          [
+            _c("div", { staticClass: "modal-dialog" }, [
+              _c("div", { staticClass: "modal-content text-center" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "modal-footer px-2" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-primary w-100",
+                        attrs: { id: "leave", to: { name: "home" } },
+                        on: {
+                          click: function ($event) {
+                            return _vm.leave()
+                          },
+                        },
+                      },
+                      [_vm._v("Torna alla home")]
+                    ),
+                  ],
+                  1
+                ),
+              ]),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "col-12 col-md-8" }, [
           _c(
             "form",
@@ -30794,7 +30857,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(0),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30808,6 +30871,7 @@ var render = function () {
                     staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_name },
                     attrs: {
+                      disabled: _vm.inputBlock,
                       type: "text",
                       name: "customer_name",
                       id: "customer_name",
@@ -30850,7 +30914,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(1),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30864,6 +30928,7 @@ var render = function () {
                     staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_address },
                     attrs: {
+                      disabled: _vm.inputBlock,
                       type: "text",
                       name: "customer_address",
                       id: "customer_address",
@@ -30906,7 +30971,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(2),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30920,6 +30985,7 @@ var render = function () {
                     staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_email },
                     attrs: {
+                      disabled: _vm.inputBlock,
                       type: "email",
                       name: "customer_email",
                       id: "customer_email",
@@ -30962,7 +31028,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(3),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30976,6 +31042,7 @@ var render = function () {
                     staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_phone },
                     attrs: {
+                      disabled: _vm.inputBlock,
                       type: "text",
                       name: "customer_phone",
                       id: "customer_phone",
@@ -31094,67 +31161,21 @@ var render = function () {
                 ]
               ),
               _vm._v(" "),
-              !_vm.disableBuyButton
-                ? _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        type: "submit",
-                        "data-toggle": "collapse",
-                        href: "#collapseExample",
-                        role: "button",
+              _c("div", { staticClass: "collapse" }, [
+                _c(
+                  "div",
+                  { staticClass: "card card-body" },
+                  [
+                    _c("payment", {
+                      on: {
+                        onSuccess: _vm.paymentOnSuccess,
+                        onError: _vm.paymentOnError,
                       },
-                    },
-                    [
-                      _vm._v(
-                        "\n                     Procedi con il pagamento\n                    "
-                      ),
-                    ]
-                  )
-                : _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        type: "submit",
-                        "data-toggle": "collapse ",
-                        href: "#collapseExample",
-                        role: "button",
-                      },
-                    },
-                    [
-                      _vm._v(
-                        "\n                     " +
-                          _vm._s(
-                            _vm.loadingPayment
-                              ? "Loading..."
-                              : "Procedi con l'acquisto"
-                          ) +
-                          "\n                    "
-                      ),
-                    ]
-                  ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "collapse", attrs: { id: "collapseExample" } },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "card card-body" },
-                    [
-                      _c("payment", {
-                        on: {
-                          onSuccess: _vm.paymentOnSuccess,
-                          onError: _vm.paymentOnError,
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                ]
-              ),
+                    }),
+                  ],
+                  1
+                ),
+              ]),
             ]
           ),
         ]),
@@ -31193,6 +31214,37 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title w-100" }, [
+        _vm._v("Grazie per aver ordinato🎉"),
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: { type: "button", "data-dismiss": "modal", id: "closed" },
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", [
+        _vm._v(
+          "Grazie per aver ordinato da noi. Riceverai presto un'email di conferma dell'avvenuto ordine. Speriamo di rivederla presto👍"
+        ),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
