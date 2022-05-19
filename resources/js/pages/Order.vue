@@ -1,5 +1,7 @@
 <template>
     <div class="container-fluid pb-5">
+        
+        
         <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
 
@@ -109,6 +111,7 @@
 <script>
 
 import payment from './partials/payment.vue';
+
     export default {
         name: 'Order',
         components:{

@@ -20,7 +20,7 @@ class RestaurantController extends Controller
             if ($restaurant->image) {
                 $restaurant->image = url('storage/'.$restaurant->image);
             } else {
-                $restaurant->image = url('img/fallback_img.jpg');
+                $restaurant->image = url('img/placeholder.svg');
             }
         });
 
@@ -39,7 +39,7 @@ class RestaurantController extends Controller
         if ($restaurant->image) {
             $restaurant->image = url('storage/'.$restaurant->image);
         } else {
-            $restaurant->image = url('img/fallback_img.jpg');
+            $restaurant->image = url('img/placeholder.svg');
         }
 
         if ($restaurant) {
@@ -88,7 +88,7 @@ class RestaurantController extends Controller
             if ($restaurant->image) {
                 $restaurant->image = url('storage/'.$restaurant->image);
             } else {
-                $restaurant->image = url('img/fallback_img.jpg');
+                $restaurant->image = url('img/placeholder.svg');
             }
         };
 

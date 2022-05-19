@@ -8,6 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <a href="{{route('admin.foods.create')}}" class="btn btn-primary mb-2">Aggiungi piatto</a>
+                <a href="http://127.0.0.1:8000/research/{{$user->slug}}"   class="btn btn-primary mb-2" >Visualizza menù su Deliveboo</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -23,12 +24,16 @@
 
                     <tbody>
                         @foreach ($foods as $food )
-                            <tr>
+                            <tr
+                            @if ($food->visible == false)
+                                class="my-bg"
+                            @endif
+                            >
                                 <td class="w-25">
                                     @if (isset($food->img))
                                       <img src="{{asset('storage/' . $food->img)}}" alt="foto" class="img-fluid" >
                                     @else
-                                      <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="img-fluid" >
+                                      <img src="{{asset('img/placeholder.svg')}}" alt="fplaceholder_img" class="img-fluid" >
                                     @endif
                                 </td>
                                 <td>{{$food->name}}</td>

@@ -1,6 +1,7 @@
 <template>
 <div>
   <div class="container-fluid">
+      <Searchbar/>
       <div class="row">
           <div class="col">
             <div v-if="restaurant">
@@ -75,6 +76,7 @@
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>Il carrello è vuoto</p>
                             </div>
+                            
                             <div v-else v-for="(el, index) in cart " :key="index" class="d-flex justify-content-between w-100 py-1 cart-foods"> 
                                  
                                 <span>{{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;</span>  
@@ -108,11 +110,15 @@
 </template>
 
 <script>
+import Searchbar from './../components/partials/Searchbar.vue';
 export default {
     name:'SingleRestaurant',
+    components:{
+            Searchbar
+        },
     data(){
         return{
-            restaurant : null,
+            restaurant : [],
             foods: [],
             slug: this.$route.params.slug,
             singleFood: [],
@@ -152,22 +158,22 @@ export default {
         },
 
         addToCart(){
-
+            
             if(this.cartVoid){
+                
                this.cart.push({
                     food: this.singleFood,
                     quantity : this.quantityFood,
                     total: this.quantityFood*this.singleFood.price
-                })
+                });
                 this.cartVoid = false; 
             
             }else{
                 let found = false;
-
                 for(let i = 0; i < this.cart.length; i++){
                     
                     if(this.cart[i].food.id == this.singleFood.id ){
-                        this.cart[i].quantity += this.quantityFood;
+                        this.cart[i].quantity += this.quantityFood; 
                         this.cart[i].total = this.cart[i].quantity *this.singleFood.price
                         found = true;
                         break;
@@ -179,7 +185,7 @@ export default {
                         food: this.singleFood,
                         quantity : this.quantityFood,
                         total: this.quantityFood*this.singleFood.price
-                    })
+                    });
                 }  
                
             }
@@ -197,19 +203,28 @@ export default {
             this.getTotal();
         },
         getLocal(){
-            this.cart =  localStorage.getItem('myCart'); 
-            this.cart = JSON.parse(this.cart);
-            if(this.cart.length != 0 ){
-                this.cartVoid = false;
-            }
             
+            
+            if (localStorage.getItem('myCart') != null){
+                let carrello = localStorage.getItem('myCart');
+                carrello = JSON.parse(localStorage.getItem('myCart'));
+                this.cart=carrello;
+                if(this.cart.length != 0 ){
+                    this.cartVoid = false;
+                }
+                this.getTotal();
+            }
+     
         },
         getTotal(){
             this.totalPrice = 0;
-
-            for(let i = 0; i <= this.cart.length; i++){
-                this.totalPrice += this.cart[i].total;
+                if(this.cart.length != 0){
+                for(let i = 0; i <= this.cart.length; i++){
+                    this.totalPrice += this.cart[i].total;
+                } 
+                
             }
+            
         
             
         }
@@ -219,7 +234,6 @@ export default {
         this.getRestaurant();
         this.getFoods();
         this.getLocal();
-        this.getTotal();
     }
 }
 </script>

@@ -25,7 +25,7 @@ class FoodController extends Controller
            if ($food->img) {
                $food->img = url('storage/'.$food->img);
            } else {
-               $food->img = url('img/fallback_img.jpg');
+               $food->img = url('img/placeholder.svg');
            }
        }
        //ritorno un file Json 

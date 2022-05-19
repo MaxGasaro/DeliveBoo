@@ -16,7 +16,7 @@ class CategoryController extends Controller
             if ($category->img) {
                 $category->img = url('storage/'.$category->img);
             } else {
-                $category->img = url('img/fallback_img.jpg');
+                $category->img = url('img/placeholder.svg');
             }
         });
 

@@ -16,12 +16,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Nome Piatto</label>
+                        <label for="name">Nome Piatto <strong>*</strong></label>
                         <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="price">Prezzo</label>
+                        <label for="price">Prezzo <strong>*</strong></label>
                         <input type="number" step="0.01" min="0.05" class="form-control" id="price" name="price" value="{{old('price')}}" required>
                     </div>
 
@@ -30,7 +30,7 @@
                         <label class="form-check-label" for="visible">Disponibile</label>
                     </div>
                     <div class="form-group">
-                        <label for="category_id">Scegli una categoria</label>
+                        <label for="category_id">Scegli una categoria <strong>*</strong></label>
                         <select class="form-control" id="category_id" name="category_id" >
                             <option value="">Nessuna categoria</option>
                             @foreach ($categories as $category )
@@ -41,7 +41,9 @@
                     
 
                     <div class="form-group">
-                        <label for="description">Descrizione Piatto</label>
+                        <label for="description">Descrizione Piatto <strong>*</strong>
+                            <small class="d-block">scrivere almeno 10 caratteri</small>
+                        </label>
                         <textarea  class="form-control" name="description" id="description" cols="30" rows="10" required>{{old('description')}}</textarea>
                     </div>
 
