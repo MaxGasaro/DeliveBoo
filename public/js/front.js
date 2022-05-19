@@ -30824,7 +30824,7 @@ var render = function () {
                       {
                         staticClass: "btn btn-primary w-100",
                         attrs: { id: "leave", to: { name: "home" } },
-                        on: {
+                        nativeOn: {
                           click: function ($event) {
                             return _vm.leave()
                           },
