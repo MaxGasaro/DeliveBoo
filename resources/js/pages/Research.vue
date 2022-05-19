@@ -51,9 +51,10 @@
             </div>
             <!-- Part right -->
             <div class="col-12 col-md-10 px-5 p-right">
-                <div class="row">
-                    <div>
-                        <!-- qui andranno le categorie selezionate -->
+                <div class="row flex-wrap justify-content-start">
+                    <div class="type" v-for="(type, index) in selected" :key="index">
+                        {{type.name}}
+                        <i @click="removeType(type.id)" class="fa-solid fa-xmark"></i>
                     </div>
                 </div>
                 <div class="row my-3">
@@ -159,7 +160,15 @@ export default {
                 f = this.restaurants;
             }
             return f;
+        },
+        removeType(id){
+        console.log(this.selected,id);
+        for(let i=0; i<this.selected.length; i++){
+          if(this.selected[i].id == id)
+            this.selected.splice(i,1);
         }
+        this.GetRestaurants();
+      }
     },
 
     mounted(){
@@ -222,6 +231,20 @@ export default {
         color:#00b8a9;
     }
 
-   
+    .type {
+        padding: 4px 8px 4px 12px;
+        background-color: #00b8a9;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+    .fa-xmark{
+        font-size: 1.2em;
+    }
+    .fa-xmark:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
 
 </style>

@@ -2127,7 +2127,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CarouselCopyCopy',
+  name: 'Carousel',
   components: {
     Carousel: vue_carousel__WEBPACK_IMPORTED_MODULE_0__["Carousel"],
     Slide: vue_carousel__WEBPACK_IMPORTED_MODULE_0__["Slide"]
@@ -2805,6 +2805,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2885,6 +2886,15 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return f;
+    },
+    removeType: function removeType(id) {
+      console.log(this.selected, id);
+
+      for (var i = 0; i < this.selected.length; i++) {
+        if (this.selected[i].id == id) this.selected.splice(i, 1);
+      }
+
+      this.GetRestaurants();
     }
   },
   mounted: function mounted() {
@@ -3323,7 +3333,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100%;\n}\n.list-category{\noverflow-y: auto;\nheight: 100%;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\n\n\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#rider {\n    width: 30px;\n    height: 30px;\n}\n.category a {\n    color:#00b8a9;\n}\n\n\n\n", ""]);
+exports.push([module.i, "\n* {\npadding: 0;\nmargin: 0;\nbox-sizing: border-box;\nlist-style-type: none;\n}\n.p-left{\nheight: 100%;\n}\n.list-category{\noverflow-y: auto;\nheight: 100%;\n}\n.container-restaurants{\n-ms-overflow-style: none;\nscrollbar-width: none;\noverflow-y: scroll; \nheight: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\ndisplay: none;\n}\n.ms_green a {\n    color: #00b8a9;\n    font-size: 14px;\n}\n\n\n\n/* #ms_input::before {\n    content: 'f002';\n    width: 10px;\n    height: 10px;\n} */\n#rider {\n    width: 30px;\n    height: 30px;\n}\n.category a {\n    color:#00b8a9;\n}\n.type {\n    padding: 4px 8px 4px 12px;\n    background-color: #00b8a9;\n    color: white;\n    font-weight: bold;\n    display: flex;\n    align-items: center;\n}\n.fa-xmark{\n    font-size: 1.2em;\n}\n.fa-xmark:hover{\n    cursor: pointer;\n    transform: scale(1.1);\n}\n\n", ""]);
 
 // exports
 
@@ -4797,6 +4807,7 @@ var render = function () {
       _c(
         "router-link",
         {
+          staticClass: "text-decoration-none",
           attrs: {
             to: { name: "restaurant", params: { slug: _vm.restaurant.slug } },
           },
@@ -6461,7 +6472,28 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-12 col-md-10 px-5 p-right" }, [
-            _vm._m(2),
+            _c(
+              "div",
+              { staticClass: "row flex-wrap justify-content-start" },
+              _vm._l(_vm.selected, function (type, index) {
+                return _c("div", { key: index, staticClass: "type" }, [
+                  _vm._v(
+                    "\n                      " +
+                      _vm._s(type.name) +
+                      "\n                      "
+                  ),
+                  _c("i", {
+                    staticClass: "fa-solid fa-xmark",
+                    on: {
+                      click: function ($event) {
+                        return _vm.removeType(type.id)
+                      },
+                    },
+                  }),
+                ])
+              }),
+              0
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "row my-3" }, [_c("Carousel")], 1),
             _vm._v(" "),
@@ -6572,12 +6604,6 @@ var staticRenderFns = [
         ]),
       ]),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("div")])
   },
 ]
 render._withStripped = true
@@ -7056,8 +7082,8 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.5.3
-  * (c) 2021 Evan You
+  * vue-router v3.5.4
+  * (c) 2022 Evan You
   * @license MIT
   */
 /*  */
@@ -7575,7 +7601,7 @@ function parsePath (path) {
 }
 
 function cleanPath (path) {
-  return path.replace(/\/+/g, '/')
+  return path.replace(/\/(?:\s*\/)+/g, '/')
 }
 
 var isarray = Array.isArray || function (arr) {
@@ -8506,7 +8532,7 @@ function addRouteRecord (
         warn(
           false,
           "Named Route '" + (route.name) + "' has a default child route. " +
-            "When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), " +
+            "When navigating to this named route (:to=\"{name: '" + (route.name) + "'}\"), " +
             "the default child route will not be rendered. Remove the name from " +
             "this route and use the name of the default child route for named " +
             "links instead."
@@ -10197,7 +10223,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.5.3';
+VueRouter.version = '3.5.4';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 VueRouter.START_LOCATION = START;
