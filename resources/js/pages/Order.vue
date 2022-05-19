@@ -10,15 +10,12 @@
                         <div class="modal-content text-center">
                         <div class="modal-header">
                             <h5 class="modal-title w-100">Grazie per aver ordinato🎉</h5>
-                            <button type="button" class="close" data-dismiss="modal" id="closed">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body">
                             <p>Grazie per aver ordinato da noi. Riceverai presto un'email di conferma dell'avvenuto ordine. Speriamo di rivederla presto👍</p>
                         </div>
                         <div class="modal-footer px-2">
-                            <router-link id="leave" class="btn btn-primary w-100" :to="{name: 'home'}">Torna alla home</router-link>
+                            <router-link id="leave"  data-dismiss="modal" class="btn btn-primary w-100" :to="{name: 'home'}">Torna alla home</router-link>
                         </div>
                         </div>
                     </div>

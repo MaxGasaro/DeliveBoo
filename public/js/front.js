@@ -2669,9 +2669,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
@@ -30813,7 +30810,11 @@ var render = function () {
                       "router-link",
                       {
                         staticClass: "btn btn-primary w-100",
-                        attrs: { id: "leave", to: { name: "home" } },
+                        attrs: {
+                          id: "leave",
+                          "data-dismiss": "modal",
+                          to: { name: "home" },
+                        },
                       },
                       [_vm._v("Torna alla home")]
                     ),
@@ -31207,15 +31208,6 @@ var staticRenderFns = [
       _c("h5", { staticClass: "modal-title w-100" }, [
         _vm._v("Grazie per aver ordinato🎉"),
       ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: { type: "button", "data-dismiss": "modal", id: "closed" },
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      ),
     ])
   },
   function () {
@@ -48530,7 +48522,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
