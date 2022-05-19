@@ -28,7 +28,7 @@
                                     @if (isset($food->img))
                                       <img src="{{asset('storage/' . $food->img)}}" alt="foto" class="img-fluid" >
                                     @else
-                                      <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="img-fluid" >
+                                      <img src="{{asset('img/placeholder.svg')}}" alt="fplaceholder_img" class="img-fluid" >
                                     @endif
                                 </td>
                                 <td>{{$food->name}}</td>

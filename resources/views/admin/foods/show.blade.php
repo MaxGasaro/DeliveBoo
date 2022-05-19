@@ -14,7 +14,7 @@
                     @if (isset($food->img))
                         <img src="{{asset('storage/'.$food->img)}}" class="card-img-top img-fluid" alt="img">
                     @else
-                        <img src="{{asset('img/fallback_img.jpg')}}" alt="fallback_img" class="card-img-top img-fluid" >
+                        <img src="{{asset('img/placeholder.svg')}}" alt="placeholder_img" class="card-img-top img-fluid" >
                     @endif
                     <div class="card-body">
                         <h2 class="card-title">{{$food->name}}</h2>
