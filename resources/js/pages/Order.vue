@@ -118,10 +118,6 @@ import payment from './partials/payment.vue';
                 orderSent: false, //booleano che mostra la conferma di ordine inviato
                 cart: null,
                 totalPrice: 0,
-<<<<<<< HEAD
-                orderSending: false
-
-=======
                 disableBuyButton : false,
                 loadingPayment: true,
                 form: {
@@ -129,7 +125,6 @@ import payment from './partials/payment.vue';
                     amount: ''
                 }
                 
->>>>>>> feat-braintree
             }
         },
         methods: {

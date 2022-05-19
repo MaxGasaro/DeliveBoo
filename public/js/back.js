@@ -144,11 +144,7 @@ if (button) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
-=======
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
->>>>>>> 5fee111d59bc70a4341113fe4c8df750fdb55847
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
 
 
 /***/ })
