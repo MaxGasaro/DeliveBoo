@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function store(Request $request){
         $data = $request->all();
 
-        $data['date'] = Carbon::now();
+        $data['date'] = Carbon::createFromFormat("d/m/Y", Carbon::now());
 
 
         //validazione backend dei dati inseriti
