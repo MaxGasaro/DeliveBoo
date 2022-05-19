@@ -2735,7 +2735,7 @@ __webpack_require__.r(__webpack_exports__);
         "customer_address": this.customer_address,
         "customer_email": this.customer_email,
         "customer_phone": this.customer_phone,
-        "customer_note": this.customer_note,
+        "comment": this.comment,
         "cart": this.cart,
         "price": this.totalPrice
       }).then(function (response) {
@@ -48610,7 +48610,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\simone\OneDrive\Documenti\BOOLEAN CAREERS\PROGETTO FINALE\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
