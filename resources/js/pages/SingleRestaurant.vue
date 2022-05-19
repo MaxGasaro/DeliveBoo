@@ -202,12 +202,10 @@ export default {
                 let carrello = localStorage.getItem('myCart');
                 carrello = JSON.parse(localStorage.getItem('myCart'));
                 this.cart=carrello;
+                this.cartVoid = false;
                 this.getTotal();
             }
             
-            if(this.cart.length != 0 ){
-                this.cartVoid = false;
-            }
             
         },
         getTotal(){

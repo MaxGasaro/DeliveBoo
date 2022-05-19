@@ -3228,11 +3228,8 @@ __webpack_require__.r(__webpack_exports__);
         var carrello = localStorage.getItem('myCart');
         carrello = JSON.parse(localStorage.getItem('myCart'));
         this.cart = carrello;
-        this.getTotal();
-      }
-
-      if (this.cart.length != 0) {
         this.cartVoid = false;
+        this.getTotal();
       }
     },
     getTotal: function getTotal() {
@@ -48703,7 +48700,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
