@@ -101,7 +101,10 @@ export default {
             selected:[],
             expandedCategory: true,
             nameType: false,
-            nameSelected: []
+            nameSelected: [],
+            search: '',
+            urlTypes : '/api/searcht/',
+            urlUsers : '/api/searchu/',
         }
     },
     components: {
@@ -146,16 +149,15 @@ export default {
 
             
         },
-        doSearch(keyword) {
-            let f = []
-            if(keyword !== '') {
-                f = this.restaurants.filter(e => {
-                    e.name.toLowerCase().includes(keyword.toLowerCase());
-                })
-            } else {
-                f = this.restaurants;
-            }
-            return f;
+        doSearch(search) {
+            if(this.search.length <= 0)
+                this.restaurants = [],
+                search = "";
+            if(this.search.length < 2)
+                return;
+
+            this.searchTipology(search);
+            this.searchUsers(search);
         },
         getTipologiesFilter() {
             let array=[];
@@ -179,21 +181,8 @@ export default {
             }
             this.getFilterRestaurants();
         },
-        clear(){
-            this.usersArr = [],
-            this.inputText = "";
-            },
-        search(){
-            if(this.inputText.length <= 0)
-                this.clear();
-            if(this.inputText.length < 2)
-                return;
-
-            this.searchT();
-            this.searchU();
-        },
-        searchT(){
-            let adaptText = this.inputText.replace(/\s+/g, '');
+        searchTipology(search){
+            let adaptText = search.replace(/\s+/g, '');
             adaptText = adaptText.toLowerCase();
             if(adaptText == ''){
                 return 0;
@@ -201,17 +190,16 @@ export default {
             axios.get(this.urlTypes+adaptText)
                 .then((response) => {
             // handle success
-                this.usersArr = [];
-                this.typesArr.push (...response.data);
-                this.load = true;
+                this.restaurants = [];
+                this.typologies.push (...response.data);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             });
         },
-        searchU(){
-            let adaptText = this.inputText.replace(/\s+/g, '');
+        searchUsers(search){
+            let adaptText = search.replace(/\s+/g, '');
             adaptText = adaptText.toLowerCase();
             if(adaptText == ''){
                 return 0;
@@ -219,8 +207,8 @@ export default {
             axios.get(this.urlUsers+adaptText)
                 .then((response) => {
             // handle success
-                this.usersArr.push (...response.data);
-                console.log(this.usersArr);
+                this.restaurants.push (...response.data);
+                console.log(this.restaurants);
             })
             .catch(function (error) {
                 // handle error

@@ -7,9 +7,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="w-100 row">
-                <div class="d-flex align-items-center bg-white rounded border border-2 pl-1 w-75">
+                <div :class="noborder?'border-dark':''" class="d-flex align-items-center bg-white rounded border border-2 pl-1 w-75">
                     <i class="fa-solid fa-magnifying-glass ml-2"></i>
-                    <input v-model="search" class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie" @keyup.enter="$emit('goSearch', search)">
+                    <input id="input" :class="noborder?'border-0':''" v-model="search" @focus="loseFocus()" class="form-control mr-sm-2 border-0" type="search" placeholder="Ristoranti, tipologie" @keyup.enter="$emit('goSearch', search)">
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 </span>
             </div>
             <form class="form-inline my-2 my-lg-0 bg-white pl-1 w-100">
-                <input v-model="search" id="ms_input" class="form-control border-0 w-100" type="search" placeholder="Ristoranti, tipologie" >
+                <input v-model="search"  id="ms_input" class="form-control border-0 w-100" type="search" placeholder="Ristoranti, tipologie" >
             </form>
         </div>
     </div> 
@@ -48,6 +48,7 @@ export default {
             totalPrice:0,
             cartVoid: true,
             restaurant: null,
+            noborder: false
         }
     },
     methods: {
@@ -66,6 +67,12 @@ export default {
             for(let i = 0; i < this.cart.length; i++){
                 this.totalPrice += this.cart[i].total;
             }       
+        },
+        loseFocus() {
+            //document.getElementById('input').blur();
+            if(this.noborder == false) {
+                this.noborder = true;
+            }
         }
     },
     mounted(){

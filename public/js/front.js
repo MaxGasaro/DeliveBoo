@@ -2239,7 +2239,8 @@ __webpack_require__.r(__webpack_exports__);
       cart: [],
       totalPrice: 0,
       cartVoid: true,
-      restaurant: null
+      restaurant: null,
+      noborder: false
     };
   },
   methods: {
@@ -2257,6 +2258,12 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < this.cart.length; i++) {
         this.totalPrice += this.cart[i].total;
+      }
+    },
+    loseFocus: function loseFocus() {
+      //document.getElementById('input').blur();
+      if (this.noborder == false) {
+        this.noborder = true;
       }
     }
   },
@@ -2938,7 +2945,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       selected: [],
       expandedCategory: true,
       nameType: false,
-      nameSelected: []
+      nameSelected: [],
+      search: '',
+      urlTypes: '/api/searcht/',
+      urlUsers: '/api/searchu/'
     };
   },
   components: {
@@ -2981,18 +2991,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         this.GetRestaurants();
       }
     },
-    doSearch: function doSearch(keyword) {
-      var f = [];
-
-      if (keyword !== '') {
-        f = this.restaurants.filter(function (e) {
-          e.name.toLowerCase().includes(keyword.toLowerCase());
-        });
-      } else {
-        f = this.restaurants;
-      }
-
-      return f;
+    doSearch: function doSearch(search) {
+      if (this.search.length <= 0) this.restaurants = [], search = "";
+      if (this.search.length < 2) return;
+      this.searchTipology(search);
+      this.searchUsers(search);
     },
     getTipologiesFilter: function getTipologiesFilter() {
       var _this4 = this;
@@ -3020,19 +3023,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       this.getFilterRestaurants();
     },
-    clear: function clear() {
-      this.usersArr = [], this.inputText = "";
-    },
-    search: function search() {
-      if (this.inputText.length <= 0) this.clear();
-      if (this.inputText.length < 2) return;
-      this.searchT();
-      this.searchU();
-    },
-    searchT: function searchT() {
+    searchTipology: function searchTipology(search) {
       var _this5 = this;
 
-      var adaptText = this.inputText.replace(/\s+/g, '');
+      var adaptText = search.replace(/\s+/g, '');
       adaptText = adaptText.toLowerCase();
 
       if (adaptText == '') {
@@ -3040,23 +3034,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       axios.get(this.urlTypes + adaptText).then(function (response) {
-        var _this5$typesArr;
+        var _this5$typologies;
 
         // handle success
-        _this5.usersArr = [];
+        _this5.restaurants = [];
 
-        (_this5$typesArr = _this5.typesArr).push.apply(_this5$typesArr, _toConsumableArray(response.data));
-
-        _this5.load = true;
+        (_this5$typologies = _this5.typologies).push.apply(_this5$typologies, _toConsumableArray(response.data));
       })["catch"](function (error) {
         // handle error
         console.log(error);
       });
     },
-    searchU: function searchU() {
+    searchUsers: function searchUsers(search) {
       var _this6 = this;
 
-      var adaptText = this.inputText.replace(/\s+/g, '');
+      var adaptText = search.replace(/\s+/g, '');
       adaptText = adaptText.toLowerCase();
 
       if (adaptText == '') {
@@ -3064,12 +3056,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       axios.get(this.urlUsers + adaptText).then(function (response) {
-        var _this6$usersArr;
+        var _this6$restaurants;
 
         // handle success
-        (_this6$usersArr = _this6.usersArr).push.apply(_this6$usersArr, _toConsumableArray(response.data));
+        (_this6$restaurants = _this6.restaurants).push.apply(_this6$restaurants, _toConsumableArray(response.data));
 
-        console.log(_this6.usersArr);
+        console.log(_this6.restaurants);
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -28044,7 +28036,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -30029,6 +30021,7 @@ var render = function () {
                 {
                   staticClass:
                     "d-flex align-items-center bg-white rounded border border-2 pl-1 w-75",
+                  class: _vm.noborder ? "border-dark" : "",
                 },
                 [
                   _c("i", { staticClass: "fa-solid fa-magnifying-glass ml-2" }),
@@ -30043,12 +30036,17 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control mr-sm-2 border-0",
+                    class: _vm.noborder ? "border-0" : "",
                     attrs: {
+                      id: "input",
                       type: "search",
                       placeholder: "Ristoranti, tipologie",
                     },
                     domProps: { value: _vm.search },
                     on: {
+                      focus: function ($event) {
+                        return _vm.loseFocus()
+                      },
                       keyup: function ($event) {
                         if (
                           !$event.type.indexOf("key") &&

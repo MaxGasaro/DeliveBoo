@@ -119,8 +119,8 @@ class RestaurantController extends Controller
             $input = $new_str;
             $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", '%'.$input.'%')->get();
             foreach($users as $user){
-                $user->plates;
-                $user->types;
+                $user->typologies;
+                $user->foods;
             }
         }
         return response()->json($users);
