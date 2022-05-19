@@ -2658,6 +2658,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Order',
@@ -27833,7 +27834,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".container-fluid[data-v-eae40ed6] {\n  height: 100vh;\n  background: rgb(0, 204, 188);\n  background: linear-gradient(160deg, rgb(0, 204, 188) 0%, rgb(0, 204, 188) 45%, rgb(255, 255, 255) 45%);\n}\n.container-fluid input[data-v-eae40ed6] {\n  display: inline-block;\n}", ""]);
+exports.push([module.i, ".container-fluid[data-v-eae40ed6] {\n  background: rgb(0, 204, 188);\n  background: linear-gradient(160deg, rgb(0, 204, 188) 0%, rgb(0, 204, 188) 45%, rgb(255, 255, 255) 45%);\n}\n.container-fluid input[data-v-eae40ed6] {\n  display: inline-block;\n}", ""]);
 
 // exports
 
@@ -30765,8 +30766,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid pb-5" }, [
-    _vm._m(0),
-    _vm._v(" "),
     _c("h1", { staticClass: "text-center" }, [
       _vm._v(
         "Per completare il tuo ordine presso " +
@@ -30777,11 +30776,11 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-8" }, [
+        _c("div", { staticClass: "col-12 col-md-8" }, [
           _c(
             "form",
             {
-              staticClass: "w-100 pb-5",
+              staticClass: "w-100 p-5 card",
               on: {
                 submit: function ($event) {
                   $event.preventDefault()
@@ -30794,7 +30793,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30805,7 +30804,7 @@ var render = function () {
                         expression: "customer_name",
                       },
                     ],
-                    staticClass: "col-7 form-control",
+                    staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_name },
                     attrs: {
                       type: "text",
@@ -30850,7 +30849,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(2),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30861,7 +30860,7 @@ var render = function () {
                         expression: "customer_address",
                       },
                     ],
-                    staticClass: "col-7 form-control",
+                    staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_address },
                     attrs: {
                       type: "text",
@@ -30906,7 +30905,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30917,7 +30916,7 @@ var render = function () {
                         expression: "customer_email",
                       },
                     ],
-                    staticClass: "col-7 form-control",
+                    staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_email },
                     attrs: {
                       type: "email",
@@ -30962,7 +30961,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30973,7 +30972,7 @@ var render = function () {
                         expression: "customer_phone",
                       },
                     ],
-                    staticClass: "col-7 form-control",
+                    staticClass: "col-12 col-md-7 form-control",
                     class: { "is-invalid": _vm.errors.customer_phone },
                     attrs: {
                       type: "text",
@@ -31023,13 +31022,13 @@ var render = function () {
                   _c(
                     "label",
                     {
-                      staticClass: "col-form-label col-4",
+                      staticClass: "col-form-label col-12 col-md-4",
                       attrs: { for: "comment" },
                     },
                     [_vm._v("Note aggiuntive")]
                   ),
                   _vm._v(" "),
-                  _c("small", { staticClass: "d-block col-4" }, [
+                  _c("small", { staticClass: "d-block col-12 col-md-4" }, [
                     _vm._v("max: 255 caratteri"),
                   ]),
                   _vm._v(" "),
@@ -31118,7 +31117,7 @@ var render = function () {
                       staticClass: "btn btn-primary",
                       attrs: {
                         type: "submit",
-                        "data-toggle": "collapse",
+                        "data-toggle": "collapse ",
                         href: "#collapseExample",
                         role: "button",
                       },
@@ -31159,30 +31158,34 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-4" }, [
-          _c("h3", [_vm._v("Riepilogo Ordine")]),
-          _vm._v(" "),
-          _c(
-            "ul",
-            _vm._l(_vm.cart, function (el, index) {
-              return _c("li", { key: index }, [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(el.food.name) +
-                    " " +
-                    _vm._s(el.quantity) +
-                    " x " +
-                    _vm._s(el.food.price) +
-                    " =  " +
-                    _vm._s((el.quantity * el.food.price).toFixed(2)) +
-                    " €\n                    "
-                ),
-              ])
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c("h2", [_vm._v("Totale: " + _vm._s(_vm.totalPrice) + " €")]),
+        _c("div", { staticClass: "col-12 col-md-4" }, [
+          _c("div", { staticClass: "card p-4" }, [
+            _c("h3", [_vm._v("Riepilogo Ordine")]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(_vm.cart, function (el, index) {
+                return _c("li", { key: index }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(el.food.name) +
+                      " " +
+                      _vm._s(el.quantity) +
+                      " x " +
+                      _vm._s(el.food.price) +
+                      " =  " +
+                      _vm._s((el.quantity * el.food.price).toFixed(2)) +
+                      " €\n                        "
+                  ),
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("h2", [
+              _vm._v("Totale: " + _vm._s(_vm.totalPrice.toFixed(2)) + " €"),
+            ]),
+          ]),
         ]),
       ]),
     ]),
@@ -31193,20 +31196,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("nav", { staticClass: "w-100 bg-white" }, [
-      _c("img", {
-        staticStyle: { width: "80px" },
-        attrs: { src: "img/Logo-delivero.png", alt: "logo-deliveroo" },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-form-label col-4", attrs: { for: "customer_name" } },
+      {
+        staticClass: "col-form-label col-12 col-md-4",
+        attrs: { for: "customer_name" },
+      },
       [_vm._v("Nome e cognome"), _c("strong", [_vm._v("*")])]
     )
   },
@@ -31217,7 +31212,7 @@ var staticRenderFns = [
     return _c(
       "label",
       {
-        staticClass: "col-form-label col-4",
+        staticClass: "col-form-label col-12 col-md-4",
         attrs: { for: "customer_address" },
       },
       [_vm._v("Indirizzo"), _c("strong", [_vm._v("*")])]
@@ -31229,7 +31224,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-form-label col-4", attrs: { for: "customer_email" } },
+      {
+        staticClass: "col-form-label col-12 col-md-4",
+        attrs: { for: "customer_email" },
+      },
       [_vm._v("Email"), _c("strong", [_vm._v("*")])]
     )
   },
@@ -31239,7 +31237,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "col-form-label col-4", attrs: { for: "customer_phone" } },
+      {
+        staticClass: "col-form-label col-12 col-md-4",
+        attrs: { for: "customer_phone" },
+      },
       [_vm._v("Numero di cellulare"), _c("strong", [_vm._v("*")])]
     )
   },
@@ -48029,15 +48030,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************!*\
   !*** ./resources/js/pages/Order.vue ***!
   \**************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Order_vue_vue_type_template_id_eae40ed6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Order.vue?vue&type=template&id=eae40ed6&scoped=true& */ "./resources/js/pages/Order.vue?vue&type=template&id=eae40ed6&scoped=true&");
 /* harmony import */ var _Order_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Order.vue?vue&type=script&lang=js& */ "./resources/js/pages/Order.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Order_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Order_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _Order_vue_vue_type_style_index_0_id_eae40ed6_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Order.vue?vue&type=style&index=0&id=eae40ed6&scoped=true&lang=scss& */ "./resources/js/pages/Order.vue?vue&type=style&index=0&id=eae40ed6&scoped=true&lang=scss&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Order_vue_vue_type_style_index_0_id_eae40ed6_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Order.vue?vue&type=style&index=0&id=eae40ed6&scoped=true&lang=scss& */ "./resources/js/pages/Order.vue?vue&type=style&index=0&id=eae40ed6&scoped=true&lang=scss&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -48069,7 +48069,7 @@ component.options.__file = "resources/js/pages/Order.vue"
 /*!***************************************************************!*\
   !*** ./resources/js/pages/Order.vue?vue&type=script&lang=js& ***!
   \***************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -1,20 +1,17 @@
 <template>
     <div class="container-fluid pb-5">
-        <nav class="w-100 bg-white">
-            <img src="img/Logo-delivero.png" alt="logo-deliveroo" style="width: 80px;">
-        </nav>
         <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
 
             <div class="row">
 
                 
-                <div class="col-8">
-                    <form @submit.prevent="makeOrder" class="w-100 pb-5">
+                <div class="col-12 col-md-8">
+                    <form @submit.prevent="makeOrder" class="w-100 p-5 card">
                         
                         <div class="form-group">
-                            <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
-                            <input v-model="customer_name" class="col-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
+                            <label for="customer_name" class="col-form-label col-12 col-md-4">Nome e cognome<strong>*</strong></label>
+                            <input v-model="customer_name" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
 
                             <p v-for="(error, index) in errors.customer_name" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -22,8 +19,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="customer_address" class="col-form-label col-4">Indirizzo<strong>*</strong></label>
-                            <input v-model="customer_address" class="col-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
+                            <label for="customer_address" class="col-form-label col-12 col-md-4">Indirizzo<strong>*</strong></label>
+                            <input v-model="customer_address" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_address}" type="text" name="customer_address" id="customer_address" required maxlength="100" placeholder="inserisci il tuo indirizzo">
                         
                             <p v-for="(error, index) in errors.customer_address" :key="'error_address' +index" class="invalid-feedback">
                                 {{error}}
@@ -31,8 +28,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="customer_email" class="col-form-label col-4">Email<strong>*</strong></label>
-                            <input v-model="customer_email" class="col-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
+                            <label for="customer_email" class="col-form-label col-12 col-md-4">Email<strong>*</strong></label>
+                            <input v-model="customer_email" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_email}" type="email" name="customer_email" id="customer_email" required maxlength="100" placeholder="inserisci la tua email">
 
                             <p v-for="(error, index) in errors.customer_email" :key="'error_name' + index" class="invalid-feedback">
                                 {{error}}
@@ -40,8 +37,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="customer_phone" class="col-form-label col-4">Numero di cellulare<strong>*</strong></label>
-                            <input v-model="customer_phone" class="col-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
+                            <label for="customer_phone" class="col-form-label col-12 col-md-4">Numero di cellulare<strong>*</strong></label>
+                            <input v-model="customer_phone" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_phone}" type="text" name="customer_phone" id="customer_phone" required pattern="[0-9]+" minlength="9" maxlength="15" placeholder="inserisci il tuo telefono">
                         
                             <p v-for="(error, index) in errors.customer_phone" :key="'error_phone' + index" class="invalid-feedback">
                                 {{error}}
@@ -49,8 +46,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="comment" class="col-form-label col-4">Note aggiuntive</label>
-                            <small class="d-block col-4">max: 255 caratteri</small>
+                            <label for="comment" class="col-form-label col-12 col-md-4">Note aggiuntive</label>
+                            <small class="d-block col-12 col-md-4">max: 255 caratteri</small>
                             <textarea v-model="comment" class="form-control" :class="{'is-invalid':errors.comment}" name="comment" id="comment" cols="30" rows="10"></textarea>
                         
                             <p v-for="(error, index) in errors.comment" :key="'error_comment' + index" class="invalid-feedback">
@@ -66,7 +63,7 @@
                          Procedi con il pagamento
                         </button>
 
-                        <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" v-else >
+                        <button type="submit" class="btn btn-primary" data-toggle="collapse " href="#collapseExample" role="button" v-else >
                          {{(loadingPayment)? 'Loading...' : 'Procedi con l\'acquisto'}}
                         </button>
 
@@ -81,15 +78,19 @@
                     </form>
                 </div>
 
-                <div class="col-4">
-                    <h3>Riepilogo Ordine</h3>
-                    <ul>
-                        <li v-for="(el, index) in cart " :key="index">
-                            {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
-                        </li>
-                    </ul>
+                <div class="col-12 col-md-4">
+                    <div class="card p-4">
 
-                    <h2>Totale: {{totalPrice}} &euro;</h2>
+                        <h3>Riepilogo Ordine</h3>
+                        <ul>
+                            <li v-for="(el, index) in cart " :key="index">
+                                {{el.food.name}} {{el.quantity}} x {{el.food.price}} =  {{(el.quantity * el.food.price).toFixed(2)}} &euro;
+                            </li>
+                        </ul>
+                        
+                        <h2>Totale: {{totalPrice.toFixed(2)}} &euro;</h2>
+                    </div>
+
                 </div>
                 
             </div> 
@@ -212,14 +213,13 @@ import payment from './partials/payment.vue';
 
 <style scoped lang="scss">
     .container-fluid{
-        height: 100vh;
         background: rgb(0,204,188);
         background: linear-gradient(160deg, rgba(0,204,188,1) 0%, rgba(0,204,188,1) 45%, rgba(255,255,255,1) 45%);
         
 
-        input{
+         input{
             display: inline-block;
-        }
+        } 
     }
 
 </style>
