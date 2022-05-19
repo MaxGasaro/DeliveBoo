@@ -3137,7 +3137,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SingleRestaurant',
   data: function data() {
     return {
-      restaurant: null,
+      restaurant: [],
       foods: [],
       slug: this.$route.params.slug,
       singleFood: [],
@@ -3224,18 +3224,25 @@ __webpack_require__.r(__webpack_exports__);
       this.getTotal();
     },
     getLocal: function getLocal() {
-      this.cart = localStorage.getItem('myCart');
-      this.cart = JSON.parse(this.cart);
+      if (localStorage.getItem('myCart') != null) {
+        var carrello = localStorage.getItem('myCart');
+        carrello = JSON.parse(localStorage.getItem('myCart'));
+        this.cart = carrello;
+        this.getTotal();
+      }
 
       if (this.cart.length != 0) {
         this.cartVoid = false;
       }
     },
     getTotal: function getTotal() {
+      console.log(this.cart.length);
       this.totalPrice = 0;
 
-      for (var i = 0; i <= this.cart.length; i++) {
-        this.totalPrice += this.cart[i].total;
+      if (this.cart.length != 0) {
+        for (var i = 0; i <= this.cart.length; i++) {
+          this.totalPrice += this.cart[i].total;
+        }
       }
     }
   },
@@ -3243,7 +3250,6 @@ __webpack_require__.r(__webpack_exports__);
     this.getRestaurant();
     this.getFoods();
     this.getLocal();
-    this.getTotal();
   }
 });
 
@@ -48697,7 +48703,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Mirko\Boolean Careers\Classe #53\08 - Progetto finale\Progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\progetto finale\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

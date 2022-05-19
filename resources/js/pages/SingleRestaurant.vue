@@ -112,7 +112,7 @@ export default {
     name:'SingleRestaurant',
     data(){
         return{
-            restaurant : null,
+            restaurant : [],
             foods: [],
             slug: this.$route.params.slug,
             singleFood: [],
@@ -152,22 +152,22 @@ export default {
         },
 
         addToCart(){
-
+            
             if(this.cartVoid){
+                
                this.cart.push({
                     food: this.singleFood,
                     quantity : this.quantityFood,
                     total: this.quantityFood*this.singleFood.price
-                })
+                });
                 this.cartVoid = false; 
             
             }else{
                 let found = false;
-
                 for(let i = 0; i < this.cart.length; i++){
                     
                     if(this.cart[i].food.id == this.singleFood.id ){
-                        this.cart[i].quantity += this.quantityFood;
+                        this.cart[i].quantity += this.quantityFood; 
                         this.cart[i].total = this.cart[i].quantity *this.singleFood.price
                         found = true;
                         break;
@@ -179,7 +179,7 @@ export default {
                         food: this.singleFood,
                         quantity : this.quantityFood,
                         total: this.quantityFood*this.singleFood.price
-                    })
+                    });
                 }  
                
             }
@@ -197,19 +197,28 @@ export default {
             this.getTotal();
         },
         getLocal(){
-            this.cart =  localStorage.getItem('myCart'); 
-            this.cart = JSON.parse(this.cart);
+            
+            if (localStorage.getItem('myCart') != null){
+                let carrello = localStorage.getItem('myCart');
+                carrello = JSON.parse(localStorage.getItem('myCart'));
+                this.cart=carrello;
+                this.getTotal();
+            }
+            
             if(this.cart.length != 0 ){
                 this.cartVoid = false;
             }
             
         },
         getTotal(){
+            console.log(this.cart.length)
             this.totalPrice = 0;
-
-            for(let i = 0; i <= this.cart.length; i++){
+            if(this.cart.length != 0){
+               for(let i = 0; i <= this.cart.length; i++){
                 this.totalPrice += this.cart[i].total;
+            } 
             }
+            
         
             
         }
@@ -219,7 +228,6 @@ export default {
         this.getRestaurant();
         this.getFoods();
         this.getLocal();
-        this.getTotal();
     }
 }
 </script>
