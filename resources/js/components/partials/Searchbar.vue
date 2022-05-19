@@ -52,10 +52,12 @@ export default {
     },
     methods: {
         getLocal(){
-            this.cart = localStorage.getItem('myCart'); 
-            this.cart = JSON.parse(this.cart);
-            if(this.cart.length != 0 ){
+            if (localStorage.getItem('myCart') != null){
+                let carrello = localStorage.getItem('myCart');
+                carrello = JSON.parse(localStorage.getItem('myCart'));
+                this.cart=carrello;
                 this.cartVoid = false;
+                this.getTotal();
             }
             
         },
@@ -68,7 +70,6 @@ export default {
     },
     mounted(){
         this.getLocal();
-        this.getTotal();
         if(!this.cartVoid) 
           this.restaurant= this.cart[0].food.user.slug
     },
