@@ -56,15 +56,16 @@
                         <!-- qui andranno le categorie selezionate -->
                     </div>
                 </div>
-                <div class="row my-3">
+                <!-- <div class="row my-3">
                     <Carousel></Carousel>
-                </div>
+                </div> -->
                 <h4 class="my-2">Ristoranti per le tipologie selezionate:
-                    <span v-if="nameType">
-                        {{getTipologiesFilter}}
-                    </span> 
-                    <span v-else>
+                    <span v-if="nameSelected.length == 0">
                         Nessuna categoria selezionata
+                    </span> 
+                    <span v-else v-for=" (name, index) in nameSelected" :key="index">
+                        {{name}} 
+
                     </span>
                 </h4>
                 <div class="container-restaurants">
@@ -94,7 +95,8 @@ export default {
             restaurants: [],
             selected:[],
             expandedCategory: true,
-            nameType: false
+            nameType: false,
+            nameSelected: []
         }
     },
     components: {
@@ -102,20 +104,7 @@ export default {
         Searchbar,
         Carousel
     },
-    computed: {
-        getTipologiesFilter() {
-            for(let i=0; i<this.selected.length; i++) {
-                console.log(this.selected[i]);
-                for(let e=0; e<this.typologies.length; e++) {
-                    if(this.typologies[e].id.includes(this.selected[i])) { //sistemare la funzione dentro if 
-                        console.log(this.nameType);
-                        this.nameType = true;
-                        return this.typologies[e].name;
-                    }
-                }
-            }
-        }
-    },
+    
     methods:{   
         GetTipologies(){
             axios.get("/api/typologies")
@@ -138,16 +127,18 @@ export default {
 
         getFilterRestaurants(){
             this.restaurants = [];
-            // document.getElementById('MyForm').submit;
-                if(this.selected.length > 0){
-                    axios.get('api/restaurants/'+ this.selected) 
-                    .then(response =>{
-                        this.restaurants = response.data.results;
-                        console.log(this.restaurants);
-                    })
-                }else{
-                    this.GetRestaurants();
-                }
+            this.getTipologiesFilter();
+            if(this.selected.length > 0){
+                axios.get('api/restaurants/'+ this.selected) 
+                .then(response =>{
+                    this.restaurants = response.data.results;
+                    console.log(this.restaurants);  
+                })
+            }else{
+                this.GetRestaurants();
+            }
+
+            
         },
         doSearch(keyword) {
             let f = []
@@ -159,6 +150,18 @@ export default {
                 f = this.restaurants;
             }
             return f;
+        },
+        getTipologiesFilter() {
+            let array=[];
+            this.typologies.forEach(element => {
+                if(this.selected.includes(element.id)){
+                    array.push(element.name);
+                }
+
+                this.nameSelected = array.filter(function(item, pos) {
+                    return array.indexOf(item) == pos;
+                })
+            });
         }
     },
 

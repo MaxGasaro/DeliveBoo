@@ -1,5 +1,8 @@
 <template>
     <div class="container-fluid pb-5">
+        <nav class="w-100 bg-white">
+            <img src="img/Logo-delivero.png" alt="logo-deliveroo" style="width: 80px;">
+        </nav>
         <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
         <div class="container">
 
@@ -8,9 +11,6 @@
                 
                 <div class="col-8">
                     <form @submit.prevent="makeOrder" class="w-100 pb-5">
-                        <div v-if="orderSent" class="alert alert-success">
-                            ordine inviato con successo
-                        </div>
                         
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-4">Nome e cognome<strong>*</strong></label>
@@ -58,7 +58,7 @@
                             </p>
                         </div>
 
-                        
+                        <button :disabled='orderSending' type="submit" class="btn btn-primary">{{orderSending ? 'Ordinazione in corso' : 'Ordina'}}</button>
 
                         <button type="submit" class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
                          v-if="!disableBuyButton"
@@ -115,7 +115,7 @@ import payment from './partials/payment.vue';
                 customer_phone: '',
                 comment: '',
                 errors: {},
-                orderSent: false, //booleano che mostra la conferma di ordine inviato
+                orderSending: false, //booleano che mostra la conferma di ordine inviato
                 cart: null,
                 totalPrice: 0,
                 disableBuyButton : false,
@@ -149,7 +149,6 @@ import payment from './partials/payment.vue';
                         this.errors = response.data.errors;
                         console.log(this.errors);
                     }else{
-                        this.orderSent = true;
                         this.customer_name= '';
                         this.customer_address= '';
                         this.customer_phone= '';

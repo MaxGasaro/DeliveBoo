@@ -2673,7 +2673,7 @@ __webpack_require__.r(__webpack_exports__);
       customer_phone: '',
       comment: '',
       errors: {},
-      orderSent: false,
+      orderSending: false,
       //booleano che mostra la conferma di ordine inviato
       cart: null,
       totalPrice: 0,
@@ -2706,7 +2706,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = response.data.errors;
           console.log(_this.errors);
         } else {
-          _this.orderSent = true;
           _this.customer_name = '';
           _this.customer_address = '';
           _this.customer_phone = '';
@@ -2853,6 +2852,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2864,29 +2864,14 @@ __webpack_require__.r(__webpack_exports__);
       restaurants: [],
       selected: [],
       expandedCategory: true,
-      nameType: false
+      nameType: false,
+      nameSelected: []
     };
   },
   components: {
     CardRestaurant: _components_partials_CardRestaurant__WEBPACK_IMPORTED_MODULE_0__["default"],
     Searchbar: _components_partials_Searchbar__WEBPACK_IMPORTED_MODULE_1__["default"],
     Carousel: _components_partials_Carousel__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  computed: {
-    getTipologiesFilter: function getTipologiesFilter() {
-      for (var i = 0; i < this.selected.length; i++) {
-        console.log(this.selected[i]);
-
-        for (var e = 0; e < this.typologies.length; e++) {
-          if (this.typologies[e].id.includes(this.selected[i])) {
-            //sistemare la funzione dentro if 
-            console.log(this.nameType);
-            this.nameType = true;
-            return this.typologies[e].name;
-          }
-        }
-      }
-    }
   },
   methods: {
     GetTipologies: function GetTipologies() {
@@ -2910,7 +2895,8 @@ __webpack_require__.r(__webpack_exports__);
     getFilterRestaurants: function getFilterRestaurants() {
       var _this3 = this;
 
-      this.restaurants = []; // document.getElementById('MyForm').submit;
+      this.restaurants = [];
+      this.getTipologiesFilter();
 
       if (this.selected.length > 0) {
         axios.get('api/restaurants/' + this.selected).then(function (response) {
@@ -2933,6 +2919,20 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return f;
+    },
+    getTipologiesFilter: function getTipologiesFilter() {
+      var _this4 = this;
+
+      var array = [];
+      this.typologies.forEach(function (element) {
+        if (_this4.selected.includes(element.id)) {
+          array.push(element.name);
+        }
+
+        _this4.nameSelected = array.filter(function (item, pos) {
+          return array.indexOf(item) == pos;
+        });
+      });
     }
   },
   mounted: function mounted() {
@@ -30765,6 +30765,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid pb-5" }, [
+    _vm._m(0),
+    _vm._v(" "),
     _c("h1", { staticClass: "text-center" }, [
       _vm._v(
         "Per completare il tuo ordine presso " +
@@ -30788,19 +30790,11 @@ var render = function () {
               },
             },
             [
-              _vm.orderSent
-                ? _c("div", { staticClass: "alert alert-success" }, [
-                    _vm._v(
-                      "\n                        ordine inviato con successo\n                    "
-                    ),
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30856,7 +30850,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(1),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30912,7 +30906,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(2),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -30968,7 +30962,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -31087,6 +31081,19 @@ var render = function () {
                 2
               ),
               _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { disabled: _vm.orderSending, type: "submit" },
+                },
+                [
+                  _vm._v(
+                    _vm._s(_vm.orderSending ? "Ordinazione in corso" : "Ordina")
+                  ),
+                ]
+              ),
+              _vm._v(" "),
               !_vm.disableBuyButton
                 ? _c(
                     "button",
@@ -31182,6 +31189,17 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { staticClass: "w-100 bg-white" }, [
+      _c("img", {
+        staticStyle: { width: "80px" },
+        attrs: { src: "img/Logo-delivero.png", alt: "logo-deliveroo" },
+      }),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -31360,26 +31378,31 @@ var render = function () {
           _c("div", { staticClass: "col-12 col-md-10 px-5 p-right" }, [
             _vm._m(2),
             _vm._v(" "),
-            _c("div", { staticClass: "row my-3" }, [_c("Carousel")], 1),
-            _vm._v(" "),
-            _c("h4", { staticClass: "my-2" }, [
-              _vm._v(
-                "Ristoranti per le tipologie selezionate:\n                  "
-              ),
-              _vm.nameType
-                ? _c("span", [
-                    _vm._v(
-                      "\n                      " +
-                        _vm._s(_vm.getTipologiesFilter) +
-                        "\n                  "
-                    ),
-                  ])
-                : _c("span", [
-                    _vm._v(
-                      "\n                      Nessuna categoria selezionata\n                  "
-                    ),
-                  ]),
-            ]),
+            _c(
+              "h4",
+              { staticClass: "my-2" },
+              [
+                _vm._v(
+                  "Ristoranti per le tipologie selezionate:\n                  "
+                ),
+                _vm.nameSelected.length == 0
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                      Nessuna categoria selezionata\n                  "
+                      ),
+                    ])
+                  : _vm._l(_vm.nameSelected, function (name, index) {
+                      return _c("span", { key: index }, [
+                        _vm._v(
+                          "\n                      " +
+                            _vm._s(name) +
+                            " \n\n                  "
+                        ),
+                      ])
+                    }),
+              ],
+              2
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "container-restaurants" }, [
               _c(
@@ -47230,10 +47253,10 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_braintree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-braintree */ "./node_modules/vue-braintree/dist/vue-braintree.esm.js");
+/* harmony import */ var vue_braintree__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-braintree */ "./node_modules/vue-braintree/dist/vue-braintree.esm.js");
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_braintree__WEBPACK_IMPORTED_MODULE_2__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_braintree__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 /***/ }),
 
