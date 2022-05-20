@@ -76,7 +76,7 @@
                         </span>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4 col-xl-3" v-for="restaurant in restaurants" :key="restaurant.id">
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4" v-for="restaurant in restaurants" :key="restaurant.id">
                             <CardRestaurant :restaurant ="restaurant"/>           
                         </div>
                     </div>

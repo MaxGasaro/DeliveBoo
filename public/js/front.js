@@ -29892,7 +29892,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card h-100 mb-2" },
+    { staticClass: "card h-100" },
     [
       _c(
         "router-link",
@@ -31765,7 +31765,7 @@ var render = function () {
                     "div",
                     {
                       key: restaurant.id,
-                      staticClass: "col-12 col-md-6 col-lg-4 col-xl-3",
+                      staticClass: "col-12 col-md-6 col-lg-4 col-xl-3 mb-4",
                     },
                     [
                       _c("CardRestaurant", {

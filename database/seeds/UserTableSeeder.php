@@ -15,12 +15,12 @@ class UserTableSeeder extends Seeder
     {
         $newUser = new User();
         $newUser->owner = "Francesco Francini";
-        $newUser->email = "lacantina99@gmail.com";
+        $newUser->email = "lacantina55@gmail.com";
         $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Cantina";
+        $newUser->name = "La Pacchia";
         $newUser->p_iva = "12345678912";
         $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-cantina';
+        $newUser->slug = 'la-pacchia';
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Antonio Franco";
