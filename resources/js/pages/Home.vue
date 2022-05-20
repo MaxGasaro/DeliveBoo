@@ -130,7 +130,7 @@
           <div class="p-4" style="background-color: #FF483B; color: white; min-height: 278px;">
             <h1 class="font-weight-bold">Rider</h1>
             <div class="mb-3"><span>Diventa un rider: flessibilità, ottimi guadagni e un mondo di vantaggi per te.</span></div>
-            <div class="dropdown">
+            <div class="dropdown mt-5 pt-3">
               <a class="btn btn-success my-2 my-sm-0"  style="background-color:#00ccbc;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                 Unisciti a noi
               </a>
