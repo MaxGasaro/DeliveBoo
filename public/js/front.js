@@ -30812,7 +30812,7 @@ var staticRenderFns = [
             },
             [
               _c("h3", { staticClass: "font-weight-bold" }, [
-                _vm._v("Esclusiva Deliberoo"),
+                _vm._v("Esclusiva Deliveboo"),
               ]),
             ]
           ),
@@ -30823,13 +30823,13 @@ var staticRenderFns = [
         _c("div", { staticClass: "text-dark" }, [
           _c("span", [
             _vm._v(
-              "I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo."
+              "I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveboo."
             ),
           ]),
         ]),
         _vm._v(" "),
         _c("a", { staticStyle: { color: "#00ccbc" } }, [
-          _vm._v("Scopri Esclusiva Deliberoo"),
+          _vm._v("Scopri Esclusiva Deliveboo"),
         ]),
       ]),
     ])
@@ -30840,7 +30840,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("h1", { staticClass: "mx-1 mb-4 font-weight-bold" }, [
-        _vm._v("Lavora con Deliveroo"),
+        _vm._v("Lavora con Deliveboo"),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row mx-1" }, [
