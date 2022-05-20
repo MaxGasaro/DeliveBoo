@@ -67,5 +67,65 @@ class UserTableSeeder extends Seeder
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-baita';
         $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Pierluigi La Rocca";
+        $newUser->email = "laroccapierluigi@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "Il Re Leone";
+        $newUser->p_iva = "78945612374";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'il-re-leone-2';
+        $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Francesco la Rocca";
+        $newUser->email = "larocca@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "La Botte Buona";
+        $newUser->p_iva = "85274196345";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'la-botte-buona';
+        $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Alessandro Francini";
+        $newUser->email = "ale999@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "La Fucagna";
+        $newUser->p_iva = "95175345628";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'la-fucagna';
+        $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Albero Francini";
+        $newUser->email = "lacantina90@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "Il Paradiso dei Picentini";
+        $newUser->p_iva = "36547897451";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'il-paradiso-dei-picentini';
+        $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Carlo Francini";
+        $newUser->email = "carlo@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "La Cantina 3";
+        $newUser->p_iva = "95375142687";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'la-cantina-3';
+        $newUser->save();
+
+        $newUser = new User();
+        $newUser->owner = "Giovanni Francini";
+        $newUser->email = "giovanni99@gmail.com";
+        $newUser->password = Hash::make('testtest');
+        $newUser->name = "La Bella Napoli";
+        $newUser->p_iva = "95478632174";
+        $newUser->address = "Via nuova perla , 92";
+        $newUser->slug = 'la-bella-napoli';
+        $newUser->save();
     }
 }
