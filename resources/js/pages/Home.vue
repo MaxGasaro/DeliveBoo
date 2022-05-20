@@ -34,14 +34,13 @@
             <h1 class="font-weight-bold mb-5">I piatti che ami, a domicilio.</h1>
             <div class="px-5 bg-white py-3 rounded rounded-5 ml-3 mr-4" style="z-index: 500; position: absolute;">
                 <span>Inserisci il tuo indirizzo per trovare ristoranti nei dintorni</span>
-              <form action="">
-                <div class="row pt-1">
-                    
-                  <div class="col-9">
-                    <input class="form-control mr-sm-2" v-model="address" type="search" required placeholder="Dove ?..." aria-label="Search">
+              <form action="">      
+                <div class="row"> 
+                  <div class="col-9 pl-0">
+                    <input class="form-control mr-sm-2" type="search" required placeholder="Dove ?..." aria-label="Search">
                   </div>
-                  <div class="col-3">
-                    <button class="btn my-btn-home mx-1 my-2 my-sm-0" @click="link_research()">Cerca</button>  
+                  <div class="col-3 px-1">
+                    <button class="btn my-btn-home my-sm-0" @click="link_research" required>Cerca</button>  
                   </div>
                 </div>
               </form>
