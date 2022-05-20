@@ -1,13 +1,21 @@
 <template>
     <div class="container-fluid pb-5">
-        
-        
-        <h1 class="text-center">Per completare il tuo ordine presso {{name}} compila i seguenti dati</h1>
+        <nav class="container navbar navbar-expand-lg navbar-light">
+            <img id="logo" :src="require('../../../public/img/deliveroo-logo-white.png')" alt="logo deliveroo" style="width: 150px;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
+                <span class="navbar-toggler-icon" style="color: #00CCBC;"></span>
+            </button>
+            <div class="collapse navbar-collapse  pl-auto" id="navbarSupportedContent">
+                <div v-if="cartVoid" class="text-center cart"></div>
+                <div v-else class="ml-auto"><router-link :to="{name:'restaurant',params:{slug:restaurant}}"><button class="btn" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(totalPrice).toFixed(2)}}&euro;</span></button></router-link></div>
+            </div>
+        </nav>
         <div class="container">
 
             <div class="row">
-
+                
                 <div class="modal" tabindex="-1" id="thx">
+                    
                     <div class="modal-dialog">
                         <div class="modal-content text-center">
                         <div class="modal-header">
@@ -25,8 +33,10 @@
 
                 
                 <div class="col-12 col-md-8">
+                    
                     <form @submit.prevent="makeOrder" class="w-100 p-5 card">
-                        
+                        <h1 class="text-center">{{name}}</h1>
+                        <span class="text-center text-secondary mb-3">(Per completare il tuo ordine compila i seguenti dati)</span>
                         <div class="form-group">
                             <label for="customer_name" class="col-form-label col-12 col-md-4">Nome e cognome<strong>*</strong></label>
                             <input :disabled="inputBlock" v-model="customer_name" class="col-12 col-md-7 form-control" :class="{'is-invalid':errors.customer_name}" type="text" name="customer_name" id="customer_name" required maxlength="50" placeholder="inserisci il tuo nome">
@@ -132,6 +142,11 @@ import payment from './partials/payment.vue';
                 disableBuyButton : false,
                 loadingPayment: true,
                 inputBlock: false,
+                quantityFood: 1,
+                totalPrice:0,
+                cartVoid: true,
+                restaurant: null,
+                address: '',     
                 form: {
                     token: '',
                     amount: ''
@@ -173,20 +188,19 @@ import payment from './partials/payment.vue';
                 });
             },
             getLocal(){
-               this.cart =  localStorage.getItem('myCart');
-               this.cart = JSON.parse(this.cart);
-               console.log(this.cart);
-            },
-            getTotal(){
-                this.totalPrice = 0;
-
-                for(let i = 0; i <= this.cart.length; i++){
-                    this.totalPrice += this.cart[i].total;
-                }
-
-                
-                
-            },
+            this.cart =  localStorage.getItem('myCart'); 
+            this.cart = JSON.parse(this.cart);
+            if(this.cart.length != 0 ){
+                this.cartVoid = false;
+            }
+            
+        },
+        getTotal(){
+            this.totalPrice = 0;
+            for(let i = 0; i < this.cart.length; i++){
+                this.totalPrice += this.cart[i].total;
+            }       
+        },
             paymentOnSuccess (nonce) {
             // alert(nonce);
                 this.form.token = nonce
@@ -221,14 +235,17 @@ import payment from './partials/payment.vue';
                     
 
         },
-        created() {
-            
+        created() {        
             this.getLocal();
-            this.getTotal();
-            
+            this.getTotal();     
         },
+        
         mounted(){
+            if(!this.cartVoid){ 
+            this.restaurant= this.cart[0].food.user.slug
+            };
             this.form.amount = this.totalPrice;
+   
         }
     }
 </script>

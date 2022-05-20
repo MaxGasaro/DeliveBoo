@@ -17,7 +17,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <div v-if="cartVoid"></div>
-                    <div v-else><router-link :to="{name:'restaurant',params:{slug:restaurant}}"><button class="btn mr-2" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1"></i><span>{{(totalPrice).toFixed(2)}}&euro;</span></button></router-link></div>
+                    <div v-else><router-link :to="{name:'restaurant',params:{slug:restaurant}}"><button class="btn mr-2 border border-1" type="button"  style="background-color: white; color: black;"><i class="fa-solid fa-basket-shopping mr-1 text-dark"></i><span>{{(totalPrice).toFixed(2)}}&euro;</span></button></router-link></div>
                 </li>
             </ul>
         </div>
