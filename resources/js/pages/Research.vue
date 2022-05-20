@@ -255,7 +255,7 @@ export default {
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll; 
-    height: 100vh;
+    height: 100%;
     }
 
     .container-restaurants::-webkit-scrollbar {

@@ -40,7 +40,7 @@
                     <input class="form-control mr-sm-2" type="search" required placeholder="Dove ?..." aria-label="Search">
                   </div>
                   <div class="col-3 px-1">
-                    <button class="btn my-btn-home my-sm-0" @click="link_research" required>Cerca</button>  
+                    <button class="btn my-btn-home my-sm-0" @click="link_research()" required>Cerca</button>  
                   </div>
                 </div>
               </form>

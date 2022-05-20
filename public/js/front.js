@@ -2478,7 +2478,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   data: function data() {
@@ -2598,6 +2597,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./partials/payment.vue */ "./resources/js/pages/partials/payment.vue");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2715,7 +2726,9 @@ __webpack_require__.r(__webpack_exports__);
     payment: _partials_payment_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       name: this.$route.params.name,
       customer_name: '',
       customer_address: '',
@@ -2730,11 +2743,11 @@ __webpack_require__.r(__webpack_exports__);
       disableBuyButton: false,
       loadingPayment: true,
       inputBlock: false,
-      form: {
-        token: '',
-        amount: ''
-      }
-    };
+      quantityFood: 1
+    }, _defineProperty(_ref, "totalPrice", 0), _defineProperty(_ref, "cartVoid", true), _defineProperty(_ref, "restaurant", null), _defineProperty(_ref, "address", ''), _defineProperty(_ref, "form", {
+      token: '',
+      amount: ''
+    }), _ref;
   },
   methods: {
     makeOrder: function makeOrder() {
@@ -2771,12 +2784,15 @@ __webpack_require__.r(__webpack_exports__);
     getLocal: function getLocal() {
       this.cart = localStorage.getItem('myCart');
       this.cart = JSON.parse(this.cart);
-      console.log(this.cart);
+
+      if (this.cart.length != 0) {
+        this.cartVoid = false;
+      }
     },
     getTotal: function getTotal() {
       this.totalPrice = 0;
 
-      for (var i = 0; i <= this.cart.length; i++) {
+      for (var i = 0; i < this.cart.length; i++) {
         this.totalPrice += this.cart[i].total;
       }
     },
@@ -2814,6 +2830,11 @@ __webpack_require__.r(__webpack_exports__);
     this.getTotal();
   },
   mounted: function mounted() {
+    if (!this.cartVoid) {
+      this.restaurant = this.cart[0].food.user.slug;
+    }
+
+    ;
     this.form.amount = this.totalPrice;
   }
 });
@@ -28093,7 +28114,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100vh;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* .research {\r\n    height: 100vh;\r\n} */\n* {\r\n    padding: 0;\r\n    margin: 0;\r\n    box-sizing: border-box;\r\n    list-style-type: none;\n}\n.p-left{\r\n    height: 100%;\n}\n.list-category{\r\n    overflow-y: auto;\r\n    height: 100%;\n}\n.container-restaurants{\r\n    -ms-overflow-style: none;\r\n    scrollbar-width: none;\r\n    overflow-y: scroll; \r\n    height: 100%;\n}\n.container-restaurants::-webkit-scrollbar {\r\n    display: none;\n}\n.ms_green a {\r\n        color: #00b8a9;\r\n        font-size: 14px;\n}\r\n\r\n    \r\n\r\n    /* #ms_input::before {\r\n        content: 'f002';\r\n        width: 10px;\r\n        height: 10px;\r\n    } */\n#rider {\r\n        width: 30px;\r\n        height: 30px;\n}\n.category a {\r\n        color:#00b8a9;\n}\n.type {\r\n        padding: 4px 8px 4px 12px;\r\n        background-color: #00b8a9;\r\n        color: white;\r\n        font-weight: bold;\r\n        display: flex;\r\n        align-items: center;\r\n        justify-content: space-between;\n}\n.fa-xmark{\r\n        font-size: 1.2em;\n}\n.fa-xmark:hover{\r\n        cursor: pointer;\r\n        transform: scale(1.1);\n}\n.no-types {\r\n        color: #00b8a9;\r\n        font-size: 2rem;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -30155,7 +30176,7 @@ var render = function () {
                           _c(
                             "button",
                             {
-                              staticClass: "btn mr-2",
+                              staticClass: "btn mr-2 border border-1",
                               staticStyle: {
                                 "background-color": "white",
                                 color: "black",
@@ -30164,7 +30185,8 @@ var render = function () {
                             },
                             [
                               _c("i", {
-                                staticClass: "fa-solid fa-basket-shopping mr-1",
+                                staticClass:
+                                  "fa-solid fa-basket-shopping mr-1 text-dark",
                               }),
                               _c("span", [
                                 _vm._v(_vm._s(_vm.totalPrice.toFixed(2)) + "€"),
@@ -30381,41 +30403,15 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("form", { attrs: { action: "" } }, [
-                  _c("div", { staticClass: "row pt-1" }, [
-                    _c("div", { staticClass: "col-9" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.address,
-                            expression: "address",
-                          },
-                        ],
-                        staticClass: "form-control mr-sm-2",
-                        attrs: {
-                          type: "search",
-                          required: "",
-                          placeholder: "Dove ?...",
-                          "aria-label": "Search",
-                        },
-                        domProps: { value: _vm.address },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.address = $event.target.value
-                          },
-                        },
-                      }),
-                    ]),
+                  _c("div", { staticClass: "row" }, [
+                    _vm._m(3),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-3" }, [
+                    _c("div", { staticClass: "col-3 px-1" }, [
                       _c(
                         "button",
                         {
-                          staticClass: "btn my-btn-home mx-1 my-2 my-sm-0",
+                          staticClass: "btn my-btn-home my-sm-0",
+                          attrs: { required: "" },
                           on: {
                             click: function ($event) {
                               return _vm.link_research()
@@ -30431,7 +30427,7 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _vm._m(4),
         ]),
       ]),
     ]),
@@ -30449,7 +30445,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(4)]
+            [_vm._m(5)]
           ),
           _vm._v(" "),
           _c(
@@ -30458,7 +30454,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(5)]
+            [_vm._m(6)]
           ),
         ]),
         _vm._v(" "),
@@ -30469,7 +30465,7 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-7",
               on: { click: _vm.click_card },
             },
-            [_vm._m(6)]
+            [_vm._m(7)]
           ),
           _vm._v(" "),
           _c(
@@ -30478,13 +30474,13 @@ var render = function () {
               staticClass: "col-12 mb-4 col-sm-6 col-lg-5",
               on: { click: _vm.click_card },
             },
-            [_vm._m(7)]
+            [_vm._m(8)]
           ),
         ]),
       ]),
     ]),
     _vm._v(" "),
-    _vm._m(8),
+    _vm._m(9),
     _vm._v(" "),
     _c("div", { attrs: { id: "click_card2" } }, [
       _c("div", {
@@ -30590,6 +30586,22 @@ var staticRenderFns = [
           ]
         ),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-9 pl-0" }, [
+      _c("input", {
+        staticClass: "form-control mr-sm-2",
+        attrs: {
+          type: "search",
+          required: "",
+          placeholder: "Dove ?...",
+          "aria-label": "Search",
+        },
+      }),
     ])
   },
   function () {
@@ -30864,7 +30876,7 @@ var staticRenderFns = [
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "dropdown" }, [
+              _c("div", { staticClass: "dropdown mt-5 pt-3" }, [
                 _c(
                   "a",
                   {
@@ -31051,13 +31063,73 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid pb-5" }, [
-    _c("h1", { staticClass: "text-center" }, [
-      _vm._v(
-        "Per completare il tuo ordine presso " +
-          _vm._s(_vm.name) +
-          " compila i seguenti dati"
-      ),
-    ]),
+    _c(
+      "nav",
+      { staticClass: "container navbar navbar-expand-lg navbar-light" },
+      [
+        _c("img", {
+          staticStyle: { width: "150px" },
+          attrs: {
+            id: "logo",
+            src: __webpack_require__(/*! ../../../public/img/deliveroo-logo-white.png */ "./public/img/deliveroo-logo-white.png"),
+            alt: "logo deliveroo",
+          },
+        }),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse  pl-auto",
+            attrs: { id: "navbarSupportedContent" },
+          },
+          [
+            _vm.cartVoid
+              ? _c("div", { staticClass: "text-center cart" })
+              : _c(
+                  "div",
+                  { staticClass: "ml-auto" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: {
+                            name: "restaurant",
+                            params: { slug: _vm.restaurant },
+                          },
+                        },
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            staticStyle: {
+                              "background-color": "white",
+                              color: "black",
+                            },
+                            attrs: { type: "button" },
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa-solid fa-basket-shopping mr-1",
+                            }),
+                            _c("span", [
+                              _vm._v(_vm._s(_vm.totalPrice.toFixed(2)) + "€"),
+                            ]),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ],
+                  1
+                ),
+          ]
+        ),
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
@@ -31067,9 +31139,9 @@ var render = function () {
           [
             _c("div", { staticClass: "modal-dialog" }, [
               _c("div", { staticClass: "modal-content text-center" }, [
-                _vm._m(0),
-                _vm._v(" "),
                 _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -31108,11 +31180,21 @@ var render = function () {
               },
             },
             [
+              _c("h1", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(_vm.name)),
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "text-center text-secondary mb-3" }, [
+                _vm._v(
+                  "(Per completare il tuo ordine compila i seguenti dati)"
+                ),
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(2),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -31169,7 +31251,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(3),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -31226,7 +31308,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -31283,7 +31365,7 @@ var render = function () {
                 "div",
                 { staticClass: "form-group" },
                 [
-                  _vm._m(5),
+                  _vm._m(6),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -31469,6 +31551,32 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        staticStyle: { "background-color": "white" },
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarSupportedContent",
+          "aria-controls": "navbarSupportedContent",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation",
+        },
+      },
+      [
+        _c("span", {
+          staticClass: "navbar-toggler-icon",
+          staticStyle: { color: "#00CCBC" },
+        }),
+      ]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -47700,7 +47808,18 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/deliveroo-logo-tumb.png?8a93a6203d10c5acd1d983313f271195";
+module.exports = "/images/deliveroo-logo-tumb.png?6d70e9e3cc3e2b4a14c42ceb83ee444b";
+
+/***/ }),
+
+/***/ "./public/img/deliveroo-logo-white.png":
+/*!*********************************************!*\
+  !*** ./public/img/deliveroo-logo-white.png ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/deliveroo-logo-white.png?84da662984481b864433e9628a597664";
 
 /***/ }),
 
@@ -48971,7 +49090,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\massi\Desktop\Boolean\Esercizi\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
