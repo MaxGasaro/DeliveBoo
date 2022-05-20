@@ -105,12 +105,12 @@
             <a  href="#top">
               <div class="row mx-2 m-1 py-auto" style="overflow: hidden; height: 120px; background-origin: content-box; background-position: center; background-size: 120%; background-repeat: no-repeat; background-image: url('https://www.foodsafetynews.com/files/2020/03/dreamstime_food-delivery-online-food-sales.jpg');">
                 <div class="col-12 text-center text-white d-flex justify-content-center align-items-center" style="heigth:100%; background-color:rgba(0, 0, 0, 0.2); overflow: hidden;">
-                  <h3 class="font-weight-bold">Esclusiva Deliberoo</h3>
+                  <h3 class="font-weight-bold">Esclusiva Deliveboo</h3>
                 </div>
               </div>
               <div class="mx-2">
                 <div class="text-dark"><span>I più famosi, i più buoni, i preferiti. Quelli che trovi solo su Deliveroo.</span></div>
-                <a style="color:#00ccbc;">Scopri Esclusiva Deliberoo</a>
+                <a style="color:#00ccbc;">Scopri Esclusiva Deliveboo</a>
               </div>
             </a>
           </div>
@@ -120,7 +120,7 @@
     <!-- fine sezione "La selezione di Deliboo" -->
     <!-- inizio sezione "Lavora con Deliveboo" -->
     <div class="container">
-      <h1 class="mx-1 mb-4 font-weight-bold">Lavora con Deliveroo</h1>
+      <h1 class="mx-1 mb-4 font-weight-bold">Lavora con Deliveboo</h1>
       <div class="row mx-1">
         <div class="col-12 mb-4 col-sm-4">
           <div>
@@ -148,7 +148,7 @@
           <div class="p-4" style="background-color: #FF8100; color: white;">
             <h1 class="font-weight-bold">Ristoranti</h1>
             <div class="mb-3"><span>Diventa partner di Deliveboo e raggiungi sempre più clienti. Ci occupiamo noi della consegna, così che la tua unica preoccupazione sia continuare a preparare il miglior cibo.</span></div>
-            <a href="http://127.0.0.1:8000/register"><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Diventa nostro partner</button></a>
+            <a href="http://127.0.0.1:8000/register"><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Area ristorante</button></a>
           </div>
         </div>
 
