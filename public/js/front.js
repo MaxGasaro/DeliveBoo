@@ -30955,7 +30955,7 @@ var staticRenderFns = [
                       staticClass: "btn btn-success my-2 my-sm-0",
                       staticStyle: { "background-color": "#00ccbc" },
                     },
-                    [_vm._v("Diventa nostro partner")]
+                    [_vm._v("Area ristorante")]
                   ),
                 ]),
               ]

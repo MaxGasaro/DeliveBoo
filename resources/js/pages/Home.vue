@@ -148,7 +148,7 @@
           <div class="p-4" style="background-color: #FF8100; color: white;">
             <h1 class="font-weight-bold">Ristoranti</h1>
             <div class="mb-3"><span>Diventa partner di Deliveboo e raggiungi sempre più clienti. Ci occupiamo noi della consegna, così che la tua unica preoccupazione sia continuare a preparare il miglior cibo.</span></div>
-            <a href="http://127.0.0.1:8000/register"><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Diventa nostro partner</button></a>
+            <a href="http://127.0.0.1:8000/register"><button class="btn btn-success my-2 my-sm-0" style="background-color:#00ccbc;">Area ristorante</button></a>
           </div>
         </div>
 
