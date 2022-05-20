@@ -21,6 +21,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "12345678912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-pacchia';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Antonio Franco";
@@ -30,6 +33,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "22345678912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-riviera';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Piero Armenti";
@@ -39,6 +45,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "12555678912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-locanda';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Damiano Torrisi";
@@ -48,6 +57,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "12345634912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'cantinetta';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Paolo Antonio";
@@ -57,6 +69,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "12345678944";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'sarchiapone';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
         $newUser = new User();
         $newUser->owner = "Guido Luce";
@@ -66,6 +81,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "12345673422";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-baita';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -76,6 +94,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "78945612374";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'il-re-leone-2';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -86,6 +107,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "85274196345";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-botte-buona';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -96,6 +120,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "95175345628";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-fucagna';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -106,6 +133,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "36547897451";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'il-paradiso-dei-picentini';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -116,6 +146,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "95375142687";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-cantina-3';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
 
         $newUser = new User();
@@ -126,6 +159,9 @@ class UserTableSeeder extends Seeder
         $newUser->p_iva = "95478632174";
         $newUser->address = "Via nuova perla , 92";
         $newUser->slug = 'la-bella-napoli';
+        /* $newUser->typologies() = [
+            [''] =>
+        ]; */
         $newUser->save();
     }
 }
