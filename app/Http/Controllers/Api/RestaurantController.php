@@ -17,9 +17,9 @@ class RestaurantController extends Controller
         $restaurants = User::with(['foods', 'typologies'])->take(10)->get();
 
         $restaurants->each(function($restaurant) {
-            if ($restaurant->image) {
+            if ($restaurant->image && substr($restaurant->image, 0, 5) != 'https') {
                 $restaurant->image = url('storage/'.$restaurant->image);
-            } else {
+            } else if(!isset($restaurant->image)) {
                 $restaurant->image = url('img/placeholder.svg');
             }
         });
@@ -36,9 +36,9 @@ class RestaurantController extends Controller
 
         $restaurant = User::where('slug', $slug)->with(['foods', 'typologies'])->first();
 
-        if ($restaurant->image) {
+        if ($restaurant->image && substr($restaurant->image, 0, 5) != 'https') {
             $restaurant->image = url('storage/'.$restaurant->image);
-        } else {
+        } else if(!isset($restaurant->image)) {
             $restaurant->image = url('img/placeholder.svg');
         }
 
@@ -85,9 +85,9 @@ class RestaurantController extends Controller
         // devono essere entrambi due array key=> $value e usando !array_diff vedo se filter è contenuto nell'array delle tipologie
 
         foreach($restaurantArray as $restaurant) {
-            if ($restaurant->image) {
+            if ($restaurant->image && substr($restaurant->image, 0, 5) != 'https') {
                 $restaurant->image = url('storage/'.$restaurant->image);
-            } else {
+            } else if(!isset($restaurant->image)) {
                 $restaurant->image = url('img/placeholder.svg');
             }
         };
