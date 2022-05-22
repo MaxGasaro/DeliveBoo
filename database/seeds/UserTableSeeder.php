@@ -36,7 +36,26 @@ class UserTableSeeder extends Seeder
 
             $newUser->save();
 
-            DB::table('typology_user')->insert([ //inserisco 3 tipologie randomiche per ogni utente
+            $pivotData = [ //inserisco 3 tipologie randomiche per ogni utente nella tabella pivot
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                ],
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                ],
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                    ]
+                ];
+                
+            $newUser->typologies()->sync($pivotData);
+
+
+            //SOLUZIONE ALTERNATIVA
+            /* DB::table('typology_user')->insert([
                 [
                     'typology_id' => rand(1, 41),
                     'user_id' => $newUser->id
@@ -49,21 +68,8 @@ class UserTableSeeder extends Seeder
                     'typology_id' => rand(1, 41),
                     'user_id' => $newUser->id
                 ]
-            ]);
-            /* $newUser->typologies()->sync($pivotData); */
+            ]); */
         }
-
-        /* $newUser = new User();
-        $newUser->owner = "Francesco Francini";
-        $newUser->email = "lacantina55@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Pacchia";
-        $newUser->p_iva = "12345678912";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-pacchia'; */
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
         
     }
 }
