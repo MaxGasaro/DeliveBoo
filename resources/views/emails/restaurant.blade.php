@@ -4,6 +4,6 @@
 <h3>Indirizzo cliente: {{$order->customer_address}}</h3> <br>
 <h3>Telefono cliente: {{$order->customer_phone}}</h3> <br>
 <h3>Data ordine: {{$order->date}}</h3> <br>
-<h3>Messaggio: {{$order->message}}</h3>
+<h3>Messaggio: {{$order->comment}}</h3>
 
 <h3>Prezzo totale: {{$order->price}}</h3>
