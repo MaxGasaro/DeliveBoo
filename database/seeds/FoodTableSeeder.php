@@ -2,6 +2,7 @@
 
 use App\Food;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class FoodTableSeeder extends Seeder
 {
@@ -13,18 +14,16 @@ class FoodTableSeeder extends Seeder
     public function run()
     {
         $name = ['Classic BBQ','Volcano','Big Bacon', 'Takaeshita street','Satrincha box', 'Margherita','Diavola','Salsiccia','4 stagioni'];
-        $slug = ['classic-bbq','volcano','big-bacon', 'takaeshita-street','satrincha-box', 'margherita','diavola','salsiccia','4-stagioni'];
-        $price = [10,12,8,7.5,5,9,7,4,6,10];
-        $categoria = [1,2,3,4,5,6,7,8,9];
+
+        $faker = Faker\Factory::create();
         
-        
-        for($i=1;$i<13; $i++){
-            for($j=0 ; $j<count($name);$j++){
+        for($i=1;$i<10; $i++){ //per ogni utente creato dall'UserTableSeeder, associo i seguenti cibi
+            for($j=0 ; $j<count($name);$j++){ //scorro per ogni cibo
                 $food = new Food();
                 $food->name = $name[$j];
-                $food->slug = $slug[$j];
-                $food->description = $name[$j];
-                $food->price = $price[$j];
+                $food->slug = Str::slug($food->name);
+                $food->description = $faker->text();
+                $food->price = number_format($faker->randomFloat(1, 3, 20), 2);
                 $food->visible = true;
                 $food->user_id = $i;
                 $food->category_id = rand(1,9);

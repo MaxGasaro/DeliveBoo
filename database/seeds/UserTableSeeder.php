@@ -2,7 +2,10 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -13,155 +16,54 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $newUser = new User();
+        $faker = Faker\Factory::create();
+        
+        /* $path = storage_path('app/public/img_users'); */
+
+        for ($i=0; $i < 10; $i++) { 
+            $newUser = new User();
+            $newUser->email = $faker->email();
+            $newUser->password = Hash::make('testtest');
+            $newUser->name = $faker->company();
+            $newUser->owner = $faker->name();
+            $newUser->p_iva = $faker->randomNumber(9, true);
+            $newUser->image = $faker->imageUrl(640, 480, $newUser->name, true);
+            $newUser->address = $faker->address();
+            $newUser->slug = Str::slug($newUser->name);
+
+            /* $newUser->image = Storage::put('img_users', $faker->image($path, 640, 480)); */
+            /* $faker->imageUrl(640, 480, 'test', true); */
+
+            $newUser->save();
+
+            DB::table('typology_user')->insert([ //inserisco 3 tipologie randomiche per ogni utente
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                ],
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                ],
+                [
+                    'typology_id' => rand(1, 41),
+                    'user_id' => $newUser->id
+                ]
+            ]);
+            /* $newUser->typologies()->sync($pivotData); */
+        }
+
+        /* $newUser = new User();
         $newUser->owner = "Francesco Francini";
         $newUser->email = "lacantina55@gmail.com";
         $newUser->password = Hash::make('testtest');
         $newUser->name = "La Pacchia";
         $newUser->p_iva = "12345678912";
         $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-pacchia';
+        $newUser->slug = 'la-pacchia'; */
         /* $newUser->typologies() = [
             [''] =>
         ]; */
-        $newUser->save();
-        $newUser = new User();
-        $newUser->owner = "Antonio Franco";
-        $newUser->email = "lariviera10@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Riviera";
-        $newUser->p_iva = "22345678912";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-riviera';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-        $newUser = new User();
-        $newUser->owner = "Piero Armenti";
-        $newUser->email = "lalocanda@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Locanda";
-        $newUser->p_iva = "12555678912";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-locanda';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-        $newUser = new User();
-        $newUser->owner = "Damiano Torrisi";
-        $newUser->email = "cantinetta@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "Cantinetta";
-        $newUser->p_iva = "12345634912";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'cantinetta';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-        $newUser = new User();
-        $newUser->owner = "Paolo Antonio";
-        $newUser->email = "sarchiapone@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "Sarchiapone";
-        $newUser->p_iva = "12345678944";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'sarchiapone';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-        $newUser = new User();
-        $newUser->owner = "Guido Luce";
-        $newUser->email = "labaita@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Baita";
-        $newUser->p_iva = "12345673422";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-baita';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Pierluigi La Rocca";
-        $newUser->email = "laroccapierluigi@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "Il Re Leone";
-        $newUser->p_iva = "78945612374";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'il-re-leone-2';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Francesco la Rocca";
-        $newUser->email = "larocca@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Botte Buona";
-        $newUser->p_iva = "85274196345";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-botte-buona';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Alessandro Francini";
-        $newUser->email = "ale999@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Fucagna";
-        $newUser->p_iva = "95175345628";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-fucagna';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Albero Francini";
-        $newUser->email = "lacantina90@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "Il Paradiso dei Picentini";
-        $newUser->p_iva = "36547897451";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'il-paradiso-dei-picentini';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Carlo Francini";
-        $newUser->email = "carlo@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Cantina 3";
-        $newUser->p_iva = "95375142687";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-cantina-3';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
-
-        $newUser = new User();
-        $newUser->owner = "Giovanni Francini";
-        $newUser->email = "giovanni99@gmail.com";
-        $newUser->password = Hash::make('testtest');
-        $newUser->name = "La Bella Napoli";
-        $newUser->p_iva = "95478632174";
-        $newUser->address = "Via nuova perla , 92";
-        $newUser->slug = 'la-bella-napoli';
-        /* $newUser->typologies() = [
-            [''] =>
-        ]; */
-        $newUser->save();
+        
     }
 }
