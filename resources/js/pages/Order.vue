@@ -166,7 +166,8 @@ import payment from './partials/payment.vue';
                     "customer_phone" : this.customer_phone,
                     "comment" : this.comment,
                     "cart" : this.cart,
-                    "price" : this.totalPrice
+                    "price" : this.totalPrice,
+                    "user_id" : this.cart[0].food.user_id,
                 }).then(response =>{
                     
                     /* this.orderSending = false; */

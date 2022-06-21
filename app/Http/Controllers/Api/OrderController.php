@@ -28,7 +28,8 @@ class OrderController extends Controller
             "customer_address" => 'required|max:100',
             "customer_email" => 'required|email|max:100',
             "customer_phone" => 'required|max:15',
-            "comment" => 'nullable|max:255'
+            "comment" => 'nullable|max:255',
+            "user_id" => 'required'
         ]);
 
         //Se la validazione non va a buon fine, prelevo gli errori e li mostrerò in front

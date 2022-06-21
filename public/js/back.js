@@ -144,7 +144,7 @@ if (button) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Documents\github_repo\DeliveBoo\resources\js\back.js */"./resources/js/back.js");
 
 
 /***/ })

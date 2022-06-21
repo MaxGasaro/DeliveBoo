@@ -2761,7 +2761,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         "customer_phone": this.customer_phone,
         "comment": this.comment,
         "cart": this.cart,
-        "price": this.totalPrice
+        "price": this.totalPrice,
+        "user_id": this.cart[0].food.user_id
       }).then(function (response) {
         /* this.orderSending = false; */
         console.log(response);
@@ -49090,7 +49091,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Desktop\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Pierluigi\Documents\github_repo\DeliveBoo\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

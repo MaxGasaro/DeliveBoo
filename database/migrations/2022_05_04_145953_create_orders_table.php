@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_phone',15);
             $table->string('comment')->nullable();
             $table->string('status_order')->default('Completato');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
