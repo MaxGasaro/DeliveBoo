@@ -63,7 +63,7 @@ class FoodController extends Controller
         $data = $request->all();
 
         if(isset($data['img'])){
-            $img_food = Storage::put('img_foods', $data['img']);
+            $img_food = Storage::put('img_food', $data['img']);
             $data['img'] = $img_food;
         }
         
