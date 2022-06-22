@@ -18,6 +18,7 @@ function btnDelete(id,route){
   document.getElementById("myForm").action = route + "/" + id;
 }
 
+//funzione per vedere se si è selezionata almeno una tipologia
 let checkBoxes = document.getElementsByClassName('control-check');
 let button = document.getElementById("register");
 

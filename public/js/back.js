@@ -111,7 +111,8 @@ window.btnDelete = btnDelete; //funzione dalla quale ricavo l'id e la rotta poi 
 
 function btnDelete(id, route) {
   document.getElementById("myForm").action = route + "/" + id;
-}
+} //funzione per vedere se si è selezionata almeno una tipologia
+
 
 var checkBoxes = document.getElementsByClassName('control-check');
 var button = document.getElementById("register");
